@@ -17,7 +17,13 @@ export const routes: Routes = [
             if (host.includes('localhost')) {
                 // e.g. "leader-dhaka.localhost" -> parts = 2
                 isSubdomain = parts.length >= 2 && parts[0] !== 'www';
+            } else if (host.includes('vercel.app')) {
+                // Vercel Free Tier specific check
+                // "bnp-digital.vercel.app" -> parts=3 (NOT a candidate subdomain)
+                // "candidate.bnp-digital.vercel.app" -> parts=4 (IS a candidate subdomain)
+                isSubdomain = parts.length >= 4 && parts[0] !== 'www';
             } else {
+                // Production custom domain
                 // e.g. "leader.bnp.com" -> parts = 3
                 isSubdomain = parts.length > 2 && parts[0] !== 'www';
             }
