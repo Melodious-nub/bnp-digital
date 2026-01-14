@@ -1,0 +1,6 @@
+// Custom styling if needed on top of Tailwind
+input {
+    &::placeholder {
+        opacity: 0.5;
+    }
+}

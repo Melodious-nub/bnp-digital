@@ -1,0 +1,123 @@
+<div class="min-h-screen bg-gray-50 flex flex-col">
+    <!-- Professional Navigation Header -->
+    <header class="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-6 cursor-pointer" (click)="goBack()">
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-black text-gray-900 tracking-tighter uppercase leading-none">BNP Digital
+                    </h1>
+                    <span class="text-[9px] font-bold text-bnp-green uppercase tracking-[0.2em] mt-1">Movement for
+                        Democracy</span>
+                </div>
+            </div>
+
+
+
+            <div class="flex items-center space-x-4">
+                <button (click)="goBack()"
+                    class="text-xs font-bold text-gray-400 hover:text-gray-900 transition-colors">
+                    &larr; Back to Map
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-6 py-12">
+        <!-- Breadcrumbs & Title -->
+        <div class="mb-12">
+            <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4">
+                <span>Central Hub</span>
+                <span>/</span>
+                <span>{{districtName}}</span>
+            </div>
+            <h2 class="text-5xl font-black text-gray-900 tracking-tighter italic">
+                Verified <span class="text-bnp-green">Candidates</span>
+            </h2>
+            <p class="mt-4 text-gray-500 font-medium max-w-xl">
+                Displaying all registered and verified representatives serving the district of <span
+                    class="text-gray-900 font-bold underline">{{districtName}}</span>.
+            </p>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-24">
+            <div class="w-12 h-12 border-4 border-bnp-green border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Fetching Leaders...</p>
+        </div>
+
+        <!-- Candidate Grid -->
+        <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div *ngFor="let candidate of candidates"
+                class="group relative bg-white rounded-[2.5rem] p-8 border border-gray-100 hover:border-bnp-green/20 hover:shadow-2xl hover:shadow-bnp-green/10 transition-all duration-500 cursor-pointer"
+                (click)="viewProfile(candidate.slug)">
+
+                <div class="flex items-start justify-between mb-8">
+                    <div
+                        class="w-24 h-24 rounded-3xl overflow-hidden shadow-xl ring-4 ring-gray-50 group-hover:ring-bnp-green/10 transition-all">
+                        <img [src]="candidate.photo_url" [alt]="candidate.full_name"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <div
+                        class="px-3 py-1 bg-gray-50 rounded-full text-[9px] font-black uppercase tracking-widest text-gray-400 group-hover:bg-bnp-green group-hover:text-white transition-colors">
+                        Verified
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3
+                        class="text-2xl font-black text-gray-900 tracking-tight group-hover:text-bnp-green transition-colors">
+                        {{candidate.full_name}}
+                    </h3>
+                    <div class="flex flex-col">
+                        <span
+                            class="text-[10px] font-bold text-bnp-green uppercase tracking-widest mb-1">{{candidate.designation}}</span>
+                        <span class="text-xs text-gray-400 font-medium">{{candidate.district_name}} District</span>
+                    </div>
+                    <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">
+                        {{candidate.bio}}
+                    </p>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-gray-50 flex items-center justify-between">
+                    <span
+                        class="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-bnp-green transition-colors">View
+                        Portfolio</span>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-bnp-green group-hover:text-white transition-all">
+                        &rarr;
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div *ngIf="candidates.length === 0" class="col-span-full py-24 text-center">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 text-gray-400 mb-6 text-2xl lowercase italic">
+                    none
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">No candidates found</h3>
+                <p class="text-gray-400 mt-2">Registration for this district is currently in progress.</p>
+                <button (click)="goBack()"
+                    class="mt-8 px-6 py-2 bg-gray-900 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-bnp-green transition-colors">
+                    Back to Selection
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="bg-white border-t border-gray-50 py-12 mt-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <h4 class="text-lg font-black text-gray-900 uppercase">BNP Digital Hub</h4>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">&copy; 2026 Bangladesh
+                    National Party</p>
+            </div>
+            <div class="flex gap-8 text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <a href="#" class="hover:text-bnp-green">Privacy Policy</a>
+                <a href="#" class="hover:text-bnp-green">Terms of Service</a>
+                <a href="#" class="hover:text-bnp-green">Contact</a>
+            </div>
+        </div>
+    </footer>
+</div>

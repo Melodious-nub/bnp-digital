@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "full_name": "Tarique Rahman",
+        "slug": "tarique",
+        "division_id": 1,
+        "district_id": 1,
+        "photo_url": "https://api.placeholder.com/150",
+        "designation": "Acting Chairman, BNP",
+        "bio": "Senior leader of Bangladesh Nationalist Party.",
+        "division_name": "Dhaka",
+        "district_name": "Dhaka City"
+    },
+    {
+        "id": 2,
+        "full_name": "Mirza Fakhrul",
+        "slug": "fakhrul",
+        "division_id": 1,
+        "district_id": 1,
+        "photo_url": "https://api.placeholder.com/150",
+        "designation": "Secretary General, BNP",
+        "bio": "Experienced politician and spokesperson.",
+        "division_name": "Dhaka",
+        "district_name": "Dhaka City"
+    },
+    {
+        "id": 3,
+        "full_name": "Amir Khasru",
+        "slug": "khasru",
+        "division_id": 2,
+        "district_id": 3,
+        "photo_url": "https://api.placeholder.com/150",
+        "designation": "Standing Committee Member",
+        "bio": "Prominent representative from Chittagong.",
+        "division_name": "Chittagong",
+        "district_name": "Chittagong City"
+    }
+]

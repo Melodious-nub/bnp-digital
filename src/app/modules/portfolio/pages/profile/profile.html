@@ -1,0 +1,267 @@
+<div class="min-h-screen bg-gray-50 flex flex-col font-sans">
+    <!-- Professional Sticky Header -->
+    <header
+        class="sticky top-0 z-[100] bg-[#006a4e] border-b border-gray-100 py-4 shadow-sm transition-all duration-300 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(#f42a41 20%, transparent 20%); background-size: 30px 30px;"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#006a4e] via-transparent to-[#006a4e]"></div>
+        <div class="container mx-auto px-6 flex justify-between items-center relative z-10">
+            <div class="flex items-center space-x-6">
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-black text-white tracking-tighter uppercase leading-none italic">BNP
+                        Digital</h1>
+                    <span class="text-[9px] font-bold text-white/80 uppercase tracking-[0.2em] mt-1">Leader
+                        Portfolio</span>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <button (click)="goBack()"
+                    class="px-6 py-2 border border-white/30 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-[#006a4e] transition-all transform hover:scale-105 active:scale-95">
+                    Explore More
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="min-h-[80vh] flex flex-col items-center justify-center">
+            <div class="w-16 h-16 border-4 border-bnp-green border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-6 text-xs font-black text-gray-400 uppercase tracking-widest animate-pulse">Retrieving Profile
+                Data...</p>
+        </div>
+
+        <div *ngIf="!isLoading && candidate" class="animate-fade-in-up">
+            <!-- Cinematic Hero Section -->
+            <div class="relative h-[60vh] lg:h-[50vh] bg-gray-900 overflow-hidden group">
+                <!-- Parallax-like Background with Flag Gradient -->
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-110 opacity-60"
+                    style="background: radial-gradient(circle, #f42a41 25%, #006a4e 25.5%);">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-black/20"></div>
+
+                <div class="container mx-auto px-6 h-full flex flex-col justify-end pb-24 relative z-20">
+                    <div class="max-w-4xl space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="px-4 py-1.5 bg-bnp-green text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-bnp-green/20">
+                                Official Candidate
+                            </span>
+                            <span
+                                class="px-4 py-1.5 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest rounded-full backdrop-blur-sm">
+                                {{candidate.district_name}} Constituency
+                            </span>
+                        </div>
+
+                        <h1 class="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none italic">
+                            {{candidate.full_name}}
+                        </h1>
+
+                        <p class="text-xl md:text-2xl text-gray-300 font-light max-w-2xl leading-relaxed">
+                            {{candidate.designation}} dedicated to the service of <span
+                                class="text-white font-bold">{{candidate.division_name}}</span>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="container mx-auto px-6 py-20 space-y-24">
+
+                <!-- Main Bio & Manifesto -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                    <!-- Sidebar Profile -->
+                    <div class="lg:col-span-4 -mt-32 lg:-mt-24 relative z-50">
+                        <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl shadow-gray-200">
+                            <div class="rounded-[2rem] overflow-hidden aspect-[3/4] relative group">
+                                <img [src]="candidate.photo_url"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 space-y-8">
+                            <div>
+                                <h4
+                                    class="text-xs font-black uppercase tracking-widest text-gray-900 mb-6 flex items-center gap-2">
+                                    <span class="w-8 h-px bg-gray-900"></span> Connect
+                                </h4>
+                                <div class="flex gap-4">
+                                    <a
+                                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all cursor-pointer">
+                                        <i class="fab fa-facebook-f text-lg">f</i>
+                                    </a>
+                                    <a
+                                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-sky-500 hover:text-white hover:border-transparent transition-all cursor-pointer">
+                                        <i class="fab fa-twitter text-lg">t</i>
+                                    </a>
+                                    <a
+                                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-pink-600 hover:text-white hover:border-transparent transition-all cursor-pointer">
+                                        <i class="fab fa-instagram text-lg">in</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="lg:col-span-8 space-y-16">
+                        <div>
+                            <h3 class="text-4xl font-black text-gray-900 tracking-tight italic mb-8">Mission Statement
+                            </h3>
+                            <p class="text-xl text-gray-600 leading-relaxed font-serif antialiased">
+                                {{candidate.bio}}
+                            </p>
+                        </div>
+
+                        <!-- Manifesto Grid -->
+                        <div class="bg-gray-50 rounded-[3rem] p-10 md:p-14">
+                            <h3
+                                class="text-sm font-black text-bnp-green uppercase tracking-widest mb-10 border-b border-gray-200 pb-4">
+                                {{candidate.manifesto.title}}
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                                <div *ngFor="let point of candidate.manifesto.points; let i = index" class="group">
+                                    <div
+                                        class="text-4xl font-black text-gray-200 mb-4 group-hover:text-bnp-green transition-colors font-serif italic">
+                                        0{{i+1}}</div>
+                                    <p class="text-gray-700 font-medium leading-relaxed">{{point}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Bar (Moved) -->
+                <div class="bg-white border-y border-gray-100 py-12 hidden md:block">
+                    <div class="container mx-auto px-6">
+                        <div class="flex justify-between divide-x divide-gray-100">
+                            <div class="flex-1 py-6 px-8 text-center hover:bg-gray-50 transition-colors">
+                                <span
+                                    class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.followers}}</span>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Active
+                                    Supporters</span>
+                            </div>
+                            <div class="flex-1 py-6 px-8 text-center hover:bg-gray-50 transition-colors">
+                                <span
+                                    class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.volunteers}}</span>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Registered
+                                    Volunteers</span>
+                            </div>
+                            <div class="flex-1 py-6 px-8 text-center hover:bg-gray-50 transition-colors">
+                                <span
+                                    class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.events_held}}</span>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Rallies
+                                    Conducted</span>
+                            </div>
+                            <div class="flex flex-col justify-center px-8">
+                                <button
+                                    class="px-8 py-3 bg-bnp-green text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl">
+                                    Join Campaign
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Timeline -->
+                <div>
+                    <div class="flex items-end justify-between mb-16 px-4">
+                        <div>
+                            <h3
+                                class="text-6xl font-black text-gray-900 tracking-tighter opacity-10 leading-none -mb-8 ml-[-4px]">
+                                UPDATES</h3>
+                            <h3 class="text-3xl font-black text-gray-900 tracking-tight italic relative z-10">Recent
+                                Activity</h3>
+                        </div>
+                        <div class="hidden md:flex gap-2">
+                            <div class="w-12 h-1 bg-gray-900"></div>
+                            <div class="w-2 h-1 bg-gray-300"></div>
+                            <div class="w-2 h-1 bg-gray-300"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div *ngFor="let activity of candidate.recent_activity"
+                            class="group bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500">
+                            <div class="h-48 overflow-hidden relative">
+                                <img [src]="activity.image_url"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                <div class="absolute top-4 left-4">
+                                    <span
+                                        class="px-3 py-1 bg-white/90 backdrop-blur text-[10px] font-black uppercase tracking-widest rounded-full">
+                                        {{activity.type}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <span
+                                    class="text-[10px] font-bold text-bnp-green uppercase tracking-widest mb-2 block">{{activity.date}}</span>
+                                <h4
+                                    class="text-lg font-black text-gray-900 leading-tight mb-4 group-hover:text-bnp-green transition-colors line-clamp-2">
+                                    {{activity.title}}
+                                </h4>
+                                <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">
+                                    {{activity.excerpt}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign Gallery -->
+                <div>
+                    <h3 class="text-3xl font-black text-gray-900 tracking-tight italic mb-12 text-center">Campaign
+                        Gallery</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px] md:h-[500px]">
+                        <!-- Uses a simpler varied grid for visual interest -->
+                        <div class="col-span-2 row-span-2 rounded-[2rem] overflow-hidden relative group cursor-pointer">
+                            <img [src]="candidate.campaign_images[0]"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/20 transition-all"></div>
+                        </div>
+                        <div class="rounded-[2rem] overflow-hidden relative group cursor-pointer">
+                            <img [src]="candidate.campaign_images[1]"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="rounded-[2rem] overflow-hidden relative group cursor-pointer">
+                            <img [src]="candidate.campaign_images[2]"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="col-span-2 rounded-[2rem] overflow-hidden relative group cursor-pointer">
+                            <img [src]="candidate.campaign_images[3]"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 404 State -->
+        <div *ngIf="!isLoading && !candidate"
+            class="min-h-[60vh] flex flex-col items-center justify-center text-center">
+            <h1 class="text-9xl font-black text-gray-100">404</h1>
+            <p class="text-xl text-gray-500 font-medium -mt-10">Candidate Not Found</p>
+            <button (click)="goBack()"
+                class="mt-8 px-8 py-3 bg-gray-900 text-white rounded-full text-xs font-black uppercase tracking-widest hover:bg-bnp-green transition-all">
+                Return Home
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-20 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-black italic mb-6">Join the Movement</h2>
+            <p class="text-gray-500 mb-8 max-w-lg mx-auto">Be a part of history. Volunteer, donate, or spread the word
+                for a better Bangladesh.</p>
+            <p class="text-[10px] font-bold text-gray-600 uppercase tracking-widest">&copy; 2026 Bangladesh National
+                Party Digital Wing</p>
+        </div>
+    </footer>
+</div>
