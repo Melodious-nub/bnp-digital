@@ -21,8 +21,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     // 1. Check for Path-based routing (Workaround for Vercel/No-Wildcard envs)
-    // We access snapshot params because profile doesn't usually change within itself
-    const routeSlug = this.route.snapshot.paramMap.get('slug');
+    // We check current route OR parent route (since param is defined in app.routes)
+    const routeSlug = this.route.snapshot.paramMap.get('slug') || this.route.parent?.snapshot.paramMap.get('slug');
 
     if (routeSlug) {
       this.slug = routeSlug;
@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
     const host = window.location.hostname;
 
     // Check if the current host starts with the slug (indicating Subdomain Routing)
-    // e.g. mirza-fakhrul.localhost vs localhost/profile/mirza-fakhrul
+    // Only applies if we are actually using custom domains/subdomains + slug is present
     if (this.slug && host.startsWith(this.slug + '.')) {
       const protocol = window.location.protocol;
       const port = window.location.port ? ':' + window.location.port : '';
@@ -86,13 +86,12 @@ export class ProfileComponent implements OnInit {
       } else {
         // e.g. slug.bnp.com -> bnp.com
         // Avoid stripping if it's already a main domain like 'myapp.vercel.app'
-        // Only strip if strictly in subdomain mode matching the slug
         if (parts.length > 2) rootDomain = parts.slice(1).join('.');
       }
       window.location.href = `${protocol}//${rootDomain}${port}/`;
     } else {
-      // Path-based routing (Vercel workaround)
-      // Just navigate to root inside the SPA
+      // Path-based routing (Vercel workaround / Localhost Fallback)
+      // Simply navigate to the root route configured in Angular
       this.router.navigate(['/']);
     }
   }

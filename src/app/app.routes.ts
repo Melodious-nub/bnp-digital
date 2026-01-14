@@ -4,6 +4,7 @@ export const routes: Routes = [
     // Workaround Route for environments without subdomain support (e.g. Vercel free tier)
     {
         path: 'profile/:slug',
+        pathMatch: 'full', // Ensure specific path match
         loadChildren: () => import('./modules/portfolio/portfolio-module').then(m => m.PortfolioModule)
     },
     {
