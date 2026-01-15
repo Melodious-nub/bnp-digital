@@ -1,78 +1,78 @@
 export const DIVISIONS = [
-    { id: 1, name: 'Dhaka' },
-    { id: 2, name: 'Chittagong' },
-    { id: 3, name: 'Sylhet' },
-    { id: 4, name: 'Khulna' },
-    { id: 5, name: 'Barishal' },
-    { id: 6, name: 'Rajshahi' },
-    { id: 7, name: 'Rangpur' }
+    { id: 1, name: 'Dhaka', bn_name: 'ঢাকা' },
+    { id: 2, name: 'Chittagong', bn_name: 'চট্টগ্রাম' },
+    { id: 3, name: 'Sylhet', bn_name: 'সিলেট' },
+    { id: 4, name: 'Khulna', bn_name: 'খুলনা' },
+    { id: 5, name: 'Barishal', bn_name: 'বরিশাল' },
+    { id: 6, name: 'Rajshahi', bn_name: 'রাজশাহী' },
+    { id: 7, name: 'Rangpur', bn_name: 'রংপুর' },
+    { id: 8, name: 'Mymensingh', bn_name: 'ময়মনসিংহ' }
 ];
 
 export const DISTRICTS = [
-    { id: 1, division_id: 1, name: 'Dhaka' },
-    { id: 2, division_id: 1, name: 'Gazipur' },
-    { id: 3, division_id: 1, name: 'Manikganj' },
-    { id: 4, division_id: 1, name: 'Munshiganj' },
-    { id: 5, division_id: 1, name: 'Narayanganj' },
-    { id: 6, division_id: 1, name: 'Narsingdi' },
-    { id: 7, division_id: 1, name: 'Faridpur' },
-    { id: 8, division_id: 1, name: 'Gopalganj' },
-    { id: 9, division_id: 1, name: 'Madaripur' },
-    { id: 10, division_id: 1, name: 'Rajbari' },
-    { id: 11, division_id: 1, name: 'Shariatpur' },
-    { id: 12, division_id: 1, name: 'Kishoreganj' },
-    { id: 13, division_id: 1, name: 'Tangail' },
-    { id: 14, division_id: 1, name: 'Mymensingh' },
-    { id: 15, division_id: 1, name: 'Jamalpur' },
-    { id: 16, division_id: 1, name: 'Netrokona' },
-    { id: 17, division_id: 1, name: 'Sherpur' },
-    { id: 18, division_id: 2, name: 'Chittagong' },
-    { id: 19, division_id: 2, name: 'Cox\'s Bazar' },
-    { id: 20, division_id: 2, name: 'Rangamati' },
-    { id: 21, division_id: 2, name: 'Bandarban' },
-    { id: 22, division_id: 2, name: 'Khagrachhari' },
-    { id: 23, division_id: 2, name: 'Noakhali' },
-    { id: 24, division_id: 2, name: 'Feni' },
-    { id: 25, division_id: 2, name: 'Lakshmipur' },
-    { id: 26, division_id: 2, name: 'Comilla' },
-    { id: 27, division_id: 2, name: 'Chandpur' },
-    { id: 28, division_id: 2, name: 'Brahmanbaria' },
-    { id: 29, division_id: 3, name: 'Sylhet' },
-    { id: 30, division_id: 3, name: 'Moulvibazar' },
-    { id: 31, division_id: 3, name: 'Habiganj' },
-    { id: 32, division_id: 3, name: 'Sunamganj' },
-    { id: 33, division_id: 4, name: 'Khulna' },
-    { id: 34, division_id: 4, name: 'Bagerhat' },
-    { id: 35, division_id: 4, name: 'Sathkhira' },
-    { id: 36, division_id: 4, name: 'Jessore' },
-    { id: 37, division_id: 4, name: 'Magura' },
-    { id: 38, division_id: 4, name: 'Narail' },
-    { id: 39, division_id: 4, name: 'Kushtia' },
-    { id: 40, division_id: 4, name: 'Jhenaidah' },
-    { id: 41, division_id: 4, name: 'Chuadanga' },
-    { id: 42, division_id: 4, name: 'Meherpur' },
-    { id: 43, division_id: 5, name: 'Barishal' },
-    { id: 44, division_id: 5, name: 'Bhola' },
-    { id: 45, division_id: 5, name: 'Patuakhali' },
-    { id: 46, division_id: 5, name: 'Pirojpur' },
-    { id: 47, division_id: 5, name: 'Jhalokati' },
-    { id: 48, division_id: 5, name: 'Barguna' },
-    { id: 49, division_id: 6, name: 'Rajshahi' },
-    { id: 50, division_id: 6, name: 'Chapai Nawabganj' },
-    { id: 51, division_id: 6, name: 'Naogaon' },
-    { id: 52, division_id: 6, name: 'Natore' },
-    { id: 53, division_id: 6, name: 'Pabna' },
-    { id: 54, division_id: 6, name: 'Sirajganj' },
-    { id: 55, division_id: 6, name: 'Bogra' },
-    { id: 56, division_id: 6, name: 'Joypurhat' },
-    { id: 57, division_id: 7, name: 'Rangpur' },
-    { id: 58, division_id: 7, name: 'Gaibandha' },
-    { id: 59, division_id: 7, name: 'Kurigram' },
-    { id: 60, division_id: 7, name: 'Nilphamari' },
-    { id: 61, division_id: 7, name: 'Lalmonirhat' },
-    { id: 62, division_id: 7, name: 'Dinajpur' },
-    { id: 63, division_id: 7, name: 'Thakurgaon' },
-    { id: 64, division_id: 7, name: 'Panchagarh' }
+    { id: 1, division_id: 1, name: 'Dhaka', bn_name: 'ঢাকা' },
+    { id: 2, division_id: 1, name: 'Gazipur', bn_name: 'গাজীপুর' },
+    { id: 3, division_id: 1, name: 'Manikganj', bn_name: 'মানিকগঞ্জ' },
+    { id: 4, division_id: 1, name: 'Munshiganj', bn_name: 'মুন্সীগঞ্জ' },
+    { id: 5, division_id: 1, name: 'Narayanganj', bn_name: 'নারায়ণগঞ্জ' },
+    { id: 6, division_id: 1, name: 'Narsingdi', bn_name: 'নরসিংদী' },
+    { id: 7, division_id: 1, name: 'Faridpur', bn_name: 'ফরিদপুর' },
+    { id: 8, division_id: 1, name: 'Gopalganj', bn_name: 'গোপালগঞ্জ' },
+    { id: 9, division_id: 1, name: 'Madaripur', bn_name: 'মাদারীপুর' },
+    { id: 10, division_id: 1, name: 'Rajbari', bn_name: 'রাজবাড়ী' },
+    { id: 11, division_id: 1, name: 'Shariatpur', bn_name: 'শরীয়তপুর' },
+    { id: 12, division_id: 1, name: 'Kishoreganj', bn_name: 'কিশোরগঞ্জ' },
+    { id: 13, division_id: 1, name: 'Tangail', bn_name: 'টাঙ্গাইল' },
+    { id: 14, division_id: 8, name: 'Mymensingh', bn_name: 'ময়মনসিংহ' },
+    { id: 15, division_id: 8, name: 'Jamalpur', bn_name: 'জামালপুর' },
+    { id: 16, division_id: 8, name: 'Netrokona', bn_name: 'নেত্রকোণা' },
+    { id: 17, division_id: 8, name: 'Sherpur', bn_name: 'শেরপুর' },
+    { id: 18, division_id: 2, name: 'Chittagong', bn_name: 'চট্টগ্রাম' },
+    { id: 19, division_id: 2, name: 'Cox\'s Bazar', bn_name: 'কক্সবাজার' },
+    { id: 20, division_id: 2, name: 'Rangamati', bn_name: 'রাঙ্গামাটি' },
+    { id: 21, division_id: 2, name: 'Bandarban', bn_name: 'বান্দরবান' },
+    { id: 22, division_id: 2, name: 'Khagrachhari', bn_name: 'খাগড়াছড়ি' },
+    { id: 23, division_id: 2, name: 'Noakhali', bn_name: 'নোয়াখালী' },
+    { id: 24, division_id: 2, name: 'Feni', bn_name: 'ফেনী' },
+    { id: 25, division_id: 2, name: 'Lakshmipur', bn_name: 'লক্ষ্্মীপুর' },
+    { id: 26, division_id: 2, name: 'Comilla', bn_name: 'কুমিল্লা' },
+    { id: 27, division_id: 2, name: 'Chandpur', bn_name: 'চাঁদপুর' },
+    { id: 28, division_id: 2, name: 'Brahmanbaria', bn_name: 'ব্রাহ্মণবাড়িয়া' },
+    { id: 29, division_id: 3, name: 'Sylhet', bn_name: 'সিলেট' },
+    { id: 30, division_id: 3, name: 'Moulvibazar', bn_name: 'মৌলভীবাজার' },
+    { id: 31, division_id: 3, name: 'Habiganj', bn_name: 'হবিগঞ্জ' },
+    { id: 32, division_id: 3, name: 'Sunamganj', bn_name: 'সুনামগঞ্জ' },
+    { id: 33, division_id: 4, name: 'Khulna', bn_name: 'খুলনা' },
+    { id: 34, division_id: 4, name: 'Bagerhat', bn_name: 'বাগেরহাট' },
+    { id: 35, division_id: 4, name: 'Sathkhira', bn_name: 'সাতক্ষীরা' },
+    { id: 36, division_id: 4, name: 'Jessore', bn_name: 'যশোর' },
+    { id: 37, division_id: 4, name: 'Magura', bn_name: 'মাগুরা' },
+    { id: 38, division_id: 4, name: 'Narail', bn_name: 'নড়াইল' },
+    { id: 40, division_id: 4, name: 'Jhenaidah', bn_name: 'ঝিনাইদহ' },
+    { id: 41, division_id: 4, name: 'Chuadanga', bn_name: 'চুয়াডাঙ্গা' },
+    { id: 42, division_id: 4, name: 'Meherpur', bn_name: 'মেহেরপুর' },
+    { id: 43, division_id: 5, name: 'Barishal', bn_name: 'বরিশাল' },
+    { id: 44, division_id: 5, name: 'Bhola', bn_name: 'ভোলা' },
+    { id: 45, division_id: 5, name: 'Patuakhali', bn_name: 'পটুয়াখালী' },
+    { id: 46, division_id: 5, name: 'Pirojpur', bn_name: 'পিরোজপুর' },
+    { id: 47, division_id: 5, name: 'Jhalokati', bn_name: 'ঝালকাঠি' },
+    { id: 48, division_id: 5, name: 'Barguna', bn_name: 'বরগুনা' },
+    { id: 49, division_id: 6, name: 'Rajshahi', bn_name: 'রাজশাহী' },
+    { id: 50, division_id: 6, name: 'Chapai Nawabganj', bn_name: 'চাঁপাইনবাবগঞ্জ' },
+    { id: 51, division_id: 6, name: 'Naogaon', bn_name: 'নওগাঁ' },
+    { id: 52, division_id: 6, name: 'Natore', bn_name: 'নাটোর' },
+    { id: 53, division_id: 6, name: 'Pabna', bn_name: 'পাবনা' },
+    { id: 54, division_id: 6, name: 'Sirajganj', bn_name: 'সিরাজগঞ্জ' },
+    { id: 55, division_id: 6, name: 'Bogra', bn_name: 'বগুড়া' },
+    { id: 56, division_id: 6, name: 'Joypurhat', bn_name: 'জয়পুরহাট' },
+    { id: 57, division_id: 7, name: 'Rangpur', bn_name: 'রংপুর' },
+    { id: 58, division_id: 7, name: 'Gaibandha', bn_name: 'গাইবান্ধা' },
+    { id: 59, division_id: 7, name: 'Kurigram', bn_name: 'কুড়িগ্রাম' },
+    { id: 60, division_id: 7, name: 'Nilphamari', bn_name: 'নীলফামারী' },
+    { id: 61, division_id: 7, name: 'Lalmonirhat', bn_name: 'লালমনিরহাট' },
+    { id: 62, division_id: 7, name: 'Dinajpur', bn_name: 'দিনাজপুর' },
+    { id: 63, division_id: 7, name: 'Thakurgaon', bn_name: 'ঠাকুরগাঁও' },
+    { id: 64, division_id: 7, name: 'Panchagarh', bn_name: 'পঞ্চগড়' }
 ];
 
 // Helper to generate 300 candidates with realistic data
@@ -134,7 +134,8 @@ const generateCandidates = () => {
         slug: s.candidate_slug!,
         district_id: s.district_id,
         name: s.candidate_name!,
-        seat_name: s.name_en
+        seat_name: s.name_en,
+        seat_name_bn: s.name
     }));
 
     const usedSpecificSlugs = new Set<string>();
@@ -146,15 +147,15 @@ const generateCandidates = () => {
 
         // Check if we have an unused predefined candidate for this district
         const specificCand = seatCandidates.find(c => c.district_id === dist.id && !usedSpecificSlugs.has(c.slug));
-        
+
         let fullName: string;
         let slug: string;
         let seatName: string | undefined;
-        
+
         if (specificCand) {
             fullName = specificCand.name;
             slug = specificCand.slug;
-            seatName = specificCand.seat_name;
+            seatName = specificCand.seat_name_bn;
             usedSpecificSlugs.add(slug);
         } else {
             const title = (i % 3 === 0) ? pick(titles, i) + ' ' : '';
@@ -185,7 +186,7 @@ const generateCandidates = () => {
             const actTitle = pick(activityTitles, seed)
                 .replace('{location}', dist.name)
                 .replace('{topic}', pick(topics, seed));
-            
+
             const lastName = fullName.split(' ').pop();
 
             recentActivity.push({
@@ -216,33 +217,142 @@ const generateCandidates = () => {
         };
 
         let photoUrl = `https://i.pravatar.cc/400?u=${i + 600}`;
+        let political_journey: string | undefined;
+        let personal_life: string | undefined;
+        let constituency_plan: string | undefined;
+        let gallery: string[] | undefined;
+        let videos: string[] | undefined;
+
+        // Specific Overrides for Amanullah Aman (Dhaka-2)
+        if (slug === 'amanullahaman') {
+            photoUrl = 'https://lh3.googleusercontent.com/d/1liZaSwwxPqgvYuCi64Kj73K7x1mqMt8k';
+            fullName = 'আমানউল্লাহ আমান';
+            bio = `আমান উল্লাহ আমান একজন অভিজ্ঞ রাজনৈতিক নেতা এবং ২০২৬ সালের ত্রয়োদশ জাতীয় সংসদ নির্বাচনে ঢাকা-২ আসন থেকে বাংলাদেশ জাতীয়তাবাদী দলের (বিএনপি) মনোনীত প্রার্থী। বর্তমানে তিনি বিএনপি চেয়ারপারসনের উপদেষ্টা কাউন্সিলের সদস্য হিসেবে গুরুত্বপূর্ণ দায়িত্ব পালন করছেন। সাভার ও কেরানীগঞ্জের মানুষের সাথে তাঁর রয়েছে দীর্ঘদিনের আত্মিক সম্পর্ক। তিনি গণতন্ত্র পুনরুদ্ধার এবং একটি সমৃদ্ধ বাংলাদেশ গড়ার লক্ষ্য নিয়ে তাঁর নির্বাচনী এলাকার মানুষের সেবায় নিজেকে উৎসর্গ করেছেন।`;
+
+            manifesto = {
+                title: "Vision and Political Aim of Amanullah Aman",
+                points: [
+                    "Dedicated to restoring people's voting rights and establishing a transparent, accountable government.",
+                    "Focusing on sustainable urban-rural integration and social equity in Dhaka-2.",
+                    "Committed to modernizing local industries and small businesses for youth employment.",
+                    "Advocating for improved healthcare and government hospitals."
+                ]
+            };
+
+            constituency_plan = `বিএনপির "পরিবর্তনের রাজনীতি"-র আলোকে আমান উল্লাহ আমান ঢাকা-২ আসনকে একটি আধুনিক ও জনবান্ধব জনপদ হিসেবে গড়ে তুলতে চান। তাঁর পরিকল্পনার মূলে রয়েছে সাধারণ মানুষের জীবনযাত্রার মানোন্নয়ন।\r\n\r\nতাঁর মূল লক্ষ্যসমূহ হলো:\r\n\r\nকর্মসংস্থান ও শিল্পায়ন: সাভার ও কেরানীগঞ্জের শিল্পাঞ্চলগুলোর আধুনিকায়ন এবং শিক্ষিত যুবসমাজের জন্য নতুন কর্মসংস্থানের সুযোগ সৃষ্টি করা।\r\n\r\nস্বাস্থ্য ও শিক্ষা: সরকারি হাসপাতালগুলোর সেবার মান বৃদ্ধি এবং কারিগরি শিক্ষার প্রসারের মাধ্যমে দক্ষ জনশক্তি তৈরি করা।\r\n\r\nকৃষি ও পরিবেশ: কৃষি জমি রক্ষা এবং শিল্প বর্জ্য ব্যবস্থাপনার মাধ্যমে নদী ও পরিবেশকে দূষণমুক্ত রাখা।\r\n\r\nসামাজিক উন্নয়ন: ধর্মীয় নেতাদের সামাজিক মর্যাদা নিশ্চিত করা এবং খেলাধুলার প্রসারের মাধ্যমে তরুণ প্রজন্মকে বিপথগামী হওয়া থেকে রক্ষা করা। তিনি একটি বৈষম্যহীন ঢাকা-২ গড়তে অঙ্গীকারবদ্ধ, যেখানে উন্নয়ন হবে টেকসই এবং জনমুখী।`;
+
+            political_journey = `আমান উল্লাহ আমানের রাজনৈতিক জীবন গণতান্ত্রিক মূল্যবোধ এবং দলীয় আদর্শের প্রতি অবিচল আস্থার এক প্রতিফলন। নব্বইয়ের দশকের স্বৈরাচার বিরোধী আন্দোলনে ছাত্রনেতা হিসেবে তাঁর সাহসী ভূমিকা বাংলাদেশের রাজনৈতিক ইতিহাসে স্মরণীয়। পরবর্তীতে তিনি দলের যুগ্ম মহাসচিবসহ বিভিন্ন গুরুত্বপূর্ণ সাংগঠনিক পদে দায়িত্ব পালন করেছেন। দীর্ঘ এই পথচলায় তিনি বহু ত্যাগ স্বীকার করেছেন এবং জনগণের অধিকার আদায়ের সংগ্রামে সবসময় সামনের সারিতে থেকেছেন। চেয়ারপারসনের উপদেষ্টা কমিটির সদস্য হিসেবে বর্তমানে তিনি দলের নীতি নির্ধারণী পর্যায়ে গুরুত্বপূর্ণ ভূমিকা পালন করছেন।`;
+
+            personal_life = `আমান উল্লাহ আমান সমাজবিজ্ঞান বিভাগ থেকে স্নাতকোত্তর (এমএসএস) ডিগ্রিধারী একজন উচ্চশিক্ষিত ব্যক্তিত্ব। বর্তমানে তাঁর বয়স ৬৩ বছর এবং পেশায় তিনি একজন সফল ব্যবসায়ী। তাঁর সমাজতাত্ত্বিক জ্ঞান তাঁকে তৃণমূল মানুষের সমস্যাগুলো গভীরভাবে বুঝতে and সমাধান করতে সহায়তা করে। পারিবারিক ঐতিহ্য ও মূল্যবোধের প্রতি শ্রদ্ধাশীল আমান উল্লাহ আমান তাঁর রাজনৈতিক ও পেশাগত জীবনে সততা ও স্বচ্ছতা বজায় রাখতে সর্বদা সচেষ্ট।`;
+            gallery = [
+                'https://lh3.googleusercontent.com/d/1uFl9sx2htG0UkpKJzbzSVEeGLeZNRMZy',
+                'https://lh3.googleusercontent.com/d/16aXkS-TgUhFYo_WhA8djlSbmDoAaLrN_',
+                'https://lh3.googleusercontent.com/d/1x0KKUcIGeFt_TM3QtZ-QWzc15aSTHoSY',
+                'https://lh3.googleusercontent.com/d/13v25VgUCiIjD7WDpoPc35BEx3qT1ElyQ',
+                'https://lh3.googleusercontent.com/d/1i3YANsugUYf0lxGqtWLZGux4E5KPG5Qs',
+                'https://lh3.googleusercontent.com/d/1QyiGk-kiUZu8BzgX6sLCWZLcdtdoeWkI',
+                'https://lh3.googleusercontent.com/d/1IPaI6TEmFi7aLFlYt_r16iRPBuMUHROz',
+                'https://lh3.googleusercontent.com/d/15A0xeqLlc79ThSAZ-lcdsGRHV6pQ8n_A',
+                'https://lh3.googleusercontent.com/d/1ktdmCB8IkA57UytNdEPPNjyIacyAVw-A',
+                'https://lh3.googleusercontent.com/d/1LhbivB27ZNaBZjJ5H2mEBT8bAInB7jyY',
+                'https://lh3.googleusercontent.com/d/1mY7fM-g0ITJr8PEAWTsTMXIaR3hAEqoO',
+                'https://lh3.googleusercontent.com/d/1lRVM2AorkxeP7G2QcjvjZGkfFv6eiot8',
+                'https://lh3.googleusercontent.com/d/1-ApkM45615qdnywGuG7UQ9HkDUIt_hEc',
+                'https://lh3.googleusercontent.com/d/18LQ0yAWh4bdfL99ePkF6_vQ7zYtraLFU',
+                'https://lh3.googleusercontent.com/d/1-JemEG7k-KX0hyQAFq4lZTIKE_20nxWz',
+                'https://lh3.googleusercontent.com/d/14SXGeqW16CHybjZ__gswNg7hQOgwCMyg',
+                'https://lh3.googleusercontent.com/d/1ypcLkxQrJaPy-_XB3os5YTGvK50KqpeG',
+                'https://lh3.googleusercontent.com/d/1dwUCh5Fhcu1MU7IZ11GCqVUccTqmPs0o',
+                'https://lh3.googleusercontent.com/d/1VUKvI0y7rfZoUcT1Pllh7KTHNXWPetpC',
+                'https://lh3.googleusercontent.com/d/1yOHoAdGH5Z4CMb1d9wamOmQ72dLa7z_z',
+                'https://lh3.googleusercontent.com/d/1zMdWee9ikpPJmVYN39x0RHc3stmovekT',
+                'https://lh3.googleusercontent.com/d/1gJyk31uH-AtbCaJJQMMrtRIuAD4z_iLO',
+                'https://lh3.googleusercontent.com/d/1bT1_-U2mHGiTecOymIqyMsfz5DdUeTpX',
+                'https://lh3.googleusercontent.com/d/13TGutMIlax5I0Ei_4MIhbqo-mQOvVmO6',
+                'https://lh3.googleusercontent.com/d/1ww0fYf4GdPhBmLFJl8nD-65DxXRcV7mv',
+                'https://lh3.googleusercontent.com/d/1kMjxPPZeZ-cQxuZT2SVFcX_bvqhSgE9W',
+                'https://lh3.googleusercontent.com/d/1hArBILMQqJTtjYwQk6DgdGlje3-l03hs',
+                'https://lh3.googleusercontent.com/d/1a4ObHk7UzDDD1RUhnEbUs-rQZHL2MJFa',
+                'https://lh3.googleusercontent.com/d/1YBlpnW5PZeJiRBfXqdCX0mRKFY2U4Ic2'
+            ];
+            videos = [
+                'https://drive.google.com/file/d/1_2ld2P5C560DtlxfQwGBYUzEgMunZKEO/preview',
+                'https://drive.google.com/file/d/1dOlnMAOZXCdQ9tM9Z_kac66KeroGjbMZ/preview',
+                'https://drive.google.com/file/d/1iwuqExDC8UjniKAZmdCBjn8mTSVC3JEc/preview',
+                'https://drive.google.com/file/d/1Ttx2zrnS5Mzyu-niayR2Gj5zvb2HnnN4/preview',
+                'https://drive.google.com/file/d/1A1cgEWDSJOIOS7buP_nRFPdx41m_ajX8/preview',
+                'https://drive.google.com/file/d/16ELaBqP2652W_VOxUV4YhlzQejVBRRkz/preview',
+                'https://drive.google.com/file/d/1Da962aeCa4utn6iwKM766JiFVNhEFFnD/preview',
+                'https://drive.google.com/file/d/1SHT3RnbyE_p-oAMgBqnuwiPBpD-s8lnn/preview',
+                'https://drive.google.com/file/d/1XQ-gwO8Sr3kt81w_nmgt30_FW8_YmIg0/preview',
+                'https://drive.google.com/file/d/1Ap5BOFUShNj_X5WsYs4oiHDYvuHDdYAZ/preview',
+                'https://drive.google.com/file/d/18yhJjJ4yi6SMCb14SFN3c0GudFYe-NhI/preview',
+                'https://drive.google.com/file/d/1ogqy0mNQklbUSnCqpvPVoKDCkeIfay9X/preview',
+                'https://drive.google.com/file/d/1zD2xxI_0cwdS9r0_0gjfCsiUYT_SH-se/preview',
+                'https://drive.google.com/file/d/1GKIs4n5OT5PR8qFonys95lV41ns544sU/preview',
+                'https://drive.google.com/file/d/1eUmXsgEYnoLqmzal_hORhPpndGWBUFpq/preview',
+                'https://drive.google.com/file/d/1WVsCwSXYOFo97sK7FOTpzUM7eP1J9Srx/preview',
+                'https://drive.google.com/file/d/15g-P66ivNlIytiKy8wwx9WO_OaF_ttll/preview',
+                'https://drive.google.com/file/d/13FDPPYGMT1N7C3seFjbgUjCzt9lS-lod/preview',
+                'https://drive.google.com/file/d/1oFBpx9MqxiQB_ODJfdafFwku6w7YV4qH/preview',
+                'https://drive.google.com/file/d/1BLPBHhuXvnlzLQ5rt5sIBMiTSiAt1HCv/preview'
+            ];
+        }
 
         // Specific Overrides for Khondaker Abu Ashfaque
         if (slug === 'khondakerabuashfaque') {
-            photoUrl = 'https://khondakerabuashfaque.yourleader.org/wp-content/uploads/2026/01/Khondaker-Abu-Ashfaque-.jpg';
-            bio = `
-                <h1>Khondaker Abu Ashfaque</h1>
-                <p><b>Khondaker Abu Ashfaque</b> is a Bangladeshi political leader and a senior figure of the <b>Bangladesh Nationalist Party (BNP)</b>. He currently serves as the <b>President of Dhaka District BNP</b>, playing an important role in organizing and leading party activities at the district level.</p>
+            photoUrl = '/candidate/D-1.png';
+            fullName = 'খন্দকার আবু আশফাক';
+            bio = `খন্দকার আবু আশফাক একজন বাংলাদেশী রাজনৈতিক নেতা এবং বাংলাদেশ জাতীয়তাবাদী দলের (বিএনপি) একজন সিনিয়র ব্যক্তিত্ব। তিনি বর্তমানে ঢাকা জেলা বিএনপির সভাপতি হিসেবে দায়িত্ব পালন করছেন, জেলা পর্যায়ে দলের কর্মকাণ্ড সংগঠিত ও পরিচালনায় গুরুত্বপূর্ণ ভূমিকা পালন করছেন।`;
 
-                <h2>Political Role</h2>
-                <p>As <b>President of Dhaka District BNP</b>, Khondaker Abu Ashfaque is responsible for party coordination, grassroots leadership, and strengthening <b>BNP’s organizational structure</b> across the district. He is regarded as an influential leader within the party due to his active involvement in political movements and organizational work.</p>
-
-                <h2>Parliamentary Candidacy</h2>
-                <p>Khondaker Abu Ashfaque has been <b>nominated by BNP as the parliamentary candidate for the Dhaka-1 constituency</b>. The Dhaka-1 seat includes the <b>Dohar and Nawabganj</b> areas, where he represents the party’s political vision and commitment to public service.</p>
-
-                <h2>Public Engagement</h2>
-                <p>He maintains regular contact with party leaders, activists, and supporters. Through meetings, public gatherings, and political programs, he works to promote <b>BNP’s policies</b> and connect with the local community.</p>
-            `;
-            
             manifesto = {
                 title: "Vision and Political Aim of Khondaker Abu Ashfaque",
                 points: [
-                    "Khondaker Abu Ashfaque envisions a democratic Bangladesh built on justice, accountability, and equal rights for all citizens. His political aim is to strengthen democratic values and ensure that people’s voices are respected in national decision-making.",
-                    "As President of Dhaka District BNP, he works to organize and energize grassroots leadership. He believes strong local leadership is the foundation of a strong and democratic state.",
-                    "As a BNP-nominated parliamentary candidate for Dhaka-1, Khondaker Abu Ashfaque is committed to serving the people of Dohar and Nawabganj. His goal is to address public concerns through honest representation, fair governance, and people-centered development.",
-                    "He strongly supports youth empowerment, employment opportunities, and social justice. His political vision focuses on restoring public trust, protecting democratic institutions, and working for a future where governance serves the people, not power."
+                    "Khondaker Abu Ashfaque envisions a democratic Bangladesh built on justice, accountability, and equal rights for all citizens.",
+                    "As President of Dhaka District BNP, he works to organize and energize grassroots leadership.",
+                    "As a BNP-nominated parliamentary candidate for Dhaka-1, he is committed to serving the people of Dohar and Nawabganj.",
+                    "He strongly supports youth empowerment, employment opportunities, and social justice."
                 ]
             };
+
+            constituency_plan = `ঢাকা-১ নির্বাচনী এলাকা (দোহার-নবাবগঞ্জ) নিয়ে খন্দকার আবু আশফাকের রয়েছে সুদূরপ্রসারী পরিকল্পনা। তিনি এই অঞ্চলের অবকাঠামোগত উন্নয়ন, বিশেষ করে রাস্তাঘাট ও যোগাযোগ ব্যবস্থার আধুনিকায়নে গুরুত্ব দেবেন। যুব সমাজের কর্মসংস্থানের জন্য কারিগরি শিক্ষা কেন্দ্র স্থাপন এবং স্থানীয় কুটির শিল্প পুনরুজ্জীবিত করার পরিকল্পনা তার অগ্রাধিকার তালিকায় রয়েছে। এছাড়া নদী ভাঙন রোধে স্থায়ী বাঁধ নির্মাণ এবং কৃষকদের জন্য আধুনিক সেচ সুবিধা নিশ্চিত করতে তিনি প্রতিশ্রুতিবদ্ধ।`;
+
+            political_journey = `খন্দকার আবু আশফাক ছাত্রজীবন থেকেই রাজনীতির সাথে যুক্ত। তিনি তৃণমূল থেকে উঠে আসা একজন নেতা। ১৯৯০-এর দশকে ছাত্রদলের সক্রিয় কর্মী হিসেবে তার রাজনৈতিক যাত্রা শুরু হয়। পরবর্তীতে তিনি বিএনপির মূল সংগঠনে যোগ দেন এবং বিভিন্ন আন্দোলন-সংগ্রামে অগ্রণী ভূমিকা পালন করেন। তার সাংগঠনিক দক্ষতার কারণে তিনি ঢাকা জেলা বিএনপির সাধারণ সম্পাদক এবং পরবর্তীতে সভাপতি নির্বাচিত হন। তিনি একাধিকবার রাজনৈতিক কারণে কারাবরণ করেছেন কিন্তু গণতন্ত্র পুনরুদ্ধারের লড়াইয়ে সবসময় আপসহীন থেকেছেন।`;
+
+            personal_life = `খন্দকার আবু আশফাক ঢাকার এক সম্ভ্রান্ত মুসলিম পরিবারে জন্মগ্রহণ করেন। তিনি উচ্চশিক্ষা সমাপ্ত করে জনসেবায় আত্মনিয়োগ করেন। তিনি ব্যক্তিগত জীবনে অত্যন্ত বিনয়ী এবং ধর্মপ্রাণ মানুষ হিসেবে পরিচিত। এলাকার মানুষের বিপদে-আপদে তিনি সবসময় পাশে থাকেন। তার সততা এবং নেতৃত্বের গুণাবলী তাকে সর্বমহলে গ্রহণযোগ্য করে তুলেছে।`;
+            gallery = [
+                'https://lh3.googleusercontent.com/d/1RfKVn8ytBuwmJqJ41v0n1S78RCz0-du6',
+                'https://lh3.googleusercontent.com/d/1IJpHZhaeXXeONa5-3X3q-67fkwJB0mNV',
+                'https://lh3.googleusercontent.com/d/18hZRVp6HcpEj01G2UDncE-xIKKnkNb-N',
+                'https://lh3.googleusercontent.com/d/1Kev8sdwJHZjRmcTKDZwGBWjYZIEcmPR0',
+                'https://lh3.googleusercontent.com/d/1ZV4RBUNJfXiXAAceOVlZZCS-1ak0qT9y',
+                'https://lh3.googleusercontent.com/d/1eA0yWfGzlN_UjJFlrMHGU9rmEZX2RZbr',
+                'https://lh3.googleusercontent.com/d/1mVJ0yP9R3AAEjSZlQSX_Q2mlLDJUtnRm',
+                'https://lh3.googleusercontent.com/d/1NHkWOcXeyLPFLLyiYllSsVShbW7nQ6-o',
+                'https://lh3.googleusercontent.com/d/1zThjK30oam2o7a48wz2FknA4eELVi6Q8',
+                'https://lh3.googleusercontent.com/d/1dk8olzU5WWrBuY6eOcGhHiuXRBZdS4mI',
+                'https://lh3.googleusercontent.com/d/1EOSRHFxYbgkMublcfAKBggxpQ_YAo2Jn',
+                'https://lh3.googleusercontent.com/d/1OZZxV2Onbpf0I3FeRPzo8LNU7TD4SAMd',
+                'https://lh3.googleusercontent.com/d/1m-sqRDGJDFgB7-ckLfK15YLKw-AQvJUv',
+                'https://lh3.googleusercontent.com/d/1KwZD1y-yBm9mIUCuzBxR70elQUNRECy0',
+                'https://lh3.googleusercontent.com/d/1Bhurroni57KJwyz-tAMYu0SBazNv9051',
+                'https://lh3.googleusercontent.com/d/1iZJs6uj1QSTz_zcrBjkotwOiq409FPxs',
+                'https://lh3.googleusercontent.com/d/1hL1jLRO1IYEKW6L09g8Hle1dA9d89Rbh',
+                'https://lh3.googleusercontent.com/d/1H5ZckAES69yrzeB0whYsNmLZhJWXgBmS',
+                'https://lh3.googleusercontent.com/d/1H5ZckAES69yrzeB0whYsNmLZhJWXgBmS',
+                'https://lh3.googleusercontent.com/d/1Po-I4cLz8m2bnhxzz6K-BmuH-59hAbB3'
+            ];
+            videos = [
+                'https://drive.google.com/file/d/1hbZuX3u4rp6wQTevbB4gxseXtd6NzHlU/preview',
+                'https://drive.google.com/file/d/1ILxsDQzLiej-ZYo3ViB1jRQ-dDG_jvAq/preview',
+                'https://drive.google.com/file/d/1zPwHDsFYwczn4djKSpaTPsmTCpjfo9h_/preview',
+                'https://drive.google.com/file/d/1F88gcDuKdHmAeefkvTnNtjSHEMa-DB4h/preview',
+                'https://drive.google.com/file/d/1eXDLYbtVKOB2K7vikAm4vjd0TGCmB6C7/preview',
+                'https://drive.google.com/file/d/1Y_eFUIC0YnL2YFVWtKA2-CCQKV7IrwrG/preview',
+                'https://drive.google.com/file/d/1m0mZuFbmx6ZXCJGtXLaIC1yB9Pv4zCIz/preview',
+                'https://drive.google.com/file/d/1kA6A8MSfxFQjpgmfLfrRRyLweCA7QPxe/preview',
+                'https://drive.google.com/file/d/1mM7GvoeqV4N4stxOBPkEhq1bRFnP43wY/preview'
+            ];
         }
 
         candidates.push({
@@ -260,7 +370,12 @@ const generateCandidates = () => {
             recent_activity: recentActivity,
             stats: stats,
             manifesto: manifesto,
-            seat_name: seatName
+            seat_name: seatName,
+            political_journey: political_journey,
+            personal_life: personal_life,
+            constituency_plan: constituency_plan,
+            gallery: gallery,
+            videos: videos
         });
 
         // Move to next district
@@ -274,7 +389,7 @@ const generateCandidates = () => {
 
 export const SEATS: any[] = [
     { id: 1, district_id: 1, name: 'ঢাকা-১', name_en: 'Dhaka-1', candidate_slug: 'khondakerabuashfaque', candidate_name: 'Khondaker Abu Ashfaque', candidate_photo: 'https://khondakerabuashfaque.yourleader.org/wp-content/uploads/2026/01/Khondaker-Abu-Ashfaque-.jpg' },
-    { id: 2, district_id: 1, name: 'ঢাকা-২', name_en: 'Dhaka-2', candidate_slug: 'amanullahaman', candidate_name: 'Amanullah Aman', candidate_photo: 'https://i.pravatar.cc/150?u=aman' },
+    { id: 2, district_id: 1, name: 'ঢাকা-২', name_en: 'Dhaka-2', candidate_slug: 'amanullahaman', candidate_name: 'Amanullah Aman', candidate_photo: 'https://lh3.googleusercontent.com/d/1vKpmDLxP940moQ7Rw-DsYFqJNpMAQzis' },
     { id: 3, district_id: 1, name: 'ঢাকা-৩', name_en: 'Dhaka-3', candidate_slug: 'goyeswarroy', candidate_name: 'Goyeswar Roy', candidate_photo: 'https://i.pravatar.cc/150?u=goyeswar' },
     { id: 4, district_id: 1, name: 'ঢাকা-৪', name_en: 'Dhaka-4', candidate_slug: 'tanveerahmed', candidate_name: 'Tanveer Ahmed', candidate_photo: 'https://i.pravatar.cc/150?u=tanveer' },
     { id: 5, district_id: 1, name: 'ঢাকা-৫', name_en: 'Dhaka-5', candidate_slug: 'alhaznabiullahnab', candidate_name: 'Alhaz Nabiullah Nab', candidate_photo: 'https://i.pravatar.cc/150?u=nabiullah' },

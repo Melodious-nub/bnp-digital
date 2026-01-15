@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateService, Candidate } from '../../../../core/services/candidate.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -13,12 +14,28 @@ export class ProfileComponent implements OnInit {
   slug: string | null = null;
   candidate: Candidate | null = null;
   isLoading = true;
+  selectedImageUrl: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private candidateService: CandidateService,
-    public router: Router
+    public router: Router,
+    private sanitizer: DomSanitizer
   ) { }
+
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  openLightbox(url: string) {
+    this.selectedImageUrl = url;
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+
+  closeLightbox() {
+    this.selectedImageUrl = null;
+    document.body.style.overflow = ''; // Restore scrolling
+  }
 
   ngOnInit() {
     // 1. Check for Path-based routing (Workaround for Vercel/No-Wildcard envs)

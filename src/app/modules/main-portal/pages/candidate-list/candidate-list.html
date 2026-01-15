@@ -12,7 +12,7 @@
             <div class="flex items-center space-x-4">
                 <button (click)="goBack()"
                     class="text-xs font-bold text-gray-400 hover:text-gray-900 transition-colors">
-                    &larr; Back to Map
+                    &larr; ম্যাপে ফিরে যান
                 </button>
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <span>{{districtName}}</span>
             </div>
             <h2 class="text-5xl font-black text-gray-900 tracking-tighter italic">
-                {{districtName}} District<span class="text-bnp-green"> Leaders</span>
+                {{districtName}} জেলার<span class="text-bnp-green"> নেতৃবৃন্দ</span>
             </h2>
             <!-- <p class="mt-4 text-gray-500 font-medium max-w-xl">
                 Displaying all registered and verified representatives serving the district of <span
@@ -40,16 +40,20 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                     <h3 class="text-2xl font-black text-gray-900 tracking-tight italic">সংসদীয় আসনসমূহ</h3>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">Select a seat to view leader profile</p>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">নেতার প্রোফাইল দেখতে একটি
+                        আসন নির্বাচন করুন</p>
                 </div>
-                
+
                 <!-- Search Bar -->
                 <div class="relative w-full md:w-96">
-                    <input type="text" [(ngModel)]="searchQuery" placeholder="সার্চ বা ইংরেজি নাম (যেমন: ঢাকা-১ বা Dhaka-1)" 
+                    <input type="text" [(ngModel)]="searchQuery"
+                        placeholder="সার্চ বা ইংরেজি নাম (যেমন: ঢাকা-১ বা Dhaka-1)"
                         class="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-bnp-green/5 focus:border-bnp-green transition-all text-sm font-bold shadow-sm">
                     <div class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
                 </div>
@@ -61,38 +65,47 @@
                     (click)="onSeatSelect(seat)">
                     <div class="flex items-center space-x-6">
                         <div class="w-20 h-20 rounded-[2rem] overflow-hidden shadow-md bg-gray-50 flex-shrink-0">
-                            <img *ngIf="seat.candidate_photo; else noPhoto" [src]="seat.candidate_photo" [alt]="seat.candidate_name"
-                                class="w-full h-full object-cover">
+                            <img *ngIf="seat.candidate_photo; else noPhoto" [src]="seat.candidate_photo"
+                                [alt]="seat.candidate_name" class="w-full h-full object-cover">
                             <ng-template #noPhoto>
-                                <div class="w-full h-full flex items-center justify-center text-sm font-black text-gray-300 bg-gray-100 italic uppercase">
+                                <div
+                                    class="w-full h-full flex items-center justify-center text-sm font-black text-gray-300 bg-gray-100 italic uppercase">
                                     {{seat.name.substring(0,2)}}
                                 </div>
                             </ng-template>
                         </div>
                         <div class="flex flex-col">
-                            <h4 class="font-black text-gray-900 group-hover:text-black transition-colors uppercase tracking-tight text-sm">
+                            <h4
+                                class="font-black text-gray-900 group-hover:text-black transition-colors uppercase tracking-tight text-sm">
                                 {{seat.name}}
                             </h4>
-                            <p *ngIf="seat.candidate_name" class="text-[11px] font-black text-bnp-green uppercase tracking-widest mt-1">
+                            <p *ngIf="seat.candidate_name"
+                                class="text-[11px] font-black text-bnp-green uppercase tracking-widest mt-1">
                                 {{seat.candidate_name}}
                             </p>
                         </div>
                     </div>
-                    <span class="text-bnp-green opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all font-bold text-xl">
+                    <span
+                        class="text-bnp-green opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all font-bold text-xl">
                         &rarr;
                     </span>
                 </div>
             </div>
 
             <!-- No Seats Found -->
-            <div *ngIf="filteredSeats.length === 0" class="text-center py-20 bg-white rounded-[2.5rem] border border-dashed border-gray-200">
-                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <div *ngIf="filteredSeats.length === 0"
+                class="text-center py-20 bg-white rounded-[2.5rem] border border-dashed border-gray-200">
+                <div
+                    class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
-                <h3 class="text-lg font-bold text-gray-900">No matching seats</h3>
-                <p class="text-gray-400 text-xs mt-1">Try searching with seat name (e.g., Dhaka-1) or candidate name.</p>
+                <h3 class="text-lg font-bold text-gray-900">কোন আসন পাওয়া যায়নি</h3>
+                <p class="text-gray-400 text-xs mt-1">আসন বা প্রার্থীর নাম দিয়ে সার্চ করুন (যেমন: ঢাকা-১)।
+                </p>
             </div>
         </div>
 
@@ -102,19 +115,6 @@
         </div>
     </main>
 
-    <!-- Professional Footer -->
-    <footer class="bg-white border-t border-gray-50 py-12 mt-20">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex flex-col items-center md:items-start">
-                <h4 class="text-lg font-black text-gray-900 uppercase">BNP Digital Hub</h4>
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">&copy; 2026 Bangladesh
-                    National Party</p>
-            </div>
-            <div class="flex gap-8 text-[10px] font-black uppercase tracking-widest text-gray-400">
-                <a href="#" class="hover:text-bnp-green">Privacy Policy</a>
-                <a href="#" class="hover:text-bnp-green">Terms of Service</a>
-                <a href="#" class="hover:text-bnp-green">Contact</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Shared Footer Component -->
+    <app-footer></app-footer>
 </div>

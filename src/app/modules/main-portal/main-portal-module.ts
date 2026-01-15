@@ -7,6 +7,7 @@ import { CandidateListComponent } from './pages/candidate-list/candidate-list';
 import { LoginComponent } from './pages/login/login';
 
 import { FormsModule } from '@angular/forms';
+import { CoreModule } from '../../core/core-module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MainPortalRoutingModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ]
 })
 export class MainPortalModule { }

@@ -11,311 +11,117 @@
             <div class="flex items-center">
                 <button (click)="goBack()"
                     class="px-6 py-2 border border-gray-900 text-gray-900 text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 active:scale-95">
-                    Explore More
+                    আরও দেখুন
                 </button>
             </div>
         </div>
     </header>
 
     <main class="flex-grow">
-        <!-- Loading State -->
-        <div *ngIf="isLoading" class="min-h-[80vh] flex flex-col items-center justify-center">
-            <div class="w-16 h-16 border-4 border-bnp-green border-t-transparent rounded-full animate-spin"></div>
-            <p class="mt-6 text-xs font-black text-gray-400 uppercase tracking-widest animate-pulse">Retrieving Profile
-                Data...</p>
+        <div class="poster-container" *ngIf="!isLoading && candidate">
+            <!-- Poster Hero Section -->
+            <div class="hero-poster">
+                <div class="container mx-auto px-6">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <!-- Left: Photo (No background) -->
+                        <div class="md:col-span-5 candidate-photo-wrapper">
+                            <img [src]="candidate.photo_url" [alt]="candidate.full_name">
+                        </div>
+
+                        <!-- Right: Name & Constituency -->
+                        <div class="md:col-span-7 poster-header-text">
+                            <h1 class="candidate-name">{{candidate.full_name}}</h1>
+                            <div class="constituency-badge">
+                                {{candidate.seat_name || candidate.district_name + ' - ১'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brief Introduction (No Header) -->
+            <div class="content-section">
+                <div class="intro-text" [innerHTML]="candidate.bio"></div>
+
+                <!-- Political Journey -->
+                <div *ngIf="candidate.political_journey">
+                    <h2>রাজনৈতিক যাত্রা</h2>
+                    <div class="info-content">{{candidate.political_journey}}</div>
+                </div>
+
+                <!-- Personal Life -->
+                <div *ngIf="candidate.personal_life">
+                    <h2>ব্যাক্তিগত জীবন</h2>
+                    <div class="info-content">{{candidate.personal_life}}</div>
+                </div>
+
+                <!-- Constituency Plan -->
+                <div *ngIf="candidate.constituency_plan">
+                    <h2>{{candidate.seat_name || candidate.district_name + ' - ১'}} নিয়ে তার পরিকল্পনা</h2>
+                    <div class="info-content">{{candidate.constituency_plan}}</div>
+                </div>
+
+                <!-- Photo Gallery -->
+                <div *ngIf="candidate.gallery && candidate.gallery.length > 0" class="mt-12">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="mb-0">ফটো গ্যালারি</h2>
+                        <div class="flex-grow h-px bg-gray-200"></div>
+                    </div>
+                    <div class="gallery-masonry">
+                        <div class="gallery-item" *ngFor="let photo of candidate.gallery; let i = index"
+                            (click)="openLightbox(photo)">
+                            <img [src]="photo" [alt]="candidate.full_name">
+                            <div class="overlay">
+                                <span class="moment-tag">মুহূর্ত {{i + 1}}</span>
+                                <span class="caption">জনগণের সাথে জনসংযোগ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Section -->
+                <div *ngIf="candidate.videos && candidate.videos.length > 0" class="mt-16">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="mb-0">ভিডিও বার্তা</h2>
+                        <div class="flex-grow h-px bg-gray-200"></div>
+                    </div>
+                    <div class="video-grid">
+                        <div class="video-item" *ngFor="let video of candidate.videos">
+                            <iframe [src]="getSafeUrl(video)" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div *ngIf="!isLoading && candidate" class="animate-fade-in-up">
-            <!-- Cinematic Hero Section -->
-            <div class="relative h-[85vh] lg:h-[80vh] bg-gray-900 overflow-hidden group">
-                <!-- Parallax-like Background with Flag Gradient -->
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-110 opacity-60"
-                    style="background: radial-gradient(circle, #f42a41 25%, #006a4e 25.5%);">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
-                <div class="absolute inset-0 bg-black/20"></div>
-
-                <div class="container mx-auto px-6 h-full flex flex-col justify-end pb-24 relative z-20">
-                    <div class="max-w-4xl space-y-6">
-                        <div class="flex items-center gap-3">
-                            <span
-                                class="px-4 py-1.5 bg-bnp-green text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-bnp-green/20">
-                                Official Candidate
-                            </span>
-                            <span
-                                class="px-4 py-1.5 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest rounded-full backdrop-blur-sm">
-                                {{candidate.seat_name || candidate.district_name}} Constituency
-                            </span>
-                        </div>
-
-                        <h1 class="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none italic">
-                            {{candidate.full_name}}
-                        </h1>
-
-                        <p class="text-xl md:text-2xl text-gray-300 font-light max-w-2xl leading-relaxed">
-                            {{candidate.designation}} dedicated to the service of <span
-                                class="text-white font-bold">{{candidate.division_name}}</span>.
-                        </p>
-                    </div>
-                </div>
+        <!-- Professional Lightbox -->
+        <div class="lightbox-overlay" *ngIf="selectedImageUrl" (click)="closeLightbox()">
+            <button class="close-btn" (click)="closeLightbox()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="lightbox-content" (click)="$event.stopPropagation()">
+                <img [src]="selectedImageUrl" alt="Full screen Image">
             </div>
+        </div>
 
-
-
-            <div class="container mx-auto px-6 py-20 space-y-24">
-
-                <!-- Main Bio & Manifesto -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-24">
-                    <!-- Sidebar Profile -->
-                    <div class="lg:col-span-4 -mt-32 lg:-mt-24 relative z-50">
-                        <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl shadow-gray-200">
-                            <div class="rounded-[2rem] overflow-hidden aspect-[3/4] relative group">
-                                <img [src]="candidate.photo_url"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-12 space-y-8">
-                            <div>
-                                <h4
-                                    class="text-xs font-black uppercase tracking-widest text-gray-900 mb-6 flex items-center gap-2">
-                                    <span class="w-8 h-px bg-gray-900"></span> Connect
-                                </h4>
-                                <div class="flex gap-4">
-                                    <a
-                                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all cursor-pointer">
-                                        <i class="fab fa-facebook-f text-lg">f</i>
-                                    </a>
-                                    <a
-                                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-sky-500 hover:text-white hover:border-transparent transition-all cursor-pointer">
-                                        <i class="fab fa-twitter text-lg">t</i>
-                                    </a>
-                                    <a
-                                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-pink-600 hover:text-white hover:border-transparent transition-all cursor-pointer">
-                                        <i class="fab fa-instagram text-lg">in</i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="lg:col-span-8 space-y-8">
-                        <div class="space-y-4">
-                            <!-- Static Design for Khondaker Abu Ashfaque to ensure pixel-perfect fidelity -->
-                            <ng-container *ngIf="candidate.slug === 'khondakerabuashfaque'; else dynamicBio">
-                                <div class="rich-text antialiased">
-                                    <h1 class="text-[3.2rem] font-[900] text-[#e31b23] mb-6 tracking-[-0.04em] leading-tight">
-                                        Khondaker Abu Ashfaque
-                                    </h1>
-                                    
-                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
-                                        <b class="font-bold text-gray-900">Khondaker Abu Ashfaque</b> is a Bangladeshi political leader and a senior figure of the <b class="font-bold text-gray-900">Bangladesh Nationalist Party (BNP)</b>. He currently serves as the <b class="font-bold text-gray-900">President of Dhaka District BNP</b>, playing an important role in organizing and leading party activities at the district level.
-                                    </p>
-
-                                    <h2 class="text-[1.8rem] font-bold text-gray-900 mb-4 mt-12 tracking-tight leading-tight">
-                                        Political Role
-                                    </h2>
-                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
-                                        As <b class="font-bold text-gray-900">President of Dhaka District BNP</b>, Khondaker Abu Ashfaque is responsible for party coordination, grassroots leadership, and strengthening <b class="font-bold text-gray-900">BNP’s organizational structure</b> across the district. He is regarded as an influential leader within the party due to his active involvement in political movements and organizational work.
-                                    </p>
-
-                                    <h2 class="text-[1.8rem] font-bold text-gray-900 mb-4 mt-12 tracking-tight leading-tight">
-                                        Parliamentary Candidacy
-                                    </h2>
-                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
-                                        Khondaker Abu Ashfaque has been <b class="font-bold text-gray-900">nominated by BNP as the parliamentary candidate for the Dhaka-1 constituency</b>. The Dhaka-1 seat includes the <b class="font-bold text-gray-900">Dohar and Nawabganj</b> areas, where he represents the party’s political vision and commitment to public service.
-                                    </p>
-
-                                    <h2 class="text-[1.8rem] font-bold text-gray-900 mb-4 mt-12 tracking-tight leading-tight">
-                                        Public Engagement
-                                    </h2>
-                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
-                                        He maintains regular contact with party leaders, activists, and supporters. Through meetings, public gatherings, and political programs, he works to promote <b class="font-bold text-gray-900">BNP’s policies</b> and connect with the local community.
-                                    </p>
-                                </div>
-                            </ng-container>
-
-                            <ng-template #dynamicBio>
-                                <div class="rich-text antialiased" [innerHTML]="candidate.bio">
-                                </div>
-                            </ng-template>
-                        </div>
-
-                        <!-- Manifesto Grid (Hidden for Khondaker in favor of the bespoke Vision section below) -->
-                        <div *ngIf="candidate.slug !== 'khondakerabuashfaque'" class="bg-gray-50 rounded-[3rem] p-10 md:p-14">
-                            <h3
-                                class="text-sm font-black text-bnp-green uppercase tracking-widest mb-10 border-b border-gray-200 pb-4">
-                                {{candidate.manifesto.title}}
-                            </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-                                <div *ngFor="let point of candidate.manifesto.points; let i = index" class="group">
-                                    <div
-                                        class="text-4xl font-black text-gray-200 mb-4 group-hover:text-bnp-green transition-colors font-serif italic">
-                                        0{{i+1}}</div>
-                                    <p class="text-gray-700 font-medium leading-relaxed">{{point}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vision Section (Full Width Row) -->
-                <div *ngIf="candidate.slug === 'khondakerabuashfaque'" class="mt-24 pt-24 border-t border-gray-100">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-                        <!-- Image Column (5 Columns) -->
-                        <div class="lg:col-span-5 relative">
-                            <div class="absolute -inset-6 bg-gray-50 rounded-[3rem]"></div>
-                            <img src="https://khondakerabuashfaque.yourleader.org/wp-content/uploads/2026/01/Khondaker-Abu-Ashfaque-1.jpg" 
-                                 alt="Vision" 
-                                 class="relative z-10 w-full rounded-[2.5rem] shadow-2xl object-cover aspect-[3/4]">
-                        </div>
-
-                        <!-- Vision Text Column (7 Columns) -->
-                        <div class="lg:col-span-7 space-y-10">
-                            <h2 class="text-[2.2rem] font-black text-gray-900 tracking-tight leading-tight">
-                                Vision and Political Aim
-                            </h2>
-                            <div class="space-y-8 text-[1.15rem] text-gray-600 leading-[1.8]">
-                                <p>
-                                    <b class="font-bold text-gray-900">Khondaker Abu Ashfaque</b> envisions a democratic Bangladesh built on justice, accountability, and equal rights for all citizens. His political aim is to strengthen democratic values and ensure that people’s voices are respected in national decision-making.
-                                </p>
-                                <p>
-                                    As <b class="font-bold text-gray-900">President of Dhaka District BNP</b>, he works to organize and energize grassroots leadership. He believes strong local leadership is the foundation of a strong and democratic state.
-                                </p>
-                                <p>
-                                    As a BNP-nominated parliamentary candidate for <b class="font-bold text-gray-900">Dhaka-1</b>, he is committed to serving the people of Dohar and Nawabganj. His goal is to address public concerns through honest representation, fair governance, and people-centered development.
-                                </p>
-                                <p>
-                                    He strongly supports youth empowerment, employment opportunities, and social justice. His political vision focuses on restoring public trust, protecting democratic institutions, and working for a future where governance serves the people, not power.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stats Bar (Moved) -->
-                <div class="bg-white border-y border-gray-100 py-12 hidden md:block">
-                    <div class="container mx-auto px-6">
-                        <div class="flex justify-between divide-x divide-gray-100">
-                            <div class="flex-1 py-6 px-8 text-center hover:bg-gray-50 transition-colors">
-                                <span
-                                    class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.followers}}</span>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Active
-                                    Supporters</span>
-                            </div>
-                            <div class="flex-1 py-6 px-8 text-center hover:bg-gray-50 transition-colors">
-                                <span
-                                    class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.volunteers}}</span>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Registered
-                                    Volunteers</span>
-                            </div>
-                            <div class="flex-1 py-6 px-8 text-center hover:bg-gray-50 transition-colors">
-                                <span
-                                    class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.events_held}}</span>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Rallies
-                                    Conducted</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity Timeline -->
-                <div>
-                    <div class="flex items-end justify-between mb-16 px-4">
-                        <div>
-                            <h3
-                                class="text-6xl font-black text-gray-900 tracking-tighter opacity-10 leading-none -mb-8 ml-[-4px]">
-                                UPDATES</h3>
-                            <h3 class="text-3xl font-black text-gray-900 tracking-tight italic relative z-10">Recent
-                                Activity</h3>
-                        </div>
-                        <div class="hidden md:flex gap-2">
-                            <div class="w-12 h-1 bg-gray-900"></div>
-                            <div class="w-2 h-1 bg-gray-300"></div>
-                            <div class="w-2 h-1 bg-gray-300"></div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div *ngFor="let activity of candidate.recent_activity"
-                            class="group bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500">
-                            <div class="h-48 overflow-hidden relative">
-                                <img [src]="activity.image_url"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                <div class="absolute top-4 left-4">
-                                    <span
-                                        class="px-3 py-1 bg-white/90 backdrop-blur text-[10px] font-black uppercase tracking-widest rounded-full">
-                                        {{activity.type}}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <span
-                                    class="text-[10px] font-bold text-bnp-green uppercase tracking-widest mb-2 block">{{activity.date}}</span>
-                                <h4
-                                    class="text-lg font-black text-gray-900 leading-tight mb-4 group-hover:text-bnp-green transition-colors line-clamp-2">
-                                    {{activity.title}}
-                                </h4>
-                                <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">
-                                    {{activity.excerpt}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Campaign Gallery -->
-                <div>
-                    <h3 class="text-3xl font-black text-gray-900 tracking-tight italic mb-12 text-center">Campaign
-                        Gallery</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px] md:h-[500px]">
-                        <!-- Uses a simpler varied grid for visual interest -->
-                        <div class="col-span-2 row-span-2 rounded-[2rem] overflow-hidden relative group cursor-pointer">
-                            <img [src]="candidate.campaign_images[0]"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/20 transition-all"></div>
-                        </div>
-                        <div class="rounded-[2rem] overflow-hidden relative group cursor-pointer">
-                            <img [src]="candidate.campaign_images[1]"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        </div>
-                        <div class="rounded-[2rem] overflow-hidden relative group cursor-pointer">
-                            <img [src]="candidate.campaign_images[2]"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        </div>
-                        <div class="col-span-2 rounded-[2rem] overflow-hidden relative group cursor-pointer">
-                            <img [src]="candidate.campaign_images[3]"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="min-h-screen flex flex-col items-center justify-center bg-white">
+            <div class="w-16 h-16 border-4 border-[#1a5e4d] border-t-[#f42a41] rounded-full animate-spin"></div>
+            <p class="mt-6 text-xs font-black text-gray-400 uppercase tracking-widest animate-pulse">লোড হচ্ছে...</p>
         </div>
 
         <!-- 404 State -->
         <div *ngIf="!isLoading && !candidate"
-            class="min-h-[60vh] flex flex-col items-center justify-center text-center">
-            <h1 class="text-9xl font-black text-gray-100">404</h1>
-            <p class="text-xl text-gray-500 font-medium -mt-10">Candidate Not Found</p>
+            class="min-h-screen flex flex-col items-center justify-center bg-white text-center">
+            <h1 class="text-9xl font-black text-gray-100">৪০৪</h1>
+            <p class="text-xl text-gray-500 font-medium -mt-10">প্রোফাইল পাওয়া যায়নি</p>
             <button (click)="goBack()"
-                class="mt-8 px-8 py-3 bg-gray-900 text-white rounded-full text-xs font-black uppercase tracking-widest hover:bg-bnp-green transition-all">
-                Return Home
+                class="mt-8 px-8 py-3 bg-[#1a5e4d] text-white rounded-lg font-bold hover:bg-[#0d2e26] transition-all">
+                হোমপেজে ফিরে যান
             </button>
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-20 border-t border-gray-800">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-2xl font-black italic mb-6">Join the Movement</h2>
-            <p class="text-gray-500 mb-8 max-w-lg mx-auto">Be a part of history. Volunteer, donate, or spread the word
-                for a better Bangladesh.</p>
-            <p class="text-[10px] font-bold text-gray-600 uppercase tracking-widest">&copy; 2026 Bangladesh National
-                Party Digital Wing</p>
-        </div>
-    </footer>
 </div>

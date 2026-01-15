@@ -27,12 +27,15 @@
         <div class="text-center mb-10 max-w-3xl">
             <div
                 class="inline-block px-4 py-1.5 bg-bnp-green/5 text-bnp-green text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6 border border-bnp-green/10">
-                সবার আগে বাংলাদেশ 
+                সবার আগে বাংলাদেশ
             </div>
-            <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-12 tracking-tighter leading-none italic flex items-center justify-center gap-4">
-                <img src="https://s.w.org/images/core/emoji/17.0.2/svg/1f1e7-1f1e9.svg" class="h-6 md:h-10 w-auto" alt="BD Flag">
+            <h2
+                class="text-2xl md:text-4xl font-black text-gray-900 mb-12 tracking-tighter leading-none italic flex items-center justify-center gap-4">
+                <img src="https://s.w.org/images/core/emoji/17.0.2/svg/1f1e7-1f1e9.svg" class="h-6 md:h-10 w-auto"
+                    alt="BD Flag">
                 <span>বাংলাদেশের সংসদীয় <span class="text-bnp-green mr-2">আসন</span></span>
-                <img src="https://s.w.org/images/core/emoji/17.0.2/svg/1f1e7-1f1e9.svg" class="h-6 md:h-10 w-auto" alt="BD Flag">
+                <img src="https://s.w.org/images/core/emoji/17.0.2/svg/1f1e7-1f1e9.svg" class="h-6 md:h-10 w-auto"
+                    alt="BD Flag">
             </h2>
             <!-- <p class="text-xl text-gray-500 leading-relaxed font-medium mb-10">
                 A digital movement uniting Bangladesh. Select your division below to explore the dedicated leaders
@@ -90,9 +93,10 @@
                 </div>
 
                 <div class="flex flex-col relative z-10">
-                    <span class="text-[10px] font-bold text-white/70 uppercase tracking-[0.2em] mb-1">Select Local
-                        Hub</span>
-                    <h3 class="text-3xl font-black text-white tracking-tight italic">{{selectedDivision}} Division's Districts</h3>
+                    <!-- <span class="text-[10px] font-bold text-white/70 uppercase tracking-[0.2em] mb-1">Select Local
+                        Hub</span> -->
+                    <h3 class="text-3xl font-black text-white tracking-tight italic">{{selectedDivisionBn}} বিভাগের
+                        জেলাসমূহ</h3>
                 </div>
                 <button (click)="closeModal()"
                     class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-bnp-green transition-all text-xl shadow-lg relative z-10">&times;</button>
@@ -107,11 +111,12 @@
                         <div class="flex items-center space-x-4">
                             <div
                                 class="w-10 h-10 rounded-xl bg-gray-50 group-hover:bg-bnp-green/5 flex items-center justify-center text-gray-400 group-hover:text-bnp-green transition-colors font-black text-xs">
-                                {{district.name.substring(0,2).toUpperCase()}}
+                                {{district.bn_name ? district.bn_name.substring(0,2) :
+                                district.name.substring(0,2).toUpperCase()}}
                             </div>
                             <h4
                                 class="font-bold text-gray-700 group-hover:text-gray-900 transition-colors uppercase tracking-tight text-sm">
-                                {{district.name}}
+                                {{district.bn_name || district.name}}
                             </h4>
                         </div>
                         <span
@@ -123,23 +128,19 @@
 
                 <!-- If no districts -->
                 <div *ngIf="districts.length === 0" class="text-center py-12">
-                    <p class="text-gray-400 font-medium">Coming soon for this region.</p>
+                    <p class="text-gray-400 font-medium">এই অঞ্চলের জন্য শীঘ্রই আসছে।</p>
                 </div>
             </div>
 
             <!-- Modal Footer -->
             <div class="px-10 py-6 border-t border-gray-50 flex justify-center">
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center px-8">
-                    Select a district to view all verified candidates and representatives working in that region.
+                    ঐ অঞ্চলের সকল যাচাইকৃত প্রার্থী এবং প্রতিনিধিদের দেখতে একটি জেলা নির্বাচন করুন।
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 py-6 border-t border-gray-100">
-        <div class="container mx-auto text-center text-sm text-gray-500">
-            &copy; 2026 Bangladesh National Party. All rights reserved.
-        </div>
-    </footer>
+    <!-- Dynamic Footer Component -->
+    <app-footer></app-footer>
 </div>

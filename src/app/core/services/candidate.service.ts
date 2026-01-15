@@ -34,6 +34,11 @@ export interface Candidate {
         title: string;
         points: string[];
     };
+    political_journey?: string;
+    personal_life?: string;
+    constituency_plan?: string;
+    gallery?: string[];
+    videos?: string[];
 }
 
 @Injectable({

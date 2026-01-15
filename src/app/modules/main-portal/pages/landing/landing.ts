@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
   selectedDivision: string | null = null;
+  selectedDivisionBn: string | null = null;
   selectedDivisionId: number | null = null;
   districts: District[] = [];
   showModal = false;
@@ -36,6 +37,7 @@ export class LandingComponent implements OnInit {
         if (division) {
           console.log('Matched Division:', division);
           this.selectedDivisionId = division.id;
+          this.selectedDivisionBn = division.bn_name || division.name;
 
           this.locationService.getDistrictsByDivision(division.id).subscribe(districts => {
             console.log('Districts Filtered:', districts.length);
@@ -44,6 +46,7 @@ export class LandingComponent implements OnInit {
           });
         } else {
           console.warn('No division match found for:', divisionName);
+          this.selectedDivisionBn = divisionName;
           this.showModal = true;
         }
       },

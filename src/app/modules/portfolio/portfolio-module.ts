@@ -8,6 +8,8 @@ import { ProfileComponent } from './pages/profile/profile';
 import { GalleryComponent } from './components/gallery/gallery';
 import { VideoFeedComponent } from './components/video-feed/video-feed';
 
+import { CoreModule } from '../../core/core-module';
+
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -16,7 +18,8 @@ import { VideoFeedComponent } from './components/video-feed/video-feed';
   ],
   imports: [
     CommonModule,
-    PortfolioRoutingModule
+    PortfolioRoutingModule,
+    CoreModule
   ]
 })
 export class PortfolioModule { }

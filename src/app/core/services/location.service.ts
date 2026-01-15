@@ -5,12 +5,14 @@ import { DIVISIONS, DISTRICTS, SEATS } from '../data/mock-data';
 export interface Division {
     id: number;
     name: string;
+    bn_name?: string;
 }
 
 export interface District {
     id: number;
     division_id: number;
     name: string;
+    bn_name?: string;
 }
 
 export interface Seat {

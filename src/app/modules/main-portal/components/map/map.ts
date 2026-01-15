@@ -12,6 +12,7 @@ export class MapComponent implements OnInit {
 
   candidates: Candidate[] = [];
   hoveredDivision: string | null = null;
+  hoveredDivisionBn: string | null = null;
   mouseX: number = 0;
   mouseY: number = 0;
   @Input() selectedDivision: string | null = null;
@@ -35,10 +36,23 @@ export class MapComponent implements OnInit {
 
   onMouseEnter(divisionName: string) {
     this.hoveredDivision = divisionName;
+    // Map English name to Bengali for tooltip
+    const divMap: { [key: string]: string } = {
+      'Dhaka': 'ঢাকা',
+      'Chittagong': 'চট্টগ্রাম',
+      'Sylhet': 'সিলেট',
+      'Khulna': 'খুলনা',
+      'Barishal': 'বরিশাল',
+      'Rajshahi': 'রাজশাহী',
+      'Rangpur': 'রংপুর',
+      'Mymensingh': 'ময়মনসিংহ'
+    };
+    this.hoveredDivisionBn = divMap[divisionName] || divisionName;
   }
 
   onMouseLeave() {
     this.hoveredDivision = null;
+    this.hoveredDivisionBn = null;
   }
 
   updateTooltipPosition(event: MouseEvent) {
