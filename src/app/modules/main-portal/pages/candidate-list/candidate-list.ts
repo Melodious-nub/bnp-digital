@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateService, Candidate } from '../../../../core/services/candidate.service';
+import { LocationService, Seat } from '../../../../core/services/location.service';
 
 @Component({
   selector: 'app-candidate-list',
@@ -11,22 +12,28 @@ import { CandidateService, Candidate } from '../../../../core/services/candidate
 export class CandidateListComponent implements OnInit {
   districtId: number | null = null;
   districtName: string = '';
+  divisionName: string = '';
   candidates: Candidate[] = [];
+  seats: Seat[] = [];
+  searchQuery: string = '';
   isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private locationService: LocationService
   ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.districtId = +params['districtId'];
       this.districtName = params['districtName'];
+      this.divisionName = params['divisionName'] || 'Central Hub';
 
       if (this.districtId) {
         this.loadCandidates();
+        this.loadSeats();
       } else {
         this.isLoading = false;
       }
@@ -46,24 +53,39 @@ export class CandidateListComponent implements OnInit {
           this.isLoading = false;
         }
       });
-    } else {
-      // Fallback if no district selected, though usually handled by route params earlier
-      this.candidateService.getAllCandidates().subscribe({
-        next: (all) => {
-          this.candidates = all;
-          this.isLoading = false;
+    }
+  }
+
+  loadSeats() {
+    if (this.districtId) {
+      this.locationService.getSeatsByDistrict(this.districtId).subscribe({
+        next: (seats) => {
+          this.seats = seats;
         },
-        error: (err) => {
-          console.error(err);
-          this.isLoading = false;
-        }
+        error: (err) => console.error(err)
       });
     }
   }
 
+  get filteredSeats(): Seat[] {
+    if (!this.searchQuery) return this.seats;
+    const query = this.searchQuery.toLowerCase();
+    return this.seats.filter(seat => 
+      seat.name.toLowerCase().includes(query) || 
+      (seat.name_en && seat.name_en.toLowerCase().includes(query)) ||
+      (seat.candidate_name && seat.candidate_name.toLowerCase().includes(query))
+    );
+  }
+
+  onSeatSelect(seat: Seat) {
+    if (seat.candidate_slug) {
+      this.viewProfile(seat.candidate_slug);
+    } else {
+      console.log('No candidate for seat:', seat.name);
+    }
+  }
+
   viewProfile(slug: string) {
-    // Workaround for Vercel Free Tier (No Wildcard Subdomains)
-    // We use path-based routing: /profile/:slug
     const url = this.router.serializeUrl(
       this.router.createUrlTree(['/profile', slug])
     );

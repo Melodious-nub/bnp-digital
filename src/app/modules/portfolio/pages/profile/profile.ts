@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateService, Candidate } from '../../../../core/services/candidate.service';
 
@@ -6,7 +6,8 @@ import { CandidateService, Candidate } from '../../../../core/services/candidate
   selector: 'app-profile',
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements OnInit {
   slug: string | null = null;
@@ -40,6 +41,7 @@ export class ProfileComponent implements OnInit {
     if (isSubdomain) {
       // Extract slug from subdomain
       this.slug = parts[0];
+      console.log('Subdomain slug detected in ProfileComponent:', this.slug);
       this.loadCandidate();
     } else {
       // 3. Last resort: Query params (legacy)

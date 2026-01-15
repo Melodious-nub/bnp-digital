@@ -3,12 +3,8 @@
     <header class="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center space-x-6 cursor-pointer" (click)="router.navigate(['/'])">
-                <div class="flex flex-col">
-                    <h1 class="text-xl font-black text-gray-900 tracking-tighter uppercase leading-none">BNP Digital
-                    </h1>
-                    <span class="text-[9px] font-bold text-bnp-green uppercase tracking-[0.2em] mt-1">Movement for
-                        Democracy</span>
-                </div>
+                <img src="https://yourleader.org/wp-content/uploads/2025/12/logo-scaled-e1766400937792.png" alt="Logo"
+                    class="h-10 w-auto">
             </div>
 
 
@@ -18,29 +14,31 @@
                     class="w-8 h-5 bg-bnp-green relative flex justify-center items-center rounded-sm border border-gray-200 shadow-sm">
                     <div class="w-2.5 h-2.5 bg-bnp-red rounded-full"></div>
                 </div>
-                <button (click)="router.navigate(['/login'])"
+                <!-- <button (click)="router.navigate(['/login'])"
                     class="px-5 py-2 bg-gray-900 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-bnp-green transition-all shadow-lg shadow-gray-200">
                     Leader Login
-                </button>
+                </button> -->
             </div>
         </div>
     </header>
 
     <!-- Professional Hero Section -->
-    <section class="flex-grow flex flex-col items-center justify-center py-20 px-6">
-        <div class="text-center mb-16 max-w-3xl">
+    <section class="flex-grow flex flex-col items-center justify-center py-12 px-6">
+        <div class="text-center mb-10 max-w-3xl">
             <div
                 class="inline-block px-4 py-1.5 bg-bnp-green/5 text-bnp-green text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6 border border-bnp-green/10">
-                National Unity Interface
+                সবার আগে বাংলাদেশ 
             </div>
-            <h2 class="text-6xl md:text-7xl font-black text-gray-900 mb-8 tracking-tighter leading-tight italic">
-                Shape Your <span class="text-bnp-green">Future</span>.
+            <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-12 tracking-tighter leading-none italic flex items-center justify-center gap-4">
+                <img src="https://s.w.org/images/core/emoji/17.0.2/svg/1f1e7-1f1e9.svg" class="h-6 md:h-10 w-auto" alt="BD Flag">
+                <span>বাংলাদেশের সংসদীয় <span class="text-bnp-green mr-2">আসন</span></span>
+                <img src="https://s.w.org/images/core/emoji/17.0.2/svg/1f1e7-1f1e9.svg" class="h-6 md:h-10 w-auto" alt="BD Flag">
             </h2>
-            <p class="text-xl text-gray-500 leading-relaxed font-medium mb-10">
+            <!-- <p class="text-xl text-gray-500 leading-relaxed font-medium mb-10">
                 A digital movement uniting Bangladesh. Select your division below to explore the dedicated leaders
                 representing your local voice and vision.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
+            </p> -->
+            <!-- <div class="flex flex-wrap justify-center gap-4">
                 <div class="flex items-center gap-2 text-xs font-bold text-gray-400">
                     <span class="w-4 h-px bg-gray-200"></span> 08 Divisions
                 </div>
@@ -50,7 +48,7 @@
                 <div class="flex items-center gap-2 text-xs font-bold text-gray-400">
                     <span class="w-4 h-px bg-gray-200"></span> Verified Candidates
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Map Container -->
@@ -94,7 +92,7 @@
                 <div class="flex flex-col relative z-10">
                     <span class="text-[10px] font-bold text-white/70 uppercase tracking-[0.2em] mb-1">Select Local
                         Hub</span>
-                    <h3 class="text-3xl font-black text-white tracking-tight italic">{{selectedDivision}} Districts</h3>
+                    <h3 class="text-3xl font-black text-white tracking-tight italic">{{selectedDivision}} Division's Districts</h3>
                 </div>
                 <button (click)="closeModal()"
                     class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-bnp-green transition-all text-xl shadow-lg relative z-10">&times;</button>

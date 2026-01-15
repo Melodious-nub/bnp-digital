@@ -1,5 +1,5 @@
 import { Component, signal, OnInit } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +9,34 @@ import { RouterOutlet, Router } from '@angular/router';
 })
 export class App implements OnInit {
   protected readonly title = signal('multi-tenent-frontend');
+  loading = signal(false);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.loading.set(true);
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        // Add a slight delay for better UX and smoother transitions
+        setTimeout(() => {
+          this.loading.set(false);
+        }, 800);
+      }
+    });
+  }
 
   ngOnInit() {
     const hostname = window.location.hostname;
     const parts = hostname.split('.');
 
-    // Subdomain logic (ziaur.bnp-project.com)
-    // On localhost, we can test with ?slug=name or similar emulations
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
 
     if (slug) {
       console.log('Subdomain/Slug detected:', slug);
-      // In a real scenario, parts.length > 2 etc. would be used
-      // For now, if slug is present, navigate to portfolio
       this.router.navigate(['/portfolio'], { queryParams: { slug: slug } });
     }
   }

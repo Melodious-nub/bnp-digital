@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { DIVISIONS, DISTRICTS } from '../data/mock-data';
+import { DIVISIONS, DISTRICTS, SEATS } from '../data/mock-data';
 
 export interface Division {
     id: number;
@@ -11,6 +11,16 @@ export interface District {
     id: number;
     division_id: number;
     name: string;
+}
+
+export interface Seat {
+    id: number;
+    district_id: number;
+    name: string;
+    name_en?: string;
+    candidate_slug: string | null;
+    candidate_name: string | null;
+    candidate_photo?: string | null;
 }
 
 @Injectable({
@@ -27,5 +37,10 @@ export class LocationService {
     getDistrictsByDivision(divisionId: number): Observable<District[]> {
         console.log('LocationService: Fetching Districts for Division', divisionId);
         return of(DISTRICTS.filter(d => d.division_id === divisionId));
+    }
+
+    getSeatsByDistrict(districtId: number): Observable<Seat[]> {
+        console.log('LocationService: Fetching Seats for District', districtId);
+        return of(SEATS.filter(s => s.district_id === districtId));
     }
 }

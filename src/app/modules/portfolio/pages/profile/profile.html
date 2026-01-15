@@ -1,23 +1,16 @@
 <div class="min-h-screen bg-gray-50 flex flex-col font-sans">
     <!-- Professional Sticky Header -->
     <header
-        class="sticky top-0 z-[100] bg-[#006a4e] border-b border-gray-100 py-4 shadow-sm transition-all duration-300 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10"
-            style="background-image: radial-gradient(#f42a41 20%, transparent 20%); background-size: 30px 30px;"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#006a4e] via-transparent to-[#006a4e]"></div>
-        <div class="container mx-auto px-6 flex justify-between items-center relative z-10">
+        class="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center space-x-6">
-                <div class="flex flex-col">
-                    <h1 class="text-xl font-black text-white tracking-tighter uppercase leading-none italic">BNP
-                        Digital</h1>
-                    <span class="text-[9px] font-bold text-white/80 uppercase tracking-[0.2em] mt-1">Leader
-                        Portfolio</span>
-                </div>
+                <img src="https://yourleader.org/wp-content/uploads/2025/12/logo-scaled-e1766400937792.png" alt="Logo"
+                    class="h-10 w-auto">
             </div>
 
             <div class="flex items-center">
                 <button (click)="goBack()"
-                    class="px-6 py-2 border border-white/30 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-[#006a4e] transition-all transform hover:scale-105 active:scale-95">
+                    class="px-6 py-2 border border-gray-900 text-gray-900 text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 active:scale-95">
                     Explore More
                 </button>
             </div>
@@ -34,7 +27,7 @@
 
         <div *ngIf="!isLoading && candidate" class="animate-fade-in-up">
             <!-- Cinematic Hero Section -->
-            <div class="relative h-[60vh] lg:h-[50vh] bg-gray-900 overflow-hidden group">
+            <div class="relative h-[85vh] lg:h-[80vh] bg-gray-900 overflow-hidden group">
                 <!-- Parallax-like Background with Flag Gradient -->
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-110 opacity-60"
                     style="background: radial-gradient(circle, #f42a41 25%, #006a4e 25.5%);">
@@ -51,7 +44,7 @@
                             </span>
                             <span
                                 class="px-4 py-1.5 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest rounded-full backdrop-blur-sm">
-                                {{candidate.district_name}} Constituency
+                                {{candidate.seat_name || candidate.district_name}} Constituency
                             </span>
                         </div>
 
@@ -72,7 +65,7 @@
             <div class="container mx-auto px-6 py-20 space-y-24">
 
                 <!-- Main Bio & Manifesto -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-24">
                     <!-- Sidebar Profile -->
                     <div class="lg:col-span-4 -mt-32 lg:-mt-24 relative z-50">
                         <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl shadow-gray-200">
@@ -110,17 +103,50 @@
                     </div>
 
                     <!-- Content -->
-                    <div class="lg:col-span-8 space-y-16">
-                        <div>
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tight italic mb-8">Mission Statement
-                            </h3>
-                            <p class="text-xl text-gray-600 leading-relaxed font-serif antialiased">
-                                {{candidate.bio}}
-                            </p>
+                    <div class="lg:col-span-8 space-y-8">
+                        <div class="space-y-4">
+                            <!-- Static Design for Khondaker Abu Ashfaque to ensure pixel-perfect fidelity -->
+                            <ng-container *ngIf="candidate.slug === 'khondakerabuashfaque'; else dynamicBio">
+                                <div class="rich-text antialiased">
+                                    <h1 class="text-[3.2rem] font-[900] text-[#e31b23] mb-6 tracking-[-0.04em] leading-tight">
+                                        Khondaker Abu Ashfaque
+                                    </h1>
+                                    
+                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
+                                        <b class="font-bold text-gray-900">Khondaker Abu Ashfaque</b> is a Bangladeshi political leader and a senior figure of the <b class="font-bold text-gray-900">Bangladesh Nationalist Party (BNP)</b>. He currently serves as the <b class="font-bold text-gray-900">President of Dhaka District BNP</b>, playing an important role in organizing and leading party activities at the district level.
+                                    </p>
+
+                                    <h2 class="text-[1.8rem] font-bold text-gray-900 mb-4 mt-12 tracking-tight leading-tight">
+                                        Political Role
+                                    </h2>
+                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
+                                        As <b class="font-bold text-gray-900">President of Dhaka District BNP</b>, Khondaker Abu Ashfaque is responsible for party coordination, grassroots leadership, and strengthening <b class="font-bold text-gray-900">BNP’s organizational structure</b> across the district. He is regarded as an influential leader within the party due to his active involvement in political movements and organizational work.
+                                    </p>
+
+                                    <h2 class="text-[1.8rem] font-bold text-gray-900 mb-4 mt-12 tracking-tight leading-tight">
+                                        Parliamentary Candidacy
+                                    </h2>
+                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
+                                        Khondaker Abu Ashfaque has been <b class="font-bold text-gray-900">nominated by BNP as the parliamentary candidate for the Dhaka-1 constituency</b>. The Dhaka-1 seat includes the <b class="font-bold text-gray-900">Dohar and Nawabganj</b> areas, where he represents the party’s political vision and commitment to public service.
+                                    </p>
+
+                                    <h2 class="text-[1.8rem] font-bold text-gray-900 mb-4 mt-12 tracking-tight leading-tight">
+                                        Public Engagement
+                                    </h2>
+                                    <p class="text-[1.1rem] text-gray-600 leading-[1.7] mb-6">
+                                        He maintains regular contact with party leaders, activists, and supporters. Through meetings, public gatherings, and political programs, he works to promote <b class="font-bold text-gray-900">BNP’s policies</b> and connect with the local community.
+                                    </p>
+                                </div>
+                            </ng-container>
+
+                            <ng-template #dynamicBio>
+                                <div class="rich-text antialiased" [innerHTML]="candidate.bio">
+                                </div>
+                            </ng-template>
                         </div>
 
-                        <!-- Manifesto Grid -->
-                        <div class="bg-gray-50 rounded-[3rem] p-10 md:p-14">
+                        <!-- Manifesto Grid (Hidden for Khondaker in favor of the bespoke Vision section below) -->
+                        <div *ngIf="candidate.slug !== 'khondakerabuashfaque'" class="bg-gray-50 rounded-[3rem] p-10 md:p-14">
                             <h3
                                 class="text-sm font-black text-bnp-green uppercase tracking-widest mb-10 border-b border-gray-200 pb-4">
                                 {{candidate.manifesto.title}}
@@ -132,6 +158,40 @@
                                         0{{i+1}}</div>
                                     <p class="text-gray-700 font-medium leading-relaxed">{{point}}</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision Section (Full Width Row) -->
+                <div *ngIf="candidate.slug === 'khondakerabuashfaque'" class="mt-24 pt-24 border-t border-gray-100">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+                        <!-- Image Column (5 Columns) -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="absolute -inset-6 bg-gray-50 rounded-[3rem]"></div>
+                            <img src="https://khondakerabuashfaque.yourleader.org/wp-content/uploads/2026/01/Khondaker-Abu-Ashfaque-1.jpg" 
+                                 alt="Vision" 
+                                 class="relative z-10 w-full rounded-[2.5rem] shadow-2xl object-cover aspect-[3/4]">
+                        </div>
+
+                        <!-- Vision Text Column (7 Columns) -->
+                        <div class="lg:col-span-7 space-y-10">
+                            <h2 class="text-[2.2rem] font-black text-gray-900 tracking-tight leading-tight">
+                                Vision and Political Aim
+                            </h2>
+                            <div class="space-y-8 text-[1.15rem] text-gray-600 leading-[1.8]">
+                                <p>
+                                    <b class="font-bold text-gray-900">Khondaker Abu Ashfaque</b> envisions a democratic Bangladesh built on justice, accountability, and equal rights for all citizens. His political aim is to strengthen democratic values and ensure that people’s voices are respected in national decision-making.
+                                </p>
+                                <p>
+                                    As <b class="font-bold text-gray-900">President of Dhaka District BNP</b>, he works to organize and energize grassroots leadership. He believes strong local leadership is the foundation of a strong and democratic state.
+                                </p>
+                                <p>
+                                    As a BNP-nominated parliamentary candidate for <b class="font-bold text-gray-900">Dhaka-1</b>, he is committed to serving the people of Dohar and Nawabganj. His goal is to address public concerns through honest representation, fair governance, and people-centered development.
+                                </p>
+                                <p>
+                                    He strongly supports youth empowerment, employment opportunities, and social justice. His political vision focuses on restoring public trust, protecting democratic institutions, and working for a future where governance serves the people, not power.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -158,12 +218,6 @@
                                     class="block text-3xl font-black text-gray-900 tracking-tight">{{candidate.stats.events_held}}</span>
                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Rallies
                                     Conducted</span>
-                            </div>
-                            <div class="flex flex-col justify-center px-8">
-                                <button
-                                    class="px-8 py-3 bg-bnp-green text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl">
-                                    Join Campaign
-                                </button>
                             </div>
                         </div>
                     </div>

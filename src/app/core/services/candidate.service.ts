@@ -13,6 +13,7 @@ export interface Candidate {
     bio: string;
     division_name?: string;
     district_name?: string;
+    seat_name?: string;
 
     // Extended Profile Data
     campaign_images: string[];

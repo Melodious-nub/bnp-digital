@@ -6,6 +6,8 @@ import { MapComponent } from './components/map/map';
 import { CandidateListComponent } from './pages/candidate-list/candidate-list';
 import { LoginComponent } from './pages/login/login';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     LandingComponent,
@@ -15,7 +17,8 @@ import { LoginComponent } from './pages/login/login';
   ],
   imports: [
     CommonModule,
-    MainPortalRoutingModule
+    MainPortalRoutingModule,
+    FormsModule
   ]
 })
 export class MainPortalModule { }

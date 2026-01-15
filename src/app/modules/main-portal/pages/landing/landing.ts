@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidateService, Candidate } from '../../../../core/services/candidate.service';
-import { LocationService, District, Division } from '../../../../core/services/location.service';
+import { LocationService, District, Division, Seat } from '../../../../core/services/location.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -41,11 +41,9 @@ export class LandingComponent implements OnInit {
             console.log('Districts Filtered:', districts.length);
             this.districts = districts;
             this.showModal = true;
-            console.log('Modal State:', this.showModal);
           });
         } else {
           console.warn('No division match found for:', divisionName);
-          // Fallback: show modal anyway with empty message or default
           this.showModal = true;
         }
       },
@@ -65,7 +63,8 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/candidates'], {
       queryParams: {
         districtId: district.id,
-        districtName: district.name
+        districtName: district.name,
+        divisionName: this.selectedDivision
       }
     });
     this.closeModal();
