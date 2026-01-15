@@ -2,14 +2,18 @@
     <!-- Professional Navigation Header -->
     <header class="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-6 cursor-pointer" (click)="router.navigate(['/'])">
+            <div class="flex items-center space-x-3 cursor-pointer" (click)="router.navigate(['/'])">
                 <img src="/bnp_logo.jpg" alt="Logo" class="h-12 w-auto">
+                <div class="flex flex-col justify-center">
+                    <span class="text-bnp-green font-bold text-lg leading-none">বাংলাদেশ</span>
+                    <span class="text-bnp-green font-bold text-sm leading-none mt-1">জাতীয়তাবাদী দল - বিএনপি</span>
+                </div>
             </div>
 
 
 
             <div class="flex items-center space-x-4">
-                <img src="/bangladesh_first.svg" alt="Bangladesh First" class="h-14 w-auto">
+                <img src="/bangladesh_first.svg" alt="Bangladesh First" class="h-28 w-auto -my-8 translate-y-2">
                 <!-- <button (click)="router.navigate(['/login'])"
                     class="px-5 py-2 bg-gray-900 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-bnp-green transition-all shadow-lg shadow-gray-200">
                     Leader Login
