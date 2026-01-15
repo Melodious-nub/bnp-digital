@@ -71,10 +71,6 @@
                         <div class="gallery-item" *ngFor="let photo of candidate.gallery; let i = index"
                             (click)="openLightbox(photo)">
                             <img [src]="photo" [alt]="candidate.full_name">
-                            <div class="overlay">
-                                <span class="moment-tag">মুহূর্ত {{i + 1}}</span>
-                                <span class="caption">জনগণের সাথে জনসংযোগ</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,6 +85,53 @@
                         <div class="video-item" *ngFor="let video of candidate.videos">
                             <iframe [src]="getSafeUrl(video)" frameborder="0" allowfullscreen></iframe>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Section -->
+                <div class="contact-section mt-24 pt-16 border-t border-gray-100">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-black text-[#1a5e4d] mb-4">সরাসরি প্রার্থিকে লিখুন</h2>
+                        <p class="text-gray-500 max-w-lg mx-auto">আপনার মতামত বা পরামর্শ সরাসরি আমাদের জানান। আমরা আপনার
+                            বার্তার গুরুত্ব দেব।</p>
+                    </div>
+
+                    <div class="max-w-2xl mx-auto">
+                        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-group">
+                                    <label>নাম</label>
+                                    <input type="text" formControlName="name" placeholder="আপনার নাম লিখুন"
+                                        [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+                                </div>
+                                <div class="form-group">
+                                    <label>ইমেইল</label>
+                                    <input type="email" formControlName="email" placeholder="আপনার ইমেইল অ্যাড্রেস"
+                                        [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <label>বিষয়</label>
+                                <input type="text" formControlName="subject" placeholder="বার্তার বিষয়"
+                                    [class.error]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+                            </div>
+
+                            <div class="form-group mb-8">
+                                <label>আপনার বার্তা</label>
+                                <textarea formControlName="message" rows="5" placeholder="এখানে আপনার বার্তাটি লিখুন..."
+                                    [class.error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="submit-btn">
+                                    <span>বার্তাও পাঠান</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -125,3 +168,5 @@
     </main>
 
 </div>
+<!-- Dynamic Footer Component -->
+<app-footer></app-footer>

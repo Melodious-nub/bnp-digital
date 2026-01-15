@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateService, Candidate } from '../../../../core/services/candidate.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -15,13 +17,22 @@ export class ProfileComponent implements OnInit {
   candidate: Candidate | null = null;
   isLoading = true;
   selectedImageUrl: string | null = null;
+  contactForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private candidateService: CandidateService,
     public router: Router,
-    private sanitizer: DomSanitizer
-  ) { }
+    private sanitizer: DomSanitizer,
+    private fb: FormBuilder
+  ) {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['', Validators.required],
+      message: ['', Validators.required]
+    });
+  }
 
   getSafeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -35,6 +46,27 @@ export class ProfileComponent implements OnInit {
   closeLightbox() {
     this.selectedImageUrl = null;
     document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  onSubmit() {
+    if (this.contactForm.valid) {
+      Swal.fire({
+        title: 'ধন্যবাদ!',
+        text: 'Backend not connected yet.',
+        icon: 'info',
+        confirmButtonText: 'ঠিক আছে',
+        confirmButtonColor: '#1a5e4d'
+      });
+      this.contactForm.reset();
+    } else {
+      Swal.fire({
+        title: 'ভুল হয়েছে',
+        text: 'অনুগ্রহ করে সব ঘরগুলো সঠিক ভাবে পূরণ করুন।',
+        icon: 'error',
+        confirmButtonText: 'আবার চেষ্টা করুন',
+        confirmButtonColor: '#f42a41'
+      });
+    }
   }
 
   ngOnInit() {

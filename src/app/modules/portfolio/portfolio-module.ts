@@ -9,6 +9,7 @@ import { GalleryComponent } from './components/gallery/gallery';
 import { VideoFeedComponent } from './components/video-feed/video-feed';
 
 import { CoreModule } from '../../core/core-module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CoreModule } from '../../core/core-module';
   imports: [
     CommonModule,
     PortfolioRoutingModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ]
 })
 export class PortfolioModule { }

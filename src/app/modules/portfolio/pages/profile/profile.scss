@@ -129,44 +129,12 @@
                 transition: transform 0.8s ease;
             }
 
-            .overlay {
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(to top, rgba(26, 94, 77, 0.8) 0%, transparent 60%);
-                opacity: 0;
-                transition: all 0.4s ease;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                padding: 1.5rem;
-                color: white;
-
-                .moment-tag {
-                    font-size: 0.7rem;
-                    font-weight: 900;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-bottom: 0.25rem;
-                    color: #4ade80;
-                }
-
-                .caption {
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    line-height: 1.2;
-                }
-            }
-
             &:hover {
                 transform: translateY(-8px);
                 box-shadow: 0 25px 30px -5px rgba(26, 94, 77, 0.15);
 
                 img {
                     transform: scale(1.05);
-                }
-
-                .overlay {
-                    opacity: 1;
                 }
             }
         }
@@ -282,9 +250,95 @@
         grid-template-columns: 1fr;
     }
 
+    .contact-form {
+        .submit-btn {
+            width: 100%;
+        }
+    }
+
     .poster-header-text {
         .candidate-name {
             font-size: 3.5rem;
+        }
+    }
+}
+
+.contact-form {
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1a5e4d;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #1a202c;
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #1a5e4d;
+                background: #fff;
+                box-shadow: 0 0 0 4px rgba(26, 94, 77, 0.1);
+            }
+
+            &.error {
+                border-color: #f42a41;
+                background: #fff5f5;
+            }
+
+            &::placeholder {
+                color: #a0aec0;
+            }
+        }
+    }
+
+    .submit-btn {
+        background: #1a5e4d;
+        color: white;
+        padding: 1rem 3rem;
+        border-radius: 50px;
+        font-weight: 900;
+        font-size: 1.15rem;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 15px -3px rgba(26, 94, 77, 0.3);
+
+        svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(26, 94, 77, 0.4);
+            background: #134639;
+
+            svg {
+                transform: translate(5px, -5px);
+            }
+        }
+
+        &:active {
+            transform: translateY(0) scale(0.98);
         }
     }
 }
