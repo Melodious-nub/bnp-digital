@@ -13,7 +13,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-top: 3rem;
+    padding: 0;
+    /* Remove all padding to ensure perfect centering */
 
     svg {
         width: 100%;
@@ -21,7 +22,15 @@
         height: auto;
         transition: filter 0.5s ease;
         overflow: visible;
-        margin-bottom: 1rem;
+        margin: 0;
+        /* Remove margin to prevent off-center alignment */
+
+        @media (max-width: 767px) {
+            transform: scale(1.1);
+            /* Standardized scale for better mobile visibility */
+            /* Slightly scale up for better visibility on mobile */
+            transform-origin: center;
+        }
     }
 }
 
