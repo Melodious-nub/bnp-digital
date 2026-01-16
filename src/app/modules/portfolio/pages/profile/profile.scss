@@ -10,13 +10,14 @@
 
 .hero-poster {
     background: linear-gradient(135deg, rgba(26, 94, 77, 0.6) 0%, rgba(13, 46, 38, 0.7) 100%), url('/Bangladesh_F_Animation.gif');
-    background-size: cover;
+    background-size: 110%;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
     padding: 5rem 2rem;
     color: white;
+    animation: bgZoom 20s linear infinite alternate;
 
     &::after {
         content: '';
@@ -30,9 +31,22 @@
     }
 }
 
+@keyframes bgZoom {
+    from {
+        background-size: 100%;
+    }
+
+    to {
+        background-size: 115%;
+    }
+}
+
 .candidate-photo-wrapper {
     position: relative;
     z-index: 10;
+    opacity: 0;
+    animation: photoEntry 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.3s;
 
     img {
         width: 100%;
@@ -45,6 +59,9 @@
 
 .poster-header-text {
     z-index: 10;
+    opacity: 0;
+    animation: textEntry 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.5s;
 
     .candidate-name {
         font-size: 5rem;
@@ -65,6 +82,30 @@
         display: inline-block;
         border-radius: 4px;
         border-left: 4px solid #f42a41;
+    }
+}
+
+@keyframes photoEntry {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes textEntry {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 

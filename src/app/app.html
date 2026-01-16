@@ -1,11 +1,11 @@
 @if (loading()) {
-<div class="fixed inset-0 z-[1000] bg-white flex flex-col items-center justify-center animate-fade-in">
+<div class="fixed inset-0 z-[1000] bg-white flex flex-col items-center justify-center">
     <!-- Animated Logo -->
     <div class="relative w-48 h-48 mb-4">
         <!-- Pulse effect behind logo -->
         <div class="absolute inset-0 bg-bnp-green/10 rounded-full animate-ping scale-75"></div>
-        <img src="/dhaner-shish-seeklogo.png" alt="Loading..." 
-            class="relative z-10 w-full h-full object-contain animate-pulse">
+        <img src="/dhaner-shish-seeklogo.png" alt="Loading..." fetchpriority="high"
+            class="relative z-10 w-full h-full object-contain animate-pulse opacity-0 onload-fade-in">
     </div>
 
     <!-- Minimal Activity Dots -->
@@ -17,4 +17,7 @@
 </div>
 }
 
-<router-outlet></router-outlet>
+<div [class.invisible]="loading()" [class.h-0]="loading()" class="transition-opacity duration-300">
+    <router-outlet></router-outlet>
+</div>
+<app-scroll-to-top></app-scroll-to-top>

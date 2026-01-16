@@ -66,8 +66,8 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/candidates'], {
       queryParams: {
         districtId: district.id,
-        districtName: district.name,
-        divisionName: this.selectedDivision
+        districtName: district.bn_name || district.name,
+        divisionName: this.selectedDivisionBn || this.selectedDivision
       }
     });
     this.closeModal();

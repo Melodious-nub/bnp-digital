@@ -1,0 +1,6 @@
+// Header styles are mostly handled by Tailwind classes in the HTML.
+// Any specific tweaks can go here.
+:host {
+    display: block;
+    width: 100%;
+}

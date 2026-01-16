@@ -1,0 +1,38 @@
+<header [class]="headerClass">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <!-- Logo Section -->
+        <div class="flex items-center space-x-3" [class.cursor-pointer]="type !== 'profile'" (click)="onLogoClick()">
+            <img src="/bnp_logo.jpg" alt="Logo" class="h-12 w-auto">
+            <div class="flex flex-col justify-center">
+                <span class="text-bnp-green font-bold text-sm leading-none">বাংলাদেশ</span>
+                <span class="text-bnp-green font-bold text-sm leading-none mt-1.5">জাতীয়তাবাদী দল - বিএনপি</span>
+            </div>
+        </div>
+
+        <!-- Right Action Section -->
+        <div class="flex items-center space-x-4">
+            <ng-container [ngSwitch]="type">
+                <!-- Landing -->
+                <ng-container *ngSwitchCase="'landing'">
+                    <img src="/bangladesh_first.svg" alt="Bangladesh First" class="h-28 w-auto -my-8 translate-y-2">
+                </ng-container>
+
+                <!-- Candidate List -->
+                <ng-container *ngSwitchCase="'candidate-list'">
+                    <button (click)="onBackClick()"
+                        class="text-xs font-bold text-gray-400 hover:text-gray-900 transition-colors">
+                        &larr; ম্যাপে ফিরে যান
+                    </button>
+                </ng-container>
+
+                <!-- Profile -->
+                <ng-container *ngSwitchCase="'profile'">
+                    <button (click)="onBackClick()"
+                        class="px-6 py-2 border border-gray-900 text-gray-900 text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 active:scale-95">
+                        আরও দেখুন
+                    </button>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</header>

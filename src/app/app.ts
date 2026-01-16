@@ -1,9 +1,11 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
+import { CoreModule } from './core/core-module';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CoreModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -20,10 +22,18 @@ export class App implements OnInit {
         event instanceof NavigationCancel ||
         event instanceof NavigationError
       ) {
+        // Enforce scroll to top on every navigation
+        if (event instanceof NavigationEnd) {
+          window.scrollTo({
+            top: 0,
+            behavior: 'instant' // Instant is better for route changes to avoid seeing the old scroll position
+          });
+        }
+
         // Add a slight delay for better UX and smoother transitions
         setTimeout(() => {
           this.loading.set(false);
-        }, 800);
+        }, 500);
       }
     });
   }

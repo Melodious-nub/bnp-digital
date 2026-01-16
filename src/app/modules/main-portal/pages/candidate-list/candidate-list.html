@@ -1,25 +1,6 @@
-<div class="min-h-screen bg-gray-50 flex flex-col">
+<div class="min-h-screen bg-gray-50 flex flex-col page-entry">
     <!-- Professional Navigation Header -->
-    <header class="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" (click)="goBack()">
-                <img src="/bnp_logo.jpg" alt="Logo" class="h-12 w-auto">
-                <div class="flex flex-col justify-center">
-                    <span class="text-bnp-green font-bold text-lg leading-none">বাংলাদেশ</span>
-                    <span class="text-bnp-green font-bold text-sm leading-none mt-1">জাতীয়তাবাদী দল - বিএনপি</span>
-                </div>
-            </div>
-
-
-
-            <div class="flex items-center space-x-4">
-                <button (click)="goBack()"
-                    class="text-xs font-bold text-gray-400 hover:text-gray-900 transition-colors">
-                    &larr; ম্যাপে ফিরে যান
-                </button>
-            </div>
-        </div>
-    </header>
+    <app-header type="candidate-list" (back)="goBack()"></app-header>
 
     <main class="flex-grow container mx-auto px-6 py-12">
         <!-- Breadcrumbs & Title -->
@@ -29,8 +10,8 @@
                 <span>/</span>
                 <span>{{districtName}}</span>
             </div>
-            <h2 class="text-5xl font-black text-gray-900 tracking-tighter italic">
-                {{districtName}} জেলার<span class="text-bnp-green"> নেতৃবৃন্দ</span>
+            <h2 class="text-4xl font-black text-gray-900 tracking-tighter leading-tight">
+                {{districtName}} জেলার সংসদীয় আসনগুলোতে <span class="text-bnp-green">বিএনপিকে প্রতিনিধিত্ব করছেন</span>
             </h2>
             <!-- <p class="mt-4 text-gray-500 font-medium max-w-xl">
                 Displaying all registered and verified representatives serving the district of <span
@@ -43,7 +24,8 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                     <h3 class="text-2xl font-black text-gray-900 tracking-tight italic">সংসদীয় আসনসমূহ</h3>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">নেতার প্রোফাইল দেখতে একটি
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">প্রার্থীর প্রোফাইল দেখতে
+                        একটি
                         আসন নির্বাচন করুন</p>
                 </div>
 
@@ -83,7 +65,7 @@
                                 {{seat.name}}
                             </h4>
                             <p *ngIf="seat.candidate_name"
-                                class="text-[11px] font-black text-bnp-green uppercase tracking-widest mt-1">
+                                class="text-xl font-black text-bnp-green tracking-tight mt-0.5">
                                 {{seat.candidate_name}}
                             </p>
                         </div>

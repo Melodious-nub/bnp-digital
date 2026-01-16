@@ -1,27 +1,9 @@
 <div class="min-h-screen bg-gray-50 flex flex-col">
     <!-- Professional Sticky Header -->
-    <header
-        class="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm transition-all duration-300">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img src="/bnp_logo.jpg" alt="Logo" class="h-12 w-auto">
-                <div class="flex flex-col justify-center">
-                    <span class="text-bnp-green font-bold text-lg leading-none">বাংলাদেশ</span>
-                    <span class="text-bnp-green font-bold text-sm leading-none mt-1">জাতীয়তাবাদী দল - বিএনপি</span>
-                </div>
-            </div>
-
-            <div class="flex items-center">
-                <button (click)="goBack()"
-                    class="px-6 py-2 border border-gray-900 text-gray-900 text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 active:scale-95">
-                    আরও দেখুন
-                </button>
-            </div>
-        </div>
-    </header>
+    <app-header type="profile" (back)="goBack()"></app-header>
 
     <main class="flex-grow">
-        <div class="poster-container" *ngIf="!isLoading && candidate">
+        <div class="poster-container page-entry" *ngIf="!isLoading && candidate">
             <!-- Poster Hero Section -->
             <div class="hero-poster">
                 <div class="container mx-auto px-6">
