@@ -71,10 +71,10 @@ export class CandidateListComponent implements OnInit, OnDestroy {
         )
         .subscribe({
           next: (candidates) => {
-            this.candidates = candidates; // Keep if needed for other things, or remove if only seats matter
+            this.candidates = candidates || []; // Keep if needed for other things, or remove if only seats matter
 
             // Map API response to Seats
-            this.seats = candidates.map(c => ({
+            this.seats = (candidates || []).map((c: any) => ({
               id: c.id,
               district_id: this.districtId || 0,
               name: `${c.districtBn}-${c.constituencyNo}`, // e.g. ঢাকা-১
