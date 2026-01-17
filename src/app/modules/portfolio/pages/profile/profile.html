@@ -68,7 +68,8 @@
                     </div>
                     <div class="video-grid">
                         <div class="video-item" *ngFor="let video of candidate.videos">
-                            <iframe [src]="getSafeUrl(video)" frameborder="0" allowfullscreen></iframe>
+                            <video [src]="video" controls preload="metadata"
+                                class="w-full h-full object-cover rounded-lg"></video>
                         </div>
                     </div>
                 </div>

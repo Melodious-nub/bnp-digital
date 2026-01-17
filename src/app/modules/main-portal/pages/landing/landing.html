@@ -81,31 +81,46 @@
 
             <!-- Modal Body: District Grid -->
             <div class="p-10 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div *ngFor="let district of districts"
-                        class="p-5 rounded-2xl border border-gray-100 hover:border-bnp-green hover:shadow-xl hover:shadow-bnp-green/5 transition-all cursor-pointer bg-white group flex items-center justify-between"
-                        (click)="onDistrictSelect(district)">
-                        <div class="flex items-center space-x-4">
-                            <div
-                                class="w-10 h-10 rounded-xl bg-gray-50 group-hover:bg-bnp-green/5 flex items-center justify-center text-gray-400 group-hover:text-bnp-green transition-colors font-black text-xs">
-                                {{district.bn_name ? district.bn_name.substring(0,2) :
-                                district.name.substring(0,2).toUpperCase()}}
-                            </div>
-                            <h4
-                                class="font-bold text-gray-700 group-hover:text-gray-900 transition-colors uppercase tracking-tight text-sm">
-                                {{district.bn_name || district.name}}
-                            </h4>
+
+                <!-- Loading State -->
+                <div *ngIf="isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div *ngFor="let item of [1,2,3,4,5,6]"
+                        class="p-5 rounded-2xl border border-gray-100 bg-white flex items-center justify-between animate-pulse">
+                        <div class="flex items-center space-x-4 w-full">
+                            <div class="w-10 h-10 rounded-xl bg-gray-200"></div>
+                            <div class="h-4 bg-gray-200 rounded w-24"></div>
                         </div>
-                        <span
-                            class="text-bnp-green opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">
-                            &rarr;
-                        </span>
                     </div>
                 </div>
 
-                <!-- If no districts -->
-                <div *ngIf="districts.length === 0" class="text-center py-12">
-                    <p class="text-gray-400 font-medium">এই অঞ্চলের জন্য শীঘ্রই আসছে।</p>
+                <!-- Data State -->
+                <div *ngIf="!isLoading">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div *ngFor="let district of districts"
+                            class="p-5 rounded-2xl border border-gray-100 hover:border-bnp-green hover:shadow-xl hover:shadow-bnp-green/5 transition-all cursor-pointer bg-white group flex items-center justify-between"
+                            (click)="onDistrictSelect(district)">
+                            <div class="flex items-center space-x-4">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-gray-50 group-hover:bg-bnp-green/5 flex items-center justify-center text-gray-400 group-hover:text-bnp-green transition-colors font-black text-xs">
+                                    {{district.bn_name ? district.bn_name.substring(0,2) :
+                                    district.name.substring(0,2).toUpperCase()}}
+                                </div>
+                                <h4
+                                    class="font-bold text-gray-700 group-hover:text-gray-900 transition-colors uppercase tracking-tight text-sm">
+                                    {{district.bn_name || district.name}}
+                                </h4>
+                            </div>
+                            <span
+                                class="text-bnp-green opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">
+                                &rarr;
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- If no districts -->
+                    <div *ngIf="districts.length === 0" class="text-center py-12">
+                        <p class="text-gray-400 font-medium">এই অঞ্চলের জন্য শীঘ্রই আসছে।</p>
+                    </div>
                 </div>
             </div>
 

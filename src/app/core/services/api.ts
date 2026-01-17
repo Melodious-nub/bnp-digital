@@ -24,4 +24,13 @@ export class Api {
   getCandidateProfile(slug: string) {
     return this.get<any>(`/candidates/profile/${slug}`);
   }
+
+  getDistricts(divisionId: number) {
+    return this.get<any[]>('/auth/districts', { divisionId });
+  }
+
+  getCandidatesByDistrictName(districtName: string) {
+    return this.get<any[]>('/candidates/by-district', { districtName });
+  }
 }
+

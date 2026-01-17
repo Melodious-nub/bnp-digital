@@ -4,6 +4,9 @@ import { CandidateService, Candidate } from '../../../../core/services/candidate
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Api } from '../../../../core/services/api';
+import { LoadingService } from '../../../../core/services/loading.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +27,9 @@ export class ProfileComponent implements OnInit {
     private candidateService: CandidateService,
     public router: Router,
     private sanitizer: DomSanitizer,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private api: Api,
+    private loaderService: LoadingService
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -107,18 +112,58 @@ export class ProfileComponent implements OnInit {
 
   loadCandidate() {
     this.isLoading = true;
-    if (!this.slug) return;
+    this.loaderService.setLoading(true);
+    if (!this.slug) {
+      this.isLoading = false;
+      this.loaderService.setLoading(false);
+      return;
+    }
 
-    this.candidateService.getCandidateBySlug(this.slug).subscribe({
-      next: (data) => {
-        this.candidate = data;
+    this.api.getCandidateProfile(this.slug)
+      .pipe(finalize(() => {
         this.isLoading = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.isLoading = false;
-      }
-    });
+        this.loaderService.setLoading(false);
+      }))
+      .subscribe({
+        next: (data) => {
+          // Map API response to Candidate interface
+          const photos = data.gallery?.filter((f: any) => f.fileType === 'image').map((f: any) => f.fileUrl) || [];
+          const videos = data.gallery?.filter((f: any) => f.fileType === 'video').map((f: any) => f.fileUrl) || [];
+
+          this.candidate = {
+            id: data.id,
+            full_name: data.fullNameBn || data.fullNameEn, // Use Bengali name as primary
+            slug: data.slug,
+            division_id: data.divisionId,
+            district_id: data.districtId,
+            division_name: data.divisionBn,
+            district_name: data.districtBn,
+            designation: data.designation,
+            photo_url: data.photoUrl,
+            bio: data.introBn, // Use Bengali bio
+            campaign_images: [],
+            recent_activity: [],
+            stats: {
+              followers: '150K', // Placeholder/Static for now if not in API
+              volunteers: '500+',
+              events_held: 25
+            },
+            manifesto: {
+              title: "ভিশন",
+              points: data.visionBn ? data.visionBn.split('\r\n\r\n') : [] // Split text into points
+            },
+            seat_name: `${data.districtBn}-${data.constituencyNo}`, // Construct seat name
+            political_journey: data.politicalJourneyBn,
+            personal_life: data.personalProfileBn,
+            constituency_plan: data.visionBn, // Map vision to constituency plan as well if distinct one missing
+            gallery: photos,
+            videos: videos
+          } as any; // Cast to any to fit flexible Candidate interface or mismatched fields
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
 
   goBack() {
