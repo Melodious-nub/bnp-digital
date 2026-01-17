@@ -1,7 +1,7 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, Signal } from '@angular/core';
 import { RouterOutlet, Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-
 import { CoreModule } from './core/core-module';
+import { LoadingService } from './core/services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,16 @@ import { CoreModule } from './core/core-module';
 })
 export class App implements OnInit {
   protected readonly title = signal('multi-tenent-frontend');
-  loading = signal(false);
+  loading!: Signal<boolean>;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private loadingService: LoadingService
+  ) {
+    this.loading = this.loadingService.loading;
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        this.loading.set(true);
+        this.loadingService.setLoading(true);
       } else if (
         event instanceof NavigationEnd ||
         event instanceof NavigationCancel ||
@@ -26,13 +30,13 @@ export class App implements OnInit {
         if (event instanceof NavigationEnd) {
           window.scrollTo({
             top: 0,
-            behavior: 'instant' // Instant is better for route changes to avoid seeing the old scroll position
+            behavior: 'instant'
           });
         }
 
-        // Add a slight delay for better UX and smoother transitions
+        // Slight delay for transition smoothness
         setTimeout(() => {
-          this.loading.set(false);
+          this.loadingService.setLoading(false);
         }, 500);
       }
     });

@@ -70,8 +70,8 @@ export class CandidateListComponent implements OnInit {
   get filteredSeats(): Seat[] {
     if (!this.searchQuery) return this.seats;
     const query = this.searchQuery.toLowerCase();
-    return this.seats.filter(seat => 
-      seat.name.toLowerCase().includes(query) || 
+    return this.seats.filter(seat =>
+      seat.name.toLowerCase().includes(query) ||
       (seat.name_en && seat.name_en.toLowerCase().includes(query)) ||
       (seat.candidate_name && seat.candidate_name.toLowerCase().includes(query))
     );
