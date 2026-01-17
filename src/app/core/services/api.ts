@@ -32,5 +32,9 @@ export class Api {
   getCandidatesByDistrictName(districtName: string) {
     return this.get<any[]>('/candidates/by-district', { districtName });
   }
+
+  submitContactForm(data: any) {
+    return this.http.post(`${this.baseUrl}/contact/submit`, data);
+  }
 }
 

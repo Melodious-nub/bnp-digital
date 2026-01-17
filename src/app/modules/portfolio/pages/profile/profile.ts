@@ -55,14 +55,37 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      Swal.fire({
-        title: 'ধন্যবাদ!',
-        text: 'Backend not connected yet.',
-        icon: 'info',
-        confirmButtonText: 'ঠিক আছে',
-        confirmButtonColor: '#1a5e4d'
-      });
-      this.contactForm.reset();
+      this.loaderService.setLoading(true);
+
+      const formData = {
+        ...this.contactForm.value,
+        slugName: this.slug // Use slugName as requested
+      };
+
+      this.api.submitContactForm(formData)
+        .pipe(finalize(() => this.loaderService.setLoading(false)))
+        .subscribe({
+          next: () => {
+            Swal.fire({
+              title: 'ধন্যবাদ!',
+              text: 'আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে।',
+              icon: 'success',
+              confirmButtonText: 'ঠিক আছে',
+              confirmButtonColor: '#1a5e4d'
+            });
+            this.contactForm.reset();
+          },
+          error: (err) => {
+            console.error('Contact Form Error:', err);
+            Swal.fire({
+              title: 'দুঃখিত!',
+              text: 'বার্তাটি পাঠানো সম্ভব হয়নি। অনুগ্রহ করে পরে আবার চেষ্টা করুন।',
+              icon: 'error',
+              confirmButtonText: 'ঠিক আছে',
+              confirmButtonColor: '#f42a41'
+            });
+          }
+        });
     } else {
       Swal.fire({
         title: 'ভুল হয়েছে',
@@ -70,6 +93,11 @@ export class ProfileComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'আবার চেষ্টা করুন',
         confirmButtonColor: '#f42a41'
+      });
+      // Mark all fields as touched to show errors
+      Object.keys(this.contactForm.controls).forEach(key => {
+        const control = this.contactForm.get(key);
+        control?.markAsTouched();
       });
     }
   }
