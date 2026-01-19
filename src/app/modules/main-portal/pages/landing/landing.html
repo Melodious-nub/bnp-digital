@@ -2,17 +2,28 @@
     <!-- Professional Navigation Header -->
     <app-header type="landing" (back)="router.navigate(['/'])"></app-header>
 
+    <!-- Hero Banner Section -->
+    <div class="w-full relative overflow-hidden bg-white border-b border-gray-100 animate-in pt-0">
+        <img src="/banner-bnp-f2.jpg" alt="BNP Platform Banner"
+            class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005]"
+            onerror="this.src='https://placehold.co/1920x600?text=BNP+Banner'">
+        <!-- Subtle gradient overlay for depth -->
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-black/[0.02] via-transparent to-black/[0.05] pointer-events-none">
+        </div>
+    </div>
+
     <!-- Professional Hero Section -->
     <section class="flex-grow flex flex-col items-center justify-center py-12 px-6">
-        <div class="text-center mb-10 max-w-3xl">
+        <div class="text-center mb-8 max-w-3xl">
             <h2 class="text-xl md:text-3xl font-black text-gray-900 leading-tight">
-                সচেতন ভোটের সিদ্ধান্ত শুরু হোক জানার মাধ্যমে
+                খুব সহজেই খুঁজে নিন আপনার প্রার্থীকে
             </h2>
             <h2 class="text-xl md:text-3xl font-black text-gray-900 leading-tight mt-2">
-                বিভাগ নির্বাচন করুন, আসনে ক্লিক করুন
+                নিচের ম্যাপ থেকে প্রথমে বিভাগ
             </h2>
             <h2 class="text-xl md:text-3xl font-black text-bnp-green leading-tight mt-2 mb-10">
-                আপনার প্রার্থীকে জানুন
+                তারপর আপনার আসনটি বেছে নিন
             </h2>
             <!-- <p class="text-xl text-gray-500 leading-relaxed font-medium mb-10">
                 A digital movement uniting Bangladesh. Select your division below to explore the dedicated leaders
