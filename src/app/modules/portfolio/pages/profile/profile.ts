@@ -141,6 +141,7 @@ export class ProfileComponent implements OnInit {
   loadCandidate() {
     this.isLoading = true;
     this.loaderService.setLoading(true);
+    this.candidate = null; // Reset previous candidate state
     if (!this.slug) {
       this.isLoading = false;
       this.loaderService.setLoading(false);

@@ -403,3 +403,42 @@
         }
     }
 }
+
+// Not Found State Styles
+.not-found-wrapper {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -10%;
+        right: -5%;
+        width: 40%;
+        height: 60%;
+        background: radial-gradient(circle, rgba(26, 94, 77, 0.03), transparent 70%);
+        pointer-events: none;
+    }
+
+    .not-found-card {
+        animation: cardAppear 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        border: 1px solid rgba(26, 94, 77, 0.05);
+
+        h1 {
+            word-spacing: 2px;
+            letter-spacing: -0.5px;
+        }
+    }
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
