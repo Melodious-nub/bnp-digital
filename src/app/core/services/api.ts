@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Api {
-  baseUrl = 'http://localhost:3000/api';
+  baseUrl = 'https://api.vote-bnp.com/api';
 
   constructor(private http: HttpClient) { }
 
