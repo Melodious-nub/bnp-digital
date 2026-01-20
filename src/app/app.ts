@@ -43,6 +43,15 @@ export class App implements OnInit {
   }
 
   ngOnInit() {
-    // Current routing logic is handled by app.routes.ts and matcher
+    const hostname = window.location.hostname;
+    const parts = hostname.split('.');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug');
+
+    if (slug) {
+      console.log('Subdomain/Slug detected:', slug);
+      this.router.navigate(['/portfolio'], { queryParams: { slug: slug } });
+    }
   }
 }
