@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   isLoading = true;
   selectedImageUrl: string | null = null;
   contactForm: FormGroup;
+  captchaQuestion: string = '';
+  private captchaResult: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +37,17 @@ export class ProfileComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
-      message: ['', Validators.required]
+      message: ['', Validators.required],
+      captcha: ['', Validators.required]
     });
+    this.generateCaptcha();
+  }
+
+  generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    this.captchaResult = num1 + num2;
+    this.captchaQuestion = `${this.api.toBengaliNumber(num1)} + ${this.api.toBengaliNumber(num2)} = ?`;
   }
 
   getSafeUrl(url: string): SafeResourceUrl {
@@ -53,12 +64,37 @@ export class ProfileComponent implements OnInit {
     document.body.style.overflow = ''; // Restore scrolling
   }
 
+  sanitizePhotoUrl(url: string | null | undefined): string | null {
+    if (!url || url === 'N/A' || url === 'n/a' || url.includes('undefined')) return null;
+    return this.api.ensureHttps(url) || null;
+  }
+
+  handleImageError(event: any) {
+    if (this.candidate) {
+      this.candidate.photo_url = null as any;
+    }
+  }
+
   onSubmit() {
     if (this.contactForm.valid) {
+      if (parseInt(this.contactForm.value.captcha) !== this.captchaResult) {
+        Swal.fire({
+          title: 'ক্যাপচা ভুল হয়েছে!',
+          text: 'সঠিক উত্তরটি লিখুন।',
+          icon: 'warning',
+          confirmButtonText: 'ঠিক আছে',
+          confirmButtonColor: '#f42a41'
+        });
+        this.generateCaptcha();
+        this.contactForm.patchValue({ captcha: '' });
+        return;
+      }
+
       this.loaderService.setLoading(true);
 
+      const { captcha, ...submitData } = this.contactForm.value;
       const formData = {
-        ...this.contactForm.value,
+        ...submitData,
         slugName: this.slug // Use slugName as requested
       };
 
@@ -74,9 +110,9 @@ export class ProfileComponent implements OnInit {
               confirmButtonColor: '#1a5e4d'
             });
             this.contactForm.reset();
+            this.generateCaptcha();
           },
           error: (err: any) => {
-            console.error('Contact Form Error:', err);
             Swal.fire({
               title: 'দুঃখিত!',
               text: 'বার্তাটি পাঠানো সম্ভব হয়নি। অনুগ্রহ করে পরে আবার চেষ্টা করুন।',
@@ -84,6 +120,7 @@ export class ProfileComponent implements OnInit {
               confirmButtonText: 'ঠিক আছে',
               confirmButtonColor: '#f42a41'
             });
+            this.generateCaptcha();
           }
         });
     } else {
@@ -123,7 +160,6 @@ export class ProfileComponent implements OnInit {
     if (isSubdomain) {
       // Extract slug from subdomain
       this.slug = parts[0];
-      console.log('Subdomain slug detected in ProfileComponent:', this.slug);
       this.loadCandidate();
     } else {
       // 3. Last resort: Query params (legacy)
@@ -168,7 +204,7 @@ export class ProfileComponent implements OnInit {
             division_name: data.divisionBn,
             district_name: data.districtBn,
             designation: data.designation,
-            photo_url: this.api.ensureHttps(data.photoUrl),
+            photo_url: this.sanitizePhotoUrl(data.photoUrl),
             bio: data.introBn, // Use Bengali bio
             campaign_images: [],
             recent_activity: [],
@@ -181,7 +217,7 @@ export class ProfileComponent implements OnInit {
               title: "ভিশন",
               points: data.visionBn ? data.visionBn.split('\r\n\r\n') : [] // Split text into points
             },
-            seat_name: `${data.districtBn}-${data.constituencyNo}`, // Construct seat name
+            seat_name: `${data.districtBn}-${this.api.toBengaliNumber(data.constituencyNo)}`, // Construct seat name
             political_journey: data.politicalJourneyBn,
             personal_life: data.personalProfileBn,
             constituency_plan: data.visionBn, // Map vision to constituency plan as well if distinct one missing
@@ -189,9 +225,7 @@ export class ProfileComponent implements OnInit {
             videos: videos
           } as any; // Cast to any to fit flexible Candidate interface or mismatched fields
         },
-        error: (err: any) => {
-          console.error(err);
-        }
+
       });
   }
 

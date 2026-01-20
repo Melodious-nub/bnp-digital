@@ -77,16 +77,14 @@ export class CandidateListComponent implements OnInit, OnDestroy {
             this.seats = (candidates || []).map((c: any) => ({
               id: c.id,
               district_id: this.districtId || 0,
-              name: `${c.districtBn}-${c.constituencyNo}`, // e.g. ঢাকা-১
+              name: `${c.districtBn}-${this.api.toBengaliNumber(c.constituencyNo)}`, // e.g. ঢাকা-১
               name_en: `${this.districtName}-${c.constituencyNo}`, // e.g. Dhaka-1
               candidate_slug: c.slug,
               candidate_name: c.fullNameBn,
-              candidate_photo: this.api.ensureHttps(c.photoUrl)
+              candidate_photo: this.sanitizePhotoUrl(c.photoUrl)
             }));
           },
-          error: (err: any) => {
-            console.error('Candidate Load Error:', err);
-          }
+
         });
     } else if (this.districtId) {
       // Fallback or alternative if needed, but user emphasized districtName API
@@ -101,9 +99,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
           next: (candidates) => {
             this.candidates = candidates;
           },
-          error: (err: any) => {
-            console.error(err);
-          }
+
         });
     } else {
       this.isLoading = false;
@@ -121,11 +117,18 @@ export class CandidateListComponent implements OnInit, OnDestroy {
     );
   }
 
+  sanitizePhotoUrl(url: string | null | undefined): string | null {
+    if (!url || url === 'N/A' || url === 'n/a' || url.includes('undefined')) return null;
+    return this.api.ensureHttps(url) || null;
+  }
+
+  handleImageError(event: any, seat: Seat) {
+    seat.candidate_photo = null;
+  }
+
   onSeatSelect(seat: Seat) {
     if (seat.candidate_slug) {
       this.viewProfile(seat.candidate_slug);
-    } else {
-      console.log('No candidate for seat:', seat.name);
     }
   }
 

@@ -36,7 +36,6 @@ export class AboutUsComponent implements OnInit, OnDestroy {
                     this.loadingService.setLoading(false);
                 },
                 error: (err: any) => {
-                    console.error('Error fetching team:', err);
                     this.loadingService.setLoading(false);
                 }
             });

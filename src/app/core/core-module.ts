@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer';
 import { HeaderComponent } from './header/header';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top';
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     FooterComponent,

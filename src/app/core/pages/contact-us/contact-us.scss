@@ -1,3 +1,107 @@
 :host {
     display: block;
 }
+
+.contact-form {
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1a5e4d;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #1a202c;
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #1a5e4d;
+                background: #fff;
+                box-shadow: 0 0 0 4px rgba(26, 94, 77, 0.1);
+            }
+
+            &.error {
+                border-color: #f42a41;
+                background: #fff5f5;
+            }
+
+            &::placeholder {
+                color: #a0aec0;
+            }
+        }
+    }
+
+    .captcha-wrapper {
+        .captcha-box {
+            min-width: 120px;
+            text-align: center;
+            letter-spacing: 2px;
+            background-image: radial-gradient(rgba(26, 94, 77, 0.05) 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+
+        input {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .refresh-captcha {
+            &:hover {
+                transform: rotate(30deg);
+                background: rgba(26, 94, 77, 0.05);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .submit-btn {
+        background: #1a5e4d;
+        color: white;
+        padding: 1rem 3rem;
+        border-radius: 50px;
+        font-weight: 900;
+        font-size: 1.15rem;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 15px -3px rgba(26, 94, 77, 0.3);
+
+        svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(26, 94, 77, 0.4);
+            background: #134639;
+
+            svg {
+                transform: translate(5px, -5px);
+            }
+        }
+
+        &:active {
+            transform: translateY(0) scale(0.98);
+        }
+    }
+}

@@ -50,13 +50,21 @@
                     class="p-6 rounded-[2.5rem] border border-gray-100 bg-white hover:border-bnp-green hover:shadow-2xl hover:shadow-bnp-green/10 transition-all cursor-pointer group flex items-center justify-between"
                     (click)="onSeatSelect(seat)">
                     <div class="flex items-center space-x-6">
-                        <div class="w-20 h-20 rounded-[2rem] overflow-hidden shadow-md bg-gray-50 flex-shrink-0">
+                        <div
+                            class="w-20 h-20 rounded-[2rem] overflow-hidden shadow-md bg-white flex-shrink-0 border border-gray-100 flex items-center justify-center">
                             <img *ngIf="seat.candidate_photo; else noPhoto" [src]="seat.candidate_photo"
-                                [alt]="seat.candidate_name" class="w-full h-full object-cover">
+                                [alt]="seat.candidate_name" (error)="handleImageError($event, seat)"
+                                class="w-full h-full object-cover">
                             <ng-template #noPhoto>
                                 <div
-                                    class="w-full h-full flex items-center justify-center text-sm font-black text-gray-300 bg-gray-100 italic uppercase">
-                                    {{seat.name.substring(0,2)}}
+                                    class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-0.5 opacity-20"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-tighter opacity-40">বিএনপি</span>
                                 </div>
                             </ng-template>
                         </div>

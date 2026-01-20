@@ -11,13 +11,17 @@
 .hero-poster {
     background: linear-gradient(135deg, rgba(26, 94, 77, 0.6) 0%, rgba(13, 46, 38, 0.7) 100%), url('/Bangladesh_F_Animation.gif');
     background-size: 110%;
-    background-position: center;
+    background-position: center bottom;
     background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
-    padding: 5rem 2rem;
+    padding: 6rem 2rem 0;
+    /* Remove bottom padding */
     color: white;
-    animation: bgZoom 20s linear infinite alternate;
+    min-height: 550px;
+    display: flex;
+    align-items: stretch;
+    animation: bgZoom 25s ease-in-out infinite alternate;
 
     &::after {
         content: '';
@@ -33,11 +37,11 @@
 
 @keyframes bgZoom {
     from {
-        background-size: 100%;
+        background-size: 110%;
     }
 
     to {
-        background-size: 115%;
+        background-size: 130%;
     }
 }
 
@@ -47,13 +51,21 @@
     opacity: 0;
     animation: photoEntry 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     animation-delay: 0.3s;
+    align-self: flex-end;
+    /* Align to container bottom */
+    display: flex;
+    justify-content: center;
 
     img {
         width: 100%;
         height: auto;
-        max-height: 500px;
+        max-height: 600px;
+        /* Increased from 500px for zoom effect */
         object-fit: contain;
-        filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+        object-position: bottom;
+        filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.4));
+        transform: scale(1.05);
+        /* Slight zoom */
     }
 }
 
@@ -62,26 +74,31 @@
     opacity: 0;
     animation: textEntry 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     animation-delay: 0.5s;
+    padding-bottom: 6rem;
+    /* Lift text above bottom edge on desktop */
 
     .candidate-name {
-        font-size: 5rem;
+        font-size: 5.5rem;
+        /* Slightly larger */
         font-weight: 900;
-        line-height: 1;
-        margin-bottom: 0.5rem;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
         text-transform: uppercase;
         letter-spacing: -2px;
         color: #fff;
+        text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .constituency-badge {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 700;
-        color: #f42a41;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.5rem 1.5rem;
+        color: #fff;
+        background: #f42a41;
+        padding: 0.6rem 2rem;
         display: inline-block;
-        border-radius: 4px;
-        border-left: 4px solid #f42a41;
+        border-radius: 50px;
+        /* Pill shape for cleaner look */
+        box-shadow: 0 10px 20px rgba(244, 42, 65, 0.3);
     }
 }
 
@@ -351,6 +368,29 @@
         }
     }
 
+    .captcha-wrapper {
+        .captcha-box {
+            min-width: 120px;
+            text-align: center;
+            letter-spacing: 2px;
+            background-image: radial-gradient(rgba(26, 94, 77, 0.05) 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+
+        input {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .refresh-captcha {
+            &:hover {
+                transform: rotate(30deg);
+                background: rgba(26, 94, 77, 0.05);
+                border-radius: 50%;
+            }
+        }
+    }
+
     .submit-btn {
         background: #1a5e4d;
         color: white;
@@ -391,15 +431,23 @@
 
 @media (max-width: 768px) {
     .hero-poster {
-        padding: 2rem 1rem;
+        padding: 3rem 1rem 0;
+        /* Align photo to bottom on mobile too */
+        min-height: 450px;
     }
 
     .poster-header-text {
         text-align: center;
         margin-top: 2rem;
+        padding-bottom: 3rem;
+        /* Space from bottom edge for text */
 
         .candidate-name {
-            font-size: 2.5rem;
+            font-size: 3rem;
+        }
+
+        .constituency-badge {
+            font-size: 1.4rem;
         }
     }
 }
@@ -437,6 +485,7 @@
         opacity: 0;
         transform: translateY(30px) scale(0.98);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
