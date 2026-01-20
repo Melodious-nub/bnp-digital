@@ -1,8 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 
 @Component({
-    selector: 'app-scroll-to-top',
-    template: `
+  selector: 'app-scroll-to-top',
+  template: `
     <button 
       class="scroll-to-top" 
       [class.show]="showButton"
@@ -13,7 +13,7 @@ import { Component, HostListener } from '@angular/core';
       </svg>
     </button>
   `,
-    styles: [`
+  styles: [`
     .scroll-to-top {
       position: fixed;
       bottom: 30px;
@@ -62,20 +62,20 @@ import { Component, HostListener } from '@angular/core';
       }
     }
   `],
-    standalone: false
+  standalone: false
 })
 export class ScrollToTopComponent {
-    showButton = false;
+  showButton = false;
 
-    @HostListener('window:scroll', [])
-    onWindowScroll() {
-        this.showButton = window.pageYOffset > 400;
-    }
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showButton = window.pageYOffset > 400;
+  }
 
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 }

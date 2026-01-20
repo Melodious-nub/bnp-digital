@@ -1,42 +1,55 @@
 import { Routes, UrlSegment, UrlMatchResult } from '@angular/router';
 
 export const routes: Routes = [
-    // Workaround Route for environments without subdomain support (e.g. Vercel free tier)
+    // 1. Root-level Slug Route (e.g. domain.com/candidate-slug)
+    // We use a matcher to avoid capturing main portal routes like 'candidates', 'login', etc.
     {
-        path: 'profile/:slug',
-        pathMatch: 'full', // Ensure specific path match
+        matcher: (url: UrlSegment[]): UrlMatchResult | null => {
+            const PORTAL_PATHS = ['candidates', 'login', 'about-us', 'contact-us'];
+            if (url.length === 1 && !PORTAL_PATHS.includes(url[0].path)) {
+                return {
+                    consumed: url,
+                    posParams: { slug: url[0] }
+                };
+            }
+            return null;
+        },
         loadChildren: () => import('./modules/portfolio/portfolio-module').then(m => m.PortfolioModule)
     },
+
+    // 2. Legacy/Fallback Profile Prefix (e.g. domain.com/profile/candidate-slug)
+    {
+        path: 'profile/:slug',
+        pathMatch: 'full',
+        loadChildren: () => import('./modules/portfolio/portfolio-module').then(m => m.PortfolioModule)
+    },
+
+    // 3. Subdomain Logic (e.g. candidate.domain.com)
     {
         matcher: (url: UrlSegment[]): UrlMatchResult | null => {
             const host = window.location.hostname;
             const parts = host.split('.');
             let isSubdomain = false;
 
-            // Simple logic checks for localhost development or typical production subdomains
             if (host.includes('localhost')) {
-                // e.g. "leader-dhaka.localhost" -> parts = 2
                 isSubdomain = parts.length >= 2 && parts[0] !== 'www';
             } else if (host.includes('vercel.app')) {
-                // Vercel Free Tier specific check
-                // "bnp-digital.vercel.app" -> parts=3 (NOT a candidate subdomain)
-                // "candidate.bnp-digital.vercel.app" -> parts=4 (IS a candidate subdomain)
                 isSubdomain = parts.length >= 4 && parts[0] !== 'www';
+            } else if (host.includes('vote-bnp.com')) {
+                isSubdomain = parts.length > 2 && parts[0] !== 'www';
             } else {
-                // Production custom domain
-                // e.g. "leader.bnp.com" -> parts = 3
                 isSubdomain = parts.length > 2 && parts[0] !== 'www';
             }
 
             if (isSubdomain) {
-                // If it's a subdomain, we map EVERYTHING to the portfolio module
-                // We consume the entire URL so the child module handles the rest (usually just the root component)
                 return { consumed: url };
             }
             return null;
         },
         loadChildren: () => import('./modules/portfolio/portfolio-module').then(m => m.PortfolioModule)
     },
+
+    // 4. Main Portal (Landing, Candidates List, etc.)
     {
         path: '',
         loadChildren: () => import('./modules/main-portal/main-portal-module').then(m => m.MainPortalModule)

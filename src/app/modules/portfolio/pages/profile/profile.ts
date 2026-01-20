@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit {
             });
             this.contactForm.reset();
           },
-          error: (err) => {
+          error: (err: any) => {
             console.error('Contact Form Error:', err);
             Swal.fire({
               title: 'দুঃখিত!',
@@ -154,10 +154,10 @@ export class ProfileComponent implements OnInit {
         this.loaderService.setLoading(false);
       }))
       .subscribe({
-        next: (data) => {
+        next: (data: any) => {
           // Map API response to Candidate interface
-          const photos = data.gallery?.filter((f: any) => f.fileType === 'image').map((f: any) => f.fileUrl) || [];
-          const videos = data.gallery?.filter((f: any) => f.fileType === 'video').map((f: any) => f.fileUrl) || [];
+          const photos = data.gallery?.filter((f: any) => f.fileType === 'image').map((f: any) => this.api.ensureHttps(f.fileUrl)) || [];
+          const videos = data.gallery?.filter((f: any) => f.fileType === 'video').map((f: any) => this.api.ensureHttps(f.fileUrl)) || [];
 
           this.candidate = {
             id: data.id,
@@ -168,7 +168,7 @@ export class ProfileComponent implements OnInit {
             division_name: data.divisionBn,
             district_name: data.districtBn,
             designation: data.designation,
-            photo_url: data.photoUrl,
+            photo_url: this.api.ensureHttps(data.photoUrl),
             bio: data.introBn, // Use Bengali bio
             campaign_images: [],
             recent_activity: [],
@@ -189,7 +189,7 @@ export class ProfileComponent implements OnInit {
             videos: videos
           } as any; // Cast to any to fit flexible Candidate interface or mismatched fields
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error(err);
         }
       });

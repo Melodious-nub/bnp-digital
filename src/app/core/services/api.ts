@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class Api {
   baseUrl = 'https://api.vote-bnp.com/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private https: HttpClient) { }
 
   get<T>(path: string, params?: any) {
-    return this.http.get<T>(`${this.baseUrl}${path}`, { params });
+    return this.https.get<T>(`${this.baseUrl}${path}`, { params });
   }
 
   getOurTeam() {
@@ -34,7 +34,15 @@ export class Api {
   }
 
   submitContactForm(data: any) {
-    return this.http.post(`${this.baseUrl}/contact/submit`, data);
+    return this.https.post(`${this.baseUrl}/contact/submit`, data);
+  }
+
+  ensureHttps(url: string | undefined): string | undefined {
+    if (!url) return url;
+    if (url.startsWith('http://')) {
+      return url.replace('http://', 'https://');
+    }
+    return url;
   }
 }
 

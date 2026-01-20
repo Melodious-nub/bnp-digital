@@ -63,7 +63,7 @@ export class LandingComponent implements OnInit, OnDestroy {
                   this.districts = districts;
                   this.isLoading = false;
                 },
-                error: (err) => {
+                error: (err: any) => {
                   console.error('API Error:', err);
                   this.isLoading = false;
                 }

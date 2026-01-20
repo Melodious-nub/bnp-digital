@@ -70,7 +70,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
           })
         )
         .subscribe({
-          next: (candidates) => {
+          next: (candidates: any) => {
             this.candidates = candidates || []; // Keep if needed for other things, or remove if only seats matter
 
             // Map API response to Seats
@@ -81,10 +81,10 @@ export class CandidateListComponent implements OnInit, OnDestroy {
               name_en: `${this.districtName}-${c.constituencyNo}`, // e.g. Dhaka-1
               candidate_slug: c.slug,
               candidate_name: c.fullNameBn,
-              candidate_photo: c.photoUrl
+              candidate_photo: this.api.ensureHttps(c.photoUrl)
             }));
           },
-          error: (err) => {
+          error: (err: any) => {
             console.error('Candidate Load Error:', err);
           }
         });
@@ -101,7 +101,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
           next: (candidates) => {
             this.candidates = candidates;
           },
-          error: (err) => {
+          error: (err: any) => {
             console.error(err);
           }
         });
@@ -130,16 +130,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
   }
 
   viewProfile(slug: string) {
-    const protocol = window.location.protocol;
-    const host = window.location.host;
-    // Strip 'www.' if present to get the base domain
-    const baseHost = host.replace(/^www\./, '');
-
-    // Construct the subdomain URL: protocol://slug.domain
-    const url = `${protocol}//${slug}.${baseHost}`;
-
-    // Navigate to the candidate's subdomain
-    window.open(url, '_blank');
+    this.router.navigate(['/', slug]);
   }
 
   goBack() {
