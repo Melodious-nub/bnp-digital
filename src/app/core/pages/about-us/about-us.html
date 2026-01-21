@@ -18,9 +18,14 @@
         <!-- Content Section -->
         <div class="content-section">
             <div *ngFor="let team of teams" class="mb-24 last:mb-0">
-                <div class="flex items-center gap-4 mb-12">
-                    <h2 class="category-title mb-0">{{team.title}}</h2>
-                    <div class="flex-grow h-px bg-gray-200"></div>
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h2 class="category-title mb-0">{{team.title}}</h2>
+                        <div class="flex-grow h-px bg-gray-200"></div>
+                    </div>
+                    <p *ngIf="team.subtitle" class="text-gray-400 font-bold uppercase tracking-widest text-xs ml-4">
+                        {{team.subtitle}}
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

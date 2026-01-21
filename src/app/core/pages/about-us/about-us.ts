@@ -11,6 +11,7 @@ interface TeamMember {
 
 interface TeamCategory {
     title: string;
+    subtitle?: string;
     members: TeamMember[];
 }
 
@@ -25,7 +26,14 @@ export class AboutUsComponent implements OnInit {
     teams: TeamCategory[] = [
         {
             title: 'Media & Technology',
+            subtitle: 'Core Team',
             members: [
+                {
+                    name: 'Zul Afros',
+                    role: 'Media & Technology',
+                    photoUrl: '/teams/Zul_Afros.png',
+                    facebookLink: 'https://www.facebook.com/zul.afros'
+                },
                 {
                     name: 'S M Mahmudul Hyder (Mim)',
                     role: 'Media & Technology',
@@ -49,23 +57,6 @@ export class AboutUsComponent implements OnInit {
             ]
         },
         {
-            title: 'Co-ordination & Communication',
-            members: [
-                {
-                    name: 'Md Shafikul Islam Riblu',
-                    role: 'Co-ordination & Communication',
-                    photoUrl: '/teams/MdShafikul_Islam_Riblu.png',
-                    facebookLink: 'https://www.facebook.com/mdshafikul.islam.73'
-                },
-                {
-                    name: 'Zul Afros',
-                    role: 'Co-ordination & Communication',
-                    photoUrl: '/teams/Zul_Afros.png',
-                    facebookLink: 'https://www.facebook.com/zul.afros'
-                }
-            ]
-        },
-        {
             title: 'Advisor & Patron',
             members: [
                 {
@@ -79,6 +70,12 @@ export class AboutUsComponent implements OnInit {
                     role: 'Advisor & Patron',
                     photoUrl: '/teams/Barrister_Sharif_Hyder.png',
                     facebookLink: 'https://www.facebook.com/smshyder'
+                },
+                {
+                    name: 'Md Shafikul Islam Riblu',
+                    role: 'Advisor & Patron',
+                    photoUrl: '/teams/MdShafikul_Islam_Riblu.png',
+                    facebookLink: 'https://www.facebook.com/mdshafikul.islam.73'
                 }
             ]
         }
