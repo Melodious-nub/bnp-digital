@@ -22,12 +22,7 @@ export class HeaderComponent {
     }
 
     onLogoClick() {
-        if (this.type === 'landing' || this.type === 'candidate-list') {
-            this.back.emit();
-        }
-        // In landing, it navigates to / via back.emit() if handled by parent, 
-        // but in Landing page it was (click)="router.navigate(['/'])".
-        // I'll make it flexible.
+        this.router.navigate(['/']);
     }
 
     onBackClick() {
