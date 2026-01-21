@@ -71,7 +71,7 @@ export class AboutUsComponent implements OnInit {
                     facebookLink: 'https://www.facebook.com/smshyder'
                 },
                 {
-                    name: 'শফিকুল ইসলাম রিব্লু',
+                    name: 'শফিকুল ইসলাম রিবলু',
                     role: 'উপদেষ্টা এবং পৃষ্ঠপোষক',
                     photoUrl: '/teams/MdShafikul_Islam_Riblu.png',
                     facebookLink: 'https://www.facebook.com/mdshafikul.islam.73'
