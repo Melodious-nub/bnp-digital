@@ -48,17 +48,17 @@ export class CandidateService {
     constructor() { }
 
     getAllCandidates(): Observable<Candidate[]> {
-        console.log('CandidateService: Fetching all candidates');
+        // console.log('CandidateService: Fetching all candidates');
         return of(CANDIDATES);
     }
 
     getCandidatesByDistrict(districtId: number): Observable<Candidate[]> {
-        console.log('CandidateService: Fetching candidates for district', districtId);
+        // console.log('CandidateService: Fetching candidates for district', districtId);
         return of(CANDIDATES.filter(c => c.district_id === districtId));
     }
 
     getCandidateBySlug(slug: string): Observable<Candidate> {
-        console.log('CandidateService: Fetching candidate by slug', slug);
+        // console.log('CandidateService: Fetching candidate by slug', slug);
         const candidate = CANDIDATES.find(c => c.slug === slug);
         return of(candidate!);
     }

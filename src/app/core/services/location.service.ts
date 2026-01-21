@@ -32,17 +32,17 @@ export class LocationService {
     constructor() { }
 
     getDivisions(): Observable<Division[]> {
-        console.log('LocationService: Fetching Divisions');
+        // console.log('LocationService: Fetching Divisions');
         return of(DIVISIONS);
     }
 
     getDistrictsByDivision(divisionId: number): Observable<District[]> {
-        console.log('LocationService: Fetching Districts for Division', divisionId);
+        // console.log('LocationService: Fetching Districts for Division', divisionId);
         return of(DISTRICTS.filter(d => d.division_id === divisionId));
     }
 
     getSeatsByDistrict(districtId: number): Observable<Seat[]> {
-        console.log('LocationService: Fetching Seats for District', districtId);
+        // console.log('LocationService: Fetching Seats for District', districtId);
         return of(SEATS.filter(s => s.district_id === districtId));
     }
 }

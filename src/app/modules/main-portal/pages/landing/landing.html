@@ -4,26 +4,29 @@
 
     <!-- Hero Banner Section -->
     <div class="w-full relative overflow-hidden bg-white border-b border-gray-100 animate-in pt-0">
-        <img src="/banner-bnp-f2.jpg" alt="BNP Platform Banner"
-            class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005]"
-            onerror="this.src='https://placehold.co/1920x600?text=BNP+Banner'">
-        <!-- Subtle gradient overlay for depth -->
+        <picture>
+            <source media="(min-width: 1600px)" srcset="/banner-bnp-6th-6.jpeg">
+            <source media="(min-width: 768px)" srcset="/banner-bnp-6th.jpeg">
+            <img src="/banner-bnp-f2.jpg" alt="BNP Platform Banner"
+                class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005]"
+                onerror="this.src='https://placehold.co/1920x400?text=BNP+Platform+Banner'">
+        </picture>
         <div
             class="absolute inset-0 bg-gradient-to-b from-black/[0.02] via-transparent to-black/[0.05] pointer-events-none">
         </div>
     </div>
 
     <!-- Professional Hero Section -->
-    <section class="flex-grow flex flex-col items-center justify-center py-8 px-6">
+    <section class="flex-grow flex flex-col items-center justify-center py-4 md:py-6 px-6">
         <div class="text-center max-w-3xl">
             <h2 class="text-xl md:text-3xl font-black text-gray-900 leading-tight">
                 খুব সহজেই <span class="text-bnp-green">খুঁজে</span> নিন আপনার <span
                     class="text-bnp-red">প্রার্থীকে</span>
             </h2>
-            <h2 class="text-xl md:text-3xl font-black text-gray-900 leading-tight mt-2">
+            <h2 class="text-xl md:text-3xl font-black text-gray-900 leading-tight mt-1">
                 নিচের ম্যাপ থেকে <span class="text-bnp-green">প্রথমে বিভাগ</span>
             </h2>
-            <h2 class="text-xl md:text-3xl font-black text-gray-900  leading-tight mt-2 mb-10">
+            <h2 class="text-xl md:text-3xl font-black text-gray-900  leading-tight mt-1 mb-6">
                 <span class="text-bnp-green">তারপর </span> <span class="text-bnp-red">আপনার আসনটি </span> <span
                     class="text-bnp-green">বেছে নিন</span>
             </h2>
@@ -45,7 +48,7 @@
         </div>
 
         <!-- Map Container -->
-        <div class="w-full max-w-6xl px-2 md:px-4 flex justify-center mx-auto mb-20">
+        <div class="w-full max-w-6xl px-2 md:px-4 flex justify-center mx-auto mb-10">
             <div class="w-full h-auto relative group">
                 <!-- Outer Glow/Shadow for Depth -->
                 <div
