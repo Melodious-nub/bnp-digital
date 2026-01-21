@@ -1,3 +1,192 @@
 :host {
     display: block;
+    width: 100%;
+}
+
+.hero-poster {
+    background: linear-gradient(135deg, rgba(26, 94, 77, 0.85) 0%, rgba(13, 46, 38, 0.95) 100%), url('/Bangladesh_F_Animation.gif');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top right, rgba(244, 42, 65, 0.15), transparent 70%);
+        pointer-events: none;
+    }
+
+    .candidate-name {
+        font-size: 4.5rem;
+        font-weight: 900;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        color: #fff;
+        text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+        @media (max-width: 768px) {
+            font-size: 3rem;
+        }
+    }
+
+    .constituency-badge {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        background: #f42a41;
+        padding: 0.5rem 1.5rem;
+        display: inline-block;
+        border-radius: 50px;
+        box-shadow: 0 10px 20px rgba(244, 42, 65, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+.content-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+
+    h2.category-title {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1a5e4d;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        &::before {
+            content: '';
+            width: 12px;
+            height: 35px;
+            background-color: #f42a41;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+.member-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px -10px rgba(26, 94, 77, 0.15);
+        border-color: #1a5e4d;
+
+        .photo-wrapper {
+            transform: scale(1.05);
+            border-color: #1a5e4d;
+        }
+    }
+
+    .photo-wrapper {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        border: 4px solid #f8fafc;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .member-name {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #1a202c;
+        margin-bottom: 0.25rem;
+    }
+
+    .member-role {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #f42a41;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+
+    .social-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        color: #64748b;
+        transition: all 0.3s ease;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        &.facebook:hover {
+            background: #1877F2;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(24, 119, 242, 0.25);
+        }
+
+        &.linkedin:hover {
+            background: #0A66C2;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(10, 102, 194, 0.25);
+        }
+    }
+}
+
+.page-entry {
+    animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

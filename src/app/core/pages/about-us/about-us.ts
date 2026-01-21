@@ -1,8 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Api } from '../../services/api';
-import { Subject, takeUntil } from 'rxjs';
-import { LoadingService } from '../../services/loading.service';
+
+interface TeamMember {
+    name: string;
+    role: string;
+    photoUrl: string;
+    facebookLink: string;
+    linkedinLink?: string;
+}
+
+interface TeamCategory {
+    title: string;
+    members: TeamMember[];
+}
 
 @Component({
     selector: 'app-about-us',
@@ -10,41 +20,71 @@ import { LoadingService } from '../../services/loading.service';
     styleUrl: './about-us.scss',
     standalone: false
 })
-export class AboutUsComponent implements OnInit, OnDestroy {
-    teamMembers: any[] = [];
-    private destroy$ = new Subject<void>();
-
-    constructor(
-        public router: Router,
-        private api: Api,
-        private loadingService: LoadingService
-    ) { }
-
-    ngOnInit(): void {
-        // Register this component as requiring the splash screen/loading state
-        this.loadingService.setLoading(true);
-        this.getOurTeam();
-    }
-
-    private getOurTeam(): void {
-        this.api.getOurTeam()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe({
-                next: (data: any) => {
-                    this.teamMembers = data;
-                    // Finish the specific component loading part
-                    this.loadingService.setLoading(false);
+export class AboutUsComponent implements OnInit {
+    
+    teams: TeamCategory[] = [
+        {
+            title: 'Media & Technology',
+            members: [
+                {
+                    name: 'S M Mahmudul Hyder (Mim)',
+                    role: 'Media & Technology',
+                    photoUrl: '/teams/SM_Mahmudul_Hyder.png',
+                    facebookLink: 'https://www.facebook.com/smmhyder/',
+                    linkedinLink: 'https://www.linkedin.com/in/smmhyder/'
                 },
-                error: (err: any) => {
-                    this.loadingService.setLoading(false);
+                {
+                    name: 'Chowdhury Tanjil J',
+                    role: 'Media & Technology',
+                    photoUrl: '/teams/Chowdhury_Tanjil.png',
+                    facebookLink: 'https://www.facebook.com/tjc1971',
+                    linkedinLink: 'https://www.linkedin.com/in/tanjil1971'
+                },
+                {
+                    name: 'Salim Mahmud',
+                    role: 'Media & Technology',
+                    photoUrl: '/teams/Salim_Mahmud.png',
+                    facebookLink: 'https://www.facebook.com/salim.mahmud.7758'
                 }
-            });
-    }
+            ]
+        },
+        {
+            title: 'Co-ordination & Communication',
+            members: [
+                {
+                    name: 'Md Shafikul Islam Riblu',
+                    role: 'Co-ordination & Communication',
+                    photoUrl: '/teams/MdShafikul_Islam_Riblu.png',
+                    facebookLink: 'https://www.facebook.com/mdshafikul.islam.73'
+                },
+                {
+                    name: 'Zul Afros',
+                    role: 'Co-ordination & Communication',
+                    photoUrl: '/teams/Zul_Afros.png',
+                    facebookLink: 'https://www.facebook.com/zul.afros'
+                }
+            ]
+        },
+        {
+            title: 'Advisor & Patron',
+            members: [
+                {
+                    name: 'Barrister M A Salam',
+                    role: 'Advisor & Patron',
+                    photoUrl: '/teams/Barrister_MA_Salam.png',
+                    facebookLink: 'https://www.facebook.com/barristermasalam'
+                },
+                {
+                    name: 'Barrister Sharif Hyder',
+                    role: 'Advisor & Patron',
+                    photoUrl: '/teams/Barrister_Sharif_Hyder.png',
+                    facebookLink: 'https://www.facebook.com/smshyder'
+                }
+            ]
+        }
+    ];
 
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
-        // Safety check to ensure loading is released if component is destroyed prematurely
-        this.loadingService.setLoading(false);
-    }
+    constructor(public router: Router) { }
+
+    ngOnInit(): void { }
 }
