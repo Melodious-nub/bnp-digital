@@ -67,7 +67,7 @@ export class AboutUsComponent implements OnInit {
                 {
                     name: 'ব্যারিস্টার শরীফ হায়দার (মৃদুল)',
                     role: 'উপদেষ্টা এবং পৃষ্ঠপোষক',
-                    photoUrl: '/teams/Barrister_Sharif_Hyder.png',
+                    photoUrl: '/teams/SharifHyder.png',
                     facebookLink: 'https://www.facebook.com/smshyder'
                 },
                 {

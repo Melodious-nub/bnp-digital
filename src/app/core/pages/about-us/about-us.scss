@@ -4,8 +4,8 @@
 }
 
 .hero-poster {
-    background: linear-gradient(135deg, rgba(26, 94, 77, 0.85) 0%, rgba(13, 46, 38, 0.95) 100%), url('/Bangladesh_F_Animation.gif');
-    background-size: cover;
+    background: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Cover-3.gif');
+    background-size: 100% 100%;
     background-position: center;
     position: relative;
     overflow: hidden;
@@ -185,6 +185,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

@@ -9,9 +9,9 @@
 }
 
 .hero-poster {
-    background: linear-gradient(135deg, rgba(26, 94, 77, 0.6) 0%, rgba(13, 46, 38, 0.7) 100%), url('/Bangladesh_F_Animation.gif');
-    background-size: 110%;
-    background-position: center bottom;
+    background: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Cover-3.gif');
+    background-size: 100% 100%;
+    background-position: center;
     background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
@@ -21,7 +21,6 @@
     min-height: 550px;
     display: flex;
     align-items: stretch;
-    animation: bgZoom 25s ease-in-out infinite alternate;
 
     &::after {
         content: '';
@@ -35,15 +34,6 @@
     }
 }
 
-@keyframes bgZoom {
-    from {
-        background-size: 110%;
-    }
-
-    to {
-        background-size: 130%;
-    }
-}
 
 .candidate-photo-wrapper {
     position: relative;
