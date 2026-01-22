@@ -7,12 +7,10 @@
         <picture>
             <source media="(min-width: 1600px)" srcset="/1920_400.jpeg">
             <source media="(min-width: 768px)" srcset="/1920_400.jpeg">
-            <img src="/banner-bnp-333.jpeg" alt="BNP Platform Banner"
-                 fetchpriority="high"
-                 loading="eager"
-                 (load)="onImgLoad($event)"
-                 class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005] image-fade"
-                 onerror="this.src='https://placehold.co/1920x400?text=BNP+Platform+Banner'">
+            <img src="/banner-bnp-333.jpeg" alt="BNP Platform Banner" fetchpriority="high" loading="eager"
+                (load)="onImgLoad($event)"
+                class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005] image-fade"
+                onerror="this.src='https://placehold.co/1920x400?text=BNP+Platform+Banner'">
         </picture>
         <div
             class="absolute inset-0 bg-gradient-to-b from-black/[0.02] via-transparent to-black/[0.05] pointer-events-none">
@@ -69,6 +67,149 @@
                     <!-- Interactive Map Component -->
                     <app-map [selectedDivision]="selectedDivision" (divisionSelected)="handleDivisionSelect($event)"
                         class="w-full h-full flex items-center justify-center"></app-map>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BNP History & Vision Section -->
+    <section class="py-16 md:py-24 px-6 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <!-- Part 1: History -->
+            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-20 mb-20 md:mb-32 animate-in">
+                <div class="w-full md:w-1/2 relative group">
+                    <div
+                        class="absolute -inset-4 bg-bnp-green/10 rounded-[2.5rem] blur-2xl group-hover:bg-bnp-green/15 transition-all duration-700 opacity-60">
+                    </div>
+                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl ring-1 ring-black/5 aspect-[4/3]">
+                        <img src="/landing/1.jpeg" alt="BNP History Struggle"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60">
+                        </div>
+                        <div
+                            class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                            <p class="text-xs font-bold text-white uppercase tracking-widest">ঐতিহাসিক সংগ্রাম</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bnp-green/10 text-bnp-green text-xs font-bold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-bnp-green animate-pulse"></span>
+                        ১৭ বছরের অদম্য লড়াই
+                    </div>
+                    <h3 class="text-3xl md:text-5xl font-black text-gray-900 mb-8 leading-[1.15]">
+                        সংগ্রাম ও <span class="text-bnp-green">ত্যাগের</span> এক অবিস্মরণীয় যাত্রা
+                    </h3>
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed text-justify font-medium">
+                        বিগত ১৭ বছর বাংলাদেশ দেখেছে এক অদম্য লড়াইয়ের ইতিহাস। স্বৈরাচারী শাসনের রক্তচক্ষু উপেক্ষা করে
+                        বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি) রাজপথে অবিচল থেকেছে জনগণের হৃত অধিকার পুনরুদ্ধারের লক্ষ্যে।
+                        গুম, খুন আর হাজারো মিথ্যা মামলার পাহাড় মাথায় নিয়ে শহীদ জিয়ার আদর্শের সৈনিকেরা যে ত্যাগ স্বীকার
+                        করেছেন, তার মূল প্রেরণা ছিল ‘বাংলাদেশি জাতীয়তাবাদ’। এই দর্শন আমাদের শিখিয়েছে—এ দেশের ভাগ্য
+                        নিয়ন্ত্রক হবে এ দেশেরই সাধারণ মানুষ। বিএনপি চেয়ারম্যান তারেক রহমানের বীরোচিত প্রত্যাবর্তন আজ সেই
+                        দীর্ঘ সংগ্রামের এক চূড়ান্ত বিজয়বার্তা, যা ফ্যাসিবাদের অন্ধকার চিরে গণতন্ত্রের নতুন সূর্যোদয়
+                        নিশ্চিত করেছে।
+                    </p>
+                </div>
+            </div>
+
+            <!-- Part 2 & 3: Vision & Economy -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-20 mb-20 md:mb-32 animate-in">
+                <div class="w-full md:w-1/2 relative group">
+                    <div
+                        class="absolute -inset-4 bg-bnp-red/10 rounded-[2.5rem] blur-2xl group-hover:bg-bnp-red/15 transition-all duration-700 opacity-60">
+                    </div>
+                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl ring-1 ring-black/5 aspect-[4/3]">
+                        <img src="/landing/2.jpeg" alt="BNP State Repair Vision"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60">
+                        </div>
+                        <div
+                            class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                            <p class="text-xs font-bold text-white uppercase tracking-widest">আধুনিক রূপকল্প</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bnp-red/10 text-bnp-red text-xs font-bold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-bnp-red animate-pulse"></span>
+                        নতুন বাংলাদেশ বিনির্মাণ
+                    </div>
+                    <h3 class="text-3xl md:text-5xl font-black text-gray-900 mb-8 leading-[1.15]">
+                        নতুন বাংলাদেশ ও <span class="text-bnp-red">রাষ্ট্র সংস্কারের</span> রূপকল্প
+                    </h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6 text-justify">
+                        আমরা বিশ্বাস করি, কেবল ক্ষমতার পরিবর্তন নয়, আজ প্রয়োজন রাষ্ট্র ব্যবস্থার আমূল সংস্কার। জুলাই
+                        বিপ্লবের শহীদের রক্তের বিনিময়ে অর্জিত এই দ্বিতীয় স্বাধীনতাকে সার্থক করতে বিএনপি প্রতিশ্রুতিবদ্ধ।
+                        আমাদের লক্ষ্য এমন এক ‘ইনক্লুসিভ’ বাংলাদেশ গড়া, যেখানে প্রতিহিংসার বদলে প্রতিষ্ঠিত হবে মানবিক
+                        মর্যাদা ও ন্যায়বিচার। বিএনপির ‘রাষ্ট্র মেরামতের ৩১ দফা’ আগামীর আধুনিক ও সমৃদ্ধ বাংলাদেশের এক
+                        পূর্ণাঙ্গ নীল নকশা। দ্বিকক্ষ বিশিষ্ট সংসদীয় ব্যবস্থা এবং একই ব্যক্তির দুই মেয়াদের বেশি
+                        প্রধানমন্ত্রী না হওয়ার বিধান নিশ্চিত করার মাধ্যমে আমরা ক্ষমতার ভারসাম্য প্রতিষ্ঠা করব, যেন কেউ
+                        আর স্বৈরাচার হয়ে উঠতে না পারে।
+                    </p>
+                    <div class="h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent my-8"></div>
+                    <p class="text-lg text-gray-600 leading-relaxed text-justify">
+                        বিএনপি ক্ষমতায় গেলে প্রতিটি নাগরিকের অর্থনৈতিক মর্যাদা হবে আমাদের অগ্রাধিকার। বেকারত্ব নিরসনে এক
+                        কোটি নতুন কর্মসংস্থান, শিক্ষিত বেকার যুবকদের জন্য বিশেষ ভাতা এবং আধুনিক কারিগরি শিক্ষার প্রসার
+                        ঘটানো হবে। কৃষকের ফসলের ন্যায্যমূল্য নিশ্চিত করতে বাজার ব্যবস্থা ও সেচ প্রকল্পের আমূল পরিবর্তন
+                        আনা হবে। আমাদের পরিকল্পনায় রয়েছে প্রতিটি গ্রাম পর্যন্ত উন্নত স্বাস্থ্যসেবা এবং স্বাস্থ্য কার্ডের
+                        মাধ্যমে সুচিকিৎসার অধিকার প্রতিষ্ঠা করা। বাংলাদেশি জাতীয়তাবাদের ভিত্তিতে আমরা এমন এক ‘রংধনু
+                        জাতি’ গঠন করব, যেখানে ধর্ম-বর্ণ নির্বিশেষে প্রতিটি মানুষ নিজের ধর্মীয় ও নাগরিক অধিকার পূর্ণভাবে
+                        ভোগ করবে।
+                    </p>
+                </div>
+            </div>
+
+            <!-- Part 4: Conclusion -->
+            <div class="flex flex-col md:flex-row items-stretch gap-10 md:gap-12 animate-in pb-10">
+                <div class="w-full md:w-1/3 relative group">
+                    <div
+                        class="absolute -inset-4 bg-gray-100 rounded-[2.5rem] blur-2xl group-hover:bg-gray-200 transition-all duration-700 opacity-40">
+                    </div>
+                    <div
+                        class="relative h-full overflow-hidden rounded-[2.5rem] shadow-xl ring-1 ring-black/5 min-h-[300px]">
+                        <img src="/landing/3.jpeg" alt="BNP Future Leader"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                </div>
+                <div
+                    class="w-full md:w-2/3 bg-gradient-to-br from-[#006a4e] to-[#004d39] p-8 md:p-14 rounded-[3rem] text-white shadow-2xl relative overflow-hidden flex flex-col justify-center">
+                    <!-- Decorative Elements -->
+                    <div
+                        class="absolute top-0 right-0 -mt-24 -mr-24 w-80 h-80 bg-white/10 rounded-full blur-[100px] pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 -mb-24 -ml-24 w-80 h-80 bg-bnp-red/10 rounded-full blur-[100px] pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="w-12 h-1 bg-white/30 rounded-full mb-8"></div>
+                        <h3 class="text-3xl md:text-5xl font-black mb-10 italic leading-[1.2]">
+                            একটি নিরাপদ ও স্বনির্ভর বাংলাদেশের <br class="hidden md:block">জন্য আপনার মূল্যবান ভোট
+                        </h3>
+                        <p class="text-lg md:text-xl text-white/90 leading-relaxed mb-12 text-justify font-medium">
+                            আগামী নির্বাচন আমাদের জাতীয় সার্বভৌমত্ব রক্ষা ও গণতন্ত্র ফিরিয়ে নেওয়ার চূড়ান্ত সুযোগ। শহীদ
+                            জিয়ার ‘সবার আগে বাংলাদেশ’ স্লোগানকে বুকে ধারণ করে আমরা এক বৈষম্যহীন সমাজ গড়ার শপথ নিয়েছি।
+                            আসুন, ১৭ বছরের আত্মত্যাগ আর শহীদের রক্তের ঋণ শোধ করতে আমরা ঐক্যবদ্ধ হই। আপনার একটি মূল্যবান
+                            ভোটই পারে তারেক রহমানের নেতৃত্বে একটি নিরাপদ, স্থিতিশীল ও স্বনির্ভর বাংলাদেশ উপহার দিতে।
+                            পরিবর্তনের এই অগ্রযাত্রায় শামিল হোন, ধানের শীষে ভোট দিয়ে নিশ্চিত করুন একটি সমৃদ্ধ ভবিষ্যৎ।
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center gap-6">
+                            <!-- <button
+                                class="w-full sm:w-auto px-10 py-5 bg-white text-bnp-green font-black rounded-2xl shadow-2xl hover:bg-gray-50 hover:-translate-y-1 transition-all active:scale-95 text-lg">
+                                ধানের শীষে ভোট দিন
+                            </button> -->
+                            <div
+                                class="flex items-center gap-4 py-2 px-6 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
+                                <span
+                                    class="text-white/60 text-sm font-bold uppercase tracking-widest italic font-sans flex items-center gap-1">#সবার_আগে_বাংলাদেশ</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

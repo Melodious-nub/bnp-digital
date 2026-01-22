@@ -39,6 +39,8 @@ export class LandingComponent implements OnInit, OnDestroy {
       'https://vote-bnp.com'
     );
 
+    this.preloadLandingImages();
+
     // Organization Schema
     const schema = {
       "@context": "https://schema.org",
@@ -126,5 +128,17 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
   onImgLoad(event: any) {
     event.target.classList.add('loaded');
+  }
+
+  private preloadLandingImages() {
+    const images = [
+      '/landing/1.jpeg',
+      '/landing/2.jpeg',
+      '/landing/3.jpeg'
+    ];
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   }
 }
