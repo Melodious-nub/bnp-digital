@@ -5,6 +5,7 @@ import { Api } from '../../../../core/services/api';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SeoService } from '../../../../core/services/seo.service';
 
 @Component({
   selector: 'app-landing',
@@ -25,11 +26,33 @@ export class LandingComponent implements OnInit, OnDestroy {
     private candidateService: CandidateService,
     private locationService: LocationService,
     private api: Api,
-    public router: Router
+    public router: Router,
+    private seoService: SeoService
   ) { }
 
   ngOnInit() {
-    console.log('LandingComponent Initialized');
+    this.seoService.updatePageSeo(
+      'Vote BNP - Home',
+      'Official campaign portal for Bangladesh Nationalist Party. Support our candidates for a better future.',
+      'https://vote-bnp.com/bnp_logo.jpg',
+      'BNP, Vote BNP, Election, Bangladesh',
+      'https://vote-bnp.com'
+    );
+
+    // Organization Schema
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Vote BNP",
+      "url": "https://vote-bnp.com",
+      "logo": "https://vote-bnp.com/bnp_logo.jpg",
+      "sameAs": [
+        "https://facebook.com/bnp.digital",
+        "https://twitter.com/bnp_digital"
+      ],
+      "description": "Official campaign portal for Bangladesh Nationalist Party."
+    };
+    this.seoService.setJsonLd(schema);
   }
 
   ngOnDestroy() {
@@ -100,5 +123,8 @@ export class LandingComponent implements OnInit, OnDestroy {
       }
     });
     this.closeModal();
+  }
+  onImgLoad(event: any) {
+    event.target.classList.add('loaded');
   }
 }

@@ -12,7 +12,9 @@
                         <div
                             class="md:col-span-5 candidate-photo-wrapper order-2 md:order-1 flex items-center justify-center min-h-[400px]">
                             <img *ngIf="candidate.photo_url; else noProfilePhoto" [src]="candidate.photo_url"
-                                [alt]="candidate.full_name" (error)="handleImageError($event)">
+                                [alt]="candidate.full_name" (error)="handleImageError($event)"
+                                fetchpriority="high" loading="eager" (load)="onImgLoad($event)"
+                                class="image-fade">
                             <ng-template #noProfilePhoto>
                                 <div
                                     class="w-full h-full flex flex-col items-center justify-center text-white/20 py-20 translate-y-10">

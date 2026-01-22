@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { Api } from '../../../../core/services/api';
 import { LoadingService } from '../../../../core/services/loading.service';
 import { finalize } from 'rxjs/operators';
+import { SeoService } from '../../../../core/services/seo.service';
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +32,8 @@ export class ProfileComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
     private api: Api,
-    private loaderService: LoadingService
+    private loaderService: LoadingService,
+    private seoService: SeoService
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -224,6 +226,29 @@ export class ProfileComponent implements OnInit {
             gallery: photos,
             videos: videos
           } as any; // Cast to any to fit flexible Candidate interface or mismatched fields
+
+          // Update SEO
+          const pageTitle = `Vote BNP - ${this.candidate?.full_name}`;
+          const description = `${this.candidate?.full_name}, ${this.candidate?.designation} - ${this.candidate?.seat_name}. ${this.candidate?.bio?.substring(0, 150)}...`;
+          const image = this.candidate?.photo_url || 'https://vote-bnp.com/bnp_logo.jpg';
+          this.seoService.updatePageSeo(pageTitle, description, image);
+
+          // Structured Data (JSON-LD)
+          const schema = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": this.candidate?.full_name,
+            "jobTitle": this.candidate?.designation,
+            "description": description,
+            "image": image,
+            "url": window.location.href,
+            "memberOf": {
+              "@type": "Organization",
+              "name": "Bangladesh Nationalist Party",
+              "alternateName": "BNP"
+            }
+          };
+          this.seoService.setJsonLd(schema);
         },
 
       });
@@ -253,5 +278,9 @@ export class ProfileComponent implements OnInit {
       // Simply navigate to the root route configured in Angular
       this.router.navigate(['/']);
     }
+  }
+
+  onImgLoad(event: any) {
+    event.target.classList.add('loaded');
   }
 }

@@ -57,3 +57,12 @@ html {
 .onload-fade-in {
     animation: fadeIn 0.4s ease-out forwards;
 }
+
+.image-fade {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.image-fade.loaded {
+    opacity: 1;
+}

@@ -10,10 +10,10 @@
                 <span>/</span>
                 <span>{{districtBnName}}</span>
             </div>
-            <h2 class="text-4xl font-black text-gray-900 tracking-tighter leading-tight">
+            <h1 class="text-4xl font-black text-gray-900 tracking-tighter leading-tight">
                 {{districtBnName}} জেলার সংসদীয় আসনগুলোতে <span class="text-bnp-green">বিএনপিকে প্রতিনিধিত্ব
                     করছেন</span>
-            </h2>
+            </h1>
             <!-- <p class="mt-4 text-gray-500 font-medium max-w-xl">
                 Displaying all registered and verified representatives serving the district of <span
                     class="text-gray-900 font-bold underline">{{districtName}}</span>.
@@ -54,7 +54,8 @@
                             class="w-20 h-20 rounded-[2rem] overflow-hidden shadow-md bg-white flex-shrink-0 border border-gray-100 flex items-center justify-center">
                             <img *ngIf="seat.candidate_photo; else noPhoto" [src]="seat.candidate_photo"
                                 [alt]="seat.candidate_name" (error)="handleImageError($event, seat)"
-                                class="w-full h-full object-cover">
+                                (load)="onImgLoad($event)"
+                                class="w-full h-full object-cover image-fade">
                             <ng-template #noPhoto>
                                 <div
                                     class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-400">

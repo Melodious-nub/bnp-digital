@@ -6,6 +6,7 @@ import { Api } from '../../../../core/services/api';
 import { LoadingService } from '../../../../core/services/loading.service';
 import { Subject } from 'rxjs';
 import { takeUntil, finalize } from 'rxjs/operators';
+import { SeoService } from '../../../../core/services/seo.service';
 
 @Component({
   selector: 'app-candidate-list',
@@ -30,7 +31,8 @@ export class CandidateListComponent implements OnInit, OnDestroy {
     private candidateService: CandidateService,
     private locationService: LocationService,
     private api: Api,
-    private loaderService: LoadingService
+    private loaderService: LoadingService,
+    private seoService: SeoService
   ) { }
 
   ngOnInit() {
@@ -42,8 +44,11 @@ export class CandidateListComponent implements OnInit, OnDestroy {
 
       if (this.districtId) {
         this.loadCandidates();
+        const districtLabel = this.districtBnName || this.districtName;
+        this.seoService.updateTitle(`Vote BNP - Candidates in ${districtLabel}`);
       } else {
         this.isLoading = false;
+        this.seoService.updateTitle('Vote BNP - All Candidates');
       }
     });
   }
@@ -134,6 +139,10 @@ export class CandidateListComponent implements OnInit, OnDestroy {
 
   viewProfile(slug: string) {
     this.router.navigate(['/', slug]);
+  }
+
+  onImgLoad(event: any) {
+    event.target.classList.add('loaded');
   }
 
   goBack() {

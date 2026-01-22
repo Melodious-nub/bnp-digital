@@ -7,11 +7,11 @@ import { ContactUsComponent } from '../../core/pages/contact-us/contact-us';
 import { LoginComponent } from './pages/login/login';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'candidates', component: CandidateListComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'about-us', component: AboutUsComponent },
-  { path: 'contact-us', component: ContactUsComponent }
+  { path: '', component: LandingComponent, title: 'Vote BNP - Home' },
+  { path: 'candidates', component: CandidateListComponent, title: 'Vote BNP - Candidates' },
+  { path: 'login', component: LoginComponent, title: 'Vote BNP - Login' },
+  { path: 'about-us', component: AboutUsComponent, title: 'Vote BNP - About Us' },
+  { path: 'contact-us', component: ContactUsComponent, title: 'Vote BNP - Contact Us' }
 ];
 
 @NgModule({

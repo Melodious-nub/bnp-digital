@@ -5,11 +5,14 @@
     <!-- Hero Banner Section -->
     <div class="w-full relative overflow-hidden bg-white border-b border-gray-100 animate-in pt-0">
         <picture>
-            <source media="(min-width: 1600px)" srcset="/banner-bnp-6th-400.jpeg">
-            <source media="(min-width: 768px)" srcset="/banner-bnp-6th-400.jpeg">
+            <source media="(min-width: 1600px)" srcset="/1920_400.jpeg">
+            <source media="(min-width: 768px)" srcset="/1920_400.jpeg">
             <img src="/banner-bnp-333.jpeg" alt="BNP Platform Banner"
-                class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005]"
-                onerror="this.src='https://placehold.co/1920x400?text=BNP+Platform+Banner'">
+                 fetchpriority="high"
+                 loading="eager"
+                 (load)="onImgLoad($event)"
+                 class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005] image-fade"
+                 onerror="this.src='https://placehold.co/1920x400?text=BNP+Platform+Banner'">
         </picture>
         <div
             class="absolute inset-0 bg-gradient-to-b from-black/[0.02] via-transparent to-black/[0.05] pointer-events-none">
