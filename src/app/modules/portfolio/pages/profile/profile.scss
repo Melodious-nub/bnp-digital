@@ -9,9 +9,9 @@
 }
 
 .hero-poster {
-    background: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Cover-3.gif');
+    background: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Desktop.gif');
     background-size: 100% 100%;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
@@ -294,6 +294,16 @@
 }
 
 @media (max-width: 1024px) {
+    .hero-poster {
+        background-image: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Tab.gif');
+        background-size: 100% 100%;
+
+        .candidate-photo-wrapper img {
+            max-height: 480px !important;
+            transform: scale(1.02);
+        }
+    }
+
     .content-section .gallery-masonry {
         columns: 2;
     }
@@ -421,9 +431,20 @@
 
 @media (max-width: 768px) {
     .hero-poster {
+        background-image: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Mobile.gif');
+        background-size: 100% 100%;
         padding: 3rem 1rem 0;
         /* Align photo to bottom on mobile too */
         min-height: 450px;
+
+        .candidate-photo-wrapper {
+            min-height: auto;
+
+            img {
+                max-height: 350px !important;
+                transform: scale(1);
+            }
+        }
     }
 
     .poster-header-text {
