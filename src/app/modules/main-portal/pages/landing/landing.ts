@@ -33,9 +33,9 @@ export class LandingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.seoService.updatePageSeo(
       'Vote BNP - Home',
-      'Official campaign portal for Bangladesh Nationalist Party. Support our candidates for a better future.',
+      'Official campaign portal for Bangladesh Nationalist Party (BNP). Support our candidates for a better future. গুলশান ২, ঢাকা। ফোন: +৮৮০১৭১১-০৮৩৪৫৬',
       'https://vote-bnp.com/bnp_logo.jpg',
-      'BNP, Vote BNP, Election, Bangladesh',
+      'Vote for bnp, Vote-bnp, Vote bnp, BNP, Bangladesh Nationalist Party, Election, Bangladesh, ধানের শীষ',
       'https://vote-bnp.com'
     );
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { SeoService } from '../../../core/services/seo.service';
+
 interface TeamMember {
     name: string;
     role: string;
@@ -80,7 +82,18 @@ export class AboutUsComponent implements OnInit {
         }
     ];
 
-    constructor(public router: Router) { }
+    constructor(
+        public router: Router,
+        private seoService: SeoService
+    ) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.seoService.updatePageSeo(
+            'Vote BNP - About Us',
+            'Meet the team behind Vote BNP. Official campaign portal for Bangladesh Nationalist Party (BNP). গুলশান ২, ঢাকা। ফোন: +৮৮০১৭১১-০৮৩৪৫৬',
+            'https://vote-bnp.com/bnp_logo.jpg',
+            'Vote for bnp, Vote-bnp, Vote bnp, BNP, About Us, Team, গুলশান ২, ঢাকা',
+            'https://vote-bnp.com/about-us'
+        );
+    }
 }

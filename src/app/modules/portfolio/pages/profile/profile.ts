@@ -231,7 +231,8 @@ export class ProfileComponent implements OnInit {
           const pageTitle = `Vote BNP - ${this.candidate?.full_name}`;
           const description = `${this.candidate?.full_name}, ${this.candidate?.designation} - ${this.candidate?.seat_name}. ${this.candidate?.bio?.substring(0, 150)}...`;
           const image = this.candidate?.photo_url || 'https://vote-bnp.com/bnp_logo.jpg';
-          this.seoService.updatePageSeo(pageTitle, description, image);
+          const keywords = `Vote for bnp, Vote-bnp, Vote bnp, BNP, Election, ${this.candidate?.full_name}, ${this.candidate?.seat_name}, ধানের শীষ, বিএনপি`;
+          this.seoService.updatePageSeo(pageTitle, description, image, keywords);
 
           // Structured Data (JSON-LD)
           const schema = {
