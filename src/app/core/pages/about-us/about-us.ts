@@ -50,7 +50,7 @@ export class AboutUsComponent implements OnInit {
                     facebookLink: 'https://www.facebook.com/salim.mahmud.7758'
                 },
                 {
-                    name: 'জুল আফরোজ',
+                    name: 'জুল আফরোজ মজুমদার',
                     role: 'ওয়েবসাইট টিম',
                     photoUrl: '/teams/Zul_Afros.png',
                     facebookLink: 'https://www.facebook.com/zul.afros'
