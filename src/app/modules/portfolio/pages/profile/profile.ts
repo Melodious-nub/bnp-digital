@@ -228,7 +228,7 @@ export class ProfileComponent implements OnInit {
           } as any; // Cast to any to fit flexible Candidate interface or mismatched fields
 
           // Update SEO
-          const pageTitle = `Vote BNP - ${this.candidate?.full_name}`;
+          const pageTitle = `Vote BNP | ${this.candidate?.full_name}`;
           const description = `${this.candidate?.full_name}, ${this.candidate?.designation} - ${this.candidate?.seat_name}. ${this.candidate?.bio?.substring(0, 150)}...`;
           const image = this.candidate?.photo_url || 'https://vote-bnp.com/bnp_logo.jpg';
           const keywords = `Vote for bnp, Vote-bnp, Vote bnp, BNP, Election, ${this.candidate?.full_name}, ${this.candidate?.seat_name}, ধানের শীষ, বিএনপি`;

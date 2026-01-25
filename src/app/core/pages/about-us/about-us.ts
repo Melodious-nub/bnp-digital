@@ -89,8 +89,8 @@ export class AboutUsComponent implements OnInit {
 
     ngOnInit(): void {
         this.seoService.updatePageSeo(
-            'Vote BNP - About Us',
-            'Meet the team behind Vote BNP. Official campaign portal for Bangladesh Nationalist Party (BNP). গুলশান ২, ঢাকা। ফোন: +৮৮০১৭১১-০৮৩৪৫৬',
+            'Vote BNP | About Us',
+            'Meet the team behind Vote BNP. Explore BNP candidates, manifesto and election updates. Vote BNP and take part in shaping Bangladesh’s future.',
             'https://vote-bnp.com/bnp_logo.jpg',
             'Vote for bnp, Vote-bnp, Vote bnp, BNP, About Us, Team, গুলশান ২, ঢাকা',
             'https://vote-bnp.com/about-us'

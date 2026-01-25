@@ -45,10 +45,10 @@ export class CandidateListComponent implements OnInit, OnDestroy {
       if (this.districtId) {
         this.loadCandidates();
         const districtLabel = this.districtBnName || this.districtName;
-        this.seoService.updateTitle(`Vote BNP - Candidates in ${districtLabel}`);
+        this.seoService.updateTitle(`Vote BNP | Candidates in ${districtLabel}`);
       } else {
         this.isLoading = false;
-        this.seoService.updateTitle('Vote BNP - All Candidates');
+        this.seoService.updateTitle('Vote BNP | All Candidates');
       }
     });
   }
