@@ -9,7 +9,7 @@
 }
 
 .hero-poster {
-    background: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Desktop.gif');
+    background: url('/Desktop.gif');
     background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -295,7 +295,7 @@
 
 @media (max-width: 1024px) {
     .hero-poster {
-        background-image: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Tab.gif');
+        background-image: url('/Tab.gif');
         background-size: 100% 100%;
 
         .candidate-photo-wrapper img {
@@ -431,7 +431,7 @@
 
 @media (max-width: 768px) {
     .hero-poster {
-        background-image: linear-gradient(135deg, rgba(26, 94, 77, 0.35) 0%, rgba(13, 46, 38, 0.45) 100%), url('/Mobile.gif');
+        background-image: url('/Mobile.gif');
         background-size: 100% 100%;
         padding: 3rem 1rem 0;
         /* Align photo to bottom on mobile too */
