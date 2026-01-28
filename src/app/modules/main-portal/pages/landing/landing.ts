@@ -20,6 +20,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   districts: District[] = [];
   showModal = false;
   isLoading = false;
+  isSeoExpanded = false;
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -41,18 +42,68 @@ export class LandingComponent implements OnInit, OnDestroy {
 
     this.preloadLandingImages();
 
-    // Organization Schema
+    // Combined Schema (Organization + FAQ)
     const schema = {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Vote BNP",
-      "url": "https://vote-bnp.com",
-      "logo": "https://vote-bnp.com/bnp_logo.jpg",
-      "sameAs": [
-        "https://facebook.com/bnp.digital",
-        "https://twitter.com/bnp_digital"
-      ],
-      "description": "Official campaign portal for Bangladesh Nationalist Party."
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://vote-bnp.com/#organization",
+          "name": "Vote BNP",
+          "url": "https://vote-bnp.com",
+          "logo": "https://vote-bnp.com/bnp_logo.jpg",
+          "sameAs": [
+            "https://facebook.com/bnp.digital",
+            "https://twitter.com/bnp_digital"
+          ],
+          "description": "Official campaign portal for Bangladesh Nationalist Party."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What does it mean to “Vote BNP”?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Voting BNP means choosing BNP (Bangladesh Nationalist Party) candidates in national or local elections. Supporters view a vote for BNP as a vote for democratic participation, accountability, and political reform in Bangladesh."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the symbol of BNP on the ballot?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "BNP’s election symbol is the Sheaf of Paddy, which voters select on the ballot to support BNP candidates."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I find my BNP candidate for my constituency?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can find your BNP candidate by selecting your division, district, and constituency. Our candidate finder helps voters identify BNP nominees for their local seat."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What values does BNP promote?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "BNP promotes democratic representation, constitutional rights, electoral transparency, national development, and political accountability."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why do some voters choose BNP?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Many voters support the BNP due to its stance on democratic governance, reforms, national interest, and citizen rights. For supporters, voting BNP represents a pathway for change."
+              }
+            }
+          ]
+        }
+      ]
     };
     this.seoService.setJsonLd(schema);
   }
@@ -128,6 +179,10 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
   onImgLoad(event: any) {
     event.target.classList.add('loaded');
+  }
+
+  toggleSeo() {
+    this.isSeoExpanded = !this.isSeoExpanded;
   }
 
   private preloadLandingImages() {

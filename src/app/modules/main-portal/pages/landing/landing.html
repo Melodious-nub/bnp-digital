@@ -271,4 +271,179 @@
 
     <!-- Dynamic Footer Component -->
     <app-footer></app-footer>
+
+    <!-- SEO Content Section -->
+    <section class="bg-[#f8f9fa] border-t border-gray-200 py-6 px-6 sm:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-center">
+                <button (click)="toggleSeo()"
+                    class="group flex items-center gap-2 text-gray-400 hover:text-bnp-green transition-all duration-300 font-bold uppercase tracking-[0.2em] text-[10px] mb-4 outline-none">
+                    <span>{{ isSeoExpanded ? 'Show Less' : 'Read More about BNP Manifesto & Elections' }}</span>
+                    <svg class="w-3 h-3 transition-transform duration-500" [class.rotate-180]="isSeoExpanded"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div class="overflow-hidden transition-all duration-700 ease-in-out w-full"
+                    [style.max-height]="isSeoExpanded ? '5000px' : '0px'" [class.opacity-0]="!isSeoExpanded"
+                    [class.opacity-100]="isSeoExpanded">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-600 pb-12 pt-4">
+                        <!-- Main Content -->
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="text-xl font-bold text-gray-800 mb-4">Why Vote BNP?</h2>
+                                <p class="text-sm leading-relaxed text-justify">
+                                    Vote BNP to promote democracy and accountability. Voting for BNP means voting for
+                                    democratic participation, national accountability and stronger civic representation.
+                                    BNP has consistently positioned itself as a party that advocates for constitutional
+                                    rights, free elections and transparent governance. For many citizens, a vote for BNP
+                                    reflects a desire for change, fairness and a more empowered nation.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl font-bold text-gray-800 mb-4">Vote Bnp - Build the Nation with Your
+                                    Vote</h2>
+                                <div class="space-y-4 text-sm leading-relaxed text-justify">
+                                    <p>Bangladesh has witnessed a history of indomitable struggle for the past 17 years.
+                                        Ignoring the bloodshed of the autocratic regime, the Bangladesh Nationalist
+                                        Party (BNP) has remained steadfast on the streets to restore the lost rights of
+                                        the people. The sacrifices made by the soldiers of Shaheed Zia's ideology,
+                                        despite the mountains of disappearances, murders and thousands of false cases,
+                                        were motivated by 'Bangladeshi nationalism'. This philosophy has taught us that
+                                        the fate of this country will be controlled by the common people of this
+                                        country. The heroic return of BNP Chairman Tarique Rahman today is a final
+                                        victory message of that long struggle, which has ensured the new sunrise of
+                                        democracy by breaking the darkness of fascism.</p>
+
+                                    <p>We believe that not only a change of power, but a radical reform of the state
+                                        system is needed today. BNP is committed to making this second independence,
+                                        achieved in exchange for the blood of the martyrs of the July Revolution, a
+                                        reality. Our goal is to build an 'inclusive' Bangladesh, where human dignity and
+                                        justice will be established instead of revenge. BNP's '31 Points for State
+                                        Repair' is a complete blueprint for a modern and prosperous Bangladesh of the
+                                        future. By ensuring a bicameral parliamentary system and a provision that the
+                                        same person cannot serve more than two terms as Prime Minister, we will
+                                        establish a balance of power so that no one can become a dictator again.</p>
+
+                                    <p>If BNP comes to power, the economic status of every citizen will be our priority.
+                                        To eliminate unemployment, one crore new jobs will be created, special
+                                        allowances will be given to educated unemployed youth, and modern technical
+                                        education will be expanded. To ensure fair prices for farmers' crops, radical
+                                        changes will be made to the market system and irrigation projects. Our plan is
+                                        to establish the right to good health care through improved healthcare and
+                                        health cards in every village. On the basis of Bangladeshi nationalism, we will
+                                        form a 'rainbow nation' where every person, regardless of religion or caste,
+                                        will fully enjoy their religious and civil rights.</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl font-bold text-gray-800 mb-4">Your valuable vote for a safe and
+                                    self-reliant Bangladesh</h2>
+                                <p class="text-sm leading-relaxed text-justify">
+                                    The upcoming elections are our final chance to protect our national sovereignty and
+                                    restore democracy. Bearing in mind Shaheed Zia's slogan 'Bangladesh first', we have
+                                    taken an oath to build a society free from discrimination. Let us unite to repay the
+                                    debt of 17 years of sacrifice and the blood of martyrs. Your one valuable vote can
+                                    give us a safe, stable and self-reliant Bangladesh under the leadership of Tarique
+                                    Rahman. Join this movement of change, and ensure a prosperous future by voting for
+                                    the rice ears.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Content & FAQ -->
+                        <div class="space-y-8">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="text-base font-bold text-gray-800 mb-2">Vote BNP for Democratic
+                                        Representation</h3>
+                                    <p class="text-xs leading-relaxed text-gray-500">BNP highlights the importance of
+                                        returning political decision-making to the people. The campaign emphasizes
+                                        participatory politics, where the voice of citizens influences how the country
+                                        is governed.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-gray-800 mb-2">Vote BNP for Accountability &
+                                        Transparency</h3>
+                                    <p class="text-xs leading-relaxed text-gray-500">BNP promotes the idea that public
+                                        institutions must remain accountable to the people. Transparency in governance,
+                                        electoral fairness and institutional reform remain key pillars of the party’s
+                                        platform.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-gray-800 mb-2">A Vote BNP Is a Vote for National
+                                        Interests</h3>
+                                    <p class="text-xs leading-relaxed text-gray-500">BNP frames its platform around
+                                        national interest, sovereignty and economic improvement. From job opportunities
+                                        to public welfare, the party advocates policies aimed at strengthening
+                                        Bangladesh’s stability.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-gray-800 mb-2">Empowering Citizens Through
+                                        Change</h3>
+                                    <p class="text-xs leading-relaxed text-gray-500">For many voters, BNP represents the
+                                        pathway to political transition. Campaign messaging focuses on change driven by
+                                        citizen participation — not imposed from above.</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-8 border-t border-gray-200">
+                                <h2 class="text-xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h2>
+                                <div class="space-y-6">
+                                    <div class="space-y-2">
+                                        <h4 class="text-sm font-bold text-gray-700">1. What does it mean to “Vote BNP”?
+                                        </h4>
+                                        <p class="text-xs leading-relaxed text-gray-500">Voting BNP means choosing BNP
+                                            (Bangladesh Nationalist Party) candidates in national or local elections.
+                                            Supporters view a vote for BNP as a vote for democratic participation,
+                                            accountability, and political reform.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-sm font-bold text-gray-700">2. What is the symbol of BNP on the
+                                            ballot?</h4>
+                                        <p class="text-xs leading-relaxed text-gray-500">BNP’s election symbol is the
+                                            Sheaf of Paddy, which voters select on the ballot to support BNP candidates.
+                                        </p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-sm font-bold text-gray-700">3. How do I find my BNP candidate
+                                            for my constituency?</h4>
+                                        <p class="text-xs leading-relaxed text-gray-500">You can find your BNP candidate
+                                            by selecting your division, district, and constituency on our candidate
+                                            finder tool.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-sm font-bold text-gray-700">4. What values does BNP promote?
+                                        </h4>
+                                        <p class="text-xs leading-relaxed text-gray-500">BNP promotes democratic
+                                            representation, constitutional rights, electoral transparency, national
+                                            development, and political accountability.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-sm font-bold text-gray-700">5. Why do some voters choose BNP?
+                                        </h4>
+                                        <p class="text-xs leading-relaxed text-gray-500">Many voters support the BNP due
+                                            to its stance on democratic governance, reforms, national interest, and
+                                            citizen rights.</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-8 flex flex-wrap gap-2 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                                    <span>#vote</span>
+                                    <span>#Bnp</span>
+                                    <span>#votebnp</span>
+                                    <span>#Bangladesh_First_All</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
