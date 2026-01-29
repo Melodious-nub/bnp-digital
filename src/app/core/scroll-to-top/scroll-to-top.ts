@@ -16,7 +16,7 @@ import { Component, HostListener } from '@angular/core';
   styles: [`
     .scroll-to-top {
       position: fixed;
-      bottom: 30px;
+      bottom: 1rem;
       right: 30px;
       width: 50px;
       height: 50px;
