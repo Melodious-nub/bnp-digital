@@ -1,11 +1,13 @@
 <header [class]="headerClass">
-    <div class="container mx-auto px-6 flex justify-between items-center">
+    <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
         <!-- Logo Section -->
-        <div class="flex items-center space-x-3 cursor-pointer" (click)="onLogoClick()">
-            <img src="/bnp-flag.svg" alt="Logo" class="h-12 w-auto">
-            <div class="flex flex-col justify-center">
-                <span class="text-bnp-green font-bold text-sm leading-none">বাংলাদেশ</span>
-                <span class="text-bnp-green font-bold text-sm leading-none mt-1.5">জাতীয়তাবাদী দল - বিএনপি</span>
+        <div class="flex items-center space-x-2 sm:space-x-3 cursor-pointer" (click)="onLogoClick()">
+            <img src="/bnp-flag.svg" alt="Logo" class="h-10 sm:h-12 w-auto">
+            <div class="flex flex-col justify-center leading-tight">
+                <span class="text-bnp-green font-bold text-xs sm:text-lg md:text-xl whitespace-nowrap">বাংলাদেশ
+                    জাতীয়তাবাদী দল - বিএনপি</span>
+                <span class="text-bnp-green font-medium text-[10px] sm:text-xs md:text-sm">ত্রয়োদশ জাতীয় সংসদ
+                    নির্বাচন</span>
             </div>
         </div>
 
@@ -14,7 +16,8 @@
             <ng-container [ngSwitch]="type">
                 <!-- Landing -->
                 <ng-container *ngSwitchCase="'landing'">
-                    <img src="/bangladesh_first.svg" alt="Bangladesh First" class="h-28 w-auto -my-8 translate-y-2">
+                    <img src="/bangladesh_first.svg" alt="Bangladesh First"
+                        class="h-16 sm:h-28 w-auto -my-4 sm:-my-8 translate-y-1 sm:translate-y-2">
                 </ng-container>
 
                 <!-- Candidate List -->
