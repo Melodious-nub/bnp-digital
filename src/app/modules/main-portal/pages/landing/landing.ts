@@ -21,7 +21,31 @@ export class LandingComponent implements OnInit, OnDestroy {
   showModal = false;
   isLoading = false;
   isSeoExpanded = false;
+
+  // Carousel State
+  carouselImages: string[] = [
+    '/carousel/1C.jpeg',
+    '/carousel/2C.jpeg',
+    '/carousel/3C.jpeg',
+    '/carousel/4C.jpeg',
+    '/carousel/5C.jpeg',
+    '/carousel/6C.jpeg',
+    '/carousel/7C.jpeg',
+    '/carousel/8C.jpeg',
+    '/carousel/9C.jpeg',
+    '/carousel/10C.jpeg',
+    '/carousel/11C.jpeg',
+  ];
+  displayImages: string[] = [];
+  transitionEnabled = true;
+  currentSlide = 0;
+  private readonly clonesCount = 3; // Support up to 3 items per view
+
+  // Lightbox State
+  showLightbox = false;
+  selectedImageIndex = 0;
   private destroy$ = new Subject<void>();
+  private autoplayInterval: any;
 
   constructor(
     private candidateService: CandidateService,
@@ -39,7 +63,7 @@ export class LandingComponent implements OnInit, OnDestroy {
       'Vote for bnp, Vote-bnp, Vote bnp, BNP, Bangladesh Nationalist Party, Election, Bangladesh, ধানের শীষ',
       'https://vote-bnp.com'
     );
-
+    this.initInfiniteCarousel();
     this.preloadLandingImages();
 
     // Combined Schema (Organization + FAQ)
@@ -106,9 +130,11 @@ export class LandingComponent implements OnInit, OnDestroy {
       ]
     };
     this.seoService.setJsonLd(schema);
+    this.startAutoplay();
   }
 
   ngOnDestroy() {
+    this.stopAutoplay();
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -183,6 +209,92 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   toggleSeo() {
     this.isSeoExpanded = !this.isSeoExpanded;
+  }
+
+  // Carousel Methods
+  startAutoplay() {
+    this.stopAutoplay(); // Clear any existing interval
+    this.autoplayInterval = setInterval(() => {
+      if (!this.showLightbox) {
+        this.nextSlide();
+      }
+    }, 4000); // Swap every 4 seconds
+  }
+
+  stopAutoplay() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+    }
+  }
+
+  get itemsPerView(): number {
+    if (typeof window === 'undefined') return 1;
+    const width = window.innerWidth;
+    if (width >= 1024) return 2; // Large (Now 2 for bigger images)
+    return 1;                   // Mobile & Tablet (Now 1 for maximum clarity)
+  }
+
+  get maxSlide(): number {
+    return Math.max(0, this.carouselImages.length - this.itemsPerView);
+  }
+
+  nextSlide() {
+    if (!this.transitionEnabled) return;
+    this.currentSlide++;
+  }
+
+  prevSlide() {
+    if (!this.transitionEnabled) return;
+    this.currentSlide--;
+  }
+
+  handleTransitionEnd() {
+    if (this.currentSlide >= this.carouselImages.length + this.clonesCount) {
+      this.transitionEnabled = false;
+      this.currentSlide = this.clonesCount;
+      setTimeout(() => this.transitionEnabled = true, 50);
+    } else if (this.currentSlide < this.clonesCount) {
+      this.transitionEnabled = false;
+      this.currentSlide = this.carouselImages.length + this.clonesCount - 1;
+      setTimeout(() => this.transitionEnabled = true, 50);
+    }
+  }
+
+  goToSlide(index: number) {
+    this.currentSlide = index + this.clonesCount;
+  }
+
+  // Lightbox Methods
+  openLightbox(index: number) {
+    this.stopAutoplay();
+    this.selectedImageIndex = index;
+    this.showLightbox = true;
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+
+  closeLightbox() {
+    this.startAutoplay();
+    this.showLightbox = false;
+    document.body.style.overflow = 'auto'; // Restore scrolling
+  }
+
+  nextLightboxImage(event?: Event) {
+    if (event) event.stopPropagation();
+    this.selectedImageIndex = (this.selectedImageIndex + 1) % this.carouselImages.length;
+  }
+
+  prevLightboxImage(event?: Event) {
+    if (event) event.stopPropagation();
+    this.selectedImageIndex = (this.selectedImageIndex - 1 + this.carouselImages.length) % this.carouselImages.length;
+  }
+
+  private initInfiniteCarousel() {
+    this.displayImages = [
+      ...this.carouselImages.slice(-this.clonesCount),
+      ...this.carouselImages,
+      ...this.carouselImages.slice(0, this.clonesCount)
+    ];
+    this.currentSlide = this.clonesCount;
   }
 
   private preloadLandingImages() {

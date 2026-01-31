@@ -2,15 +2,17 @@
     <!-- Professional Navigation Header -->
     <app-header type="landing" (back)="router.navigate(['/'])"></app-header>
 
+
     <!-- Hero Banner Section -->
     <div class="w-full relative overflow-hidden bg-white border-b border-gray-100 animate-in pt-0">
         <picture>
-            <source media="(min-width: 1600px)" srcset="/1920_400.jpeg">
-            <source media="(min-width: 768px)" srcset="/1920_400.jpeg">
-            <img src="/banner-bnp-phone-size.jpeg" alt="BNP Platform Banner" fetchpriority="high" loading="eager"
+            <source media="(min-width: 1440px)" srcset="/Desktop_banner.png">
+            <source media="(min-width: 1024px)" srcset="/laptop_banner.png">
+            <source media="(min-width: 768px)" srcset="/Tablet_banner.png">
+            <img src="/Mobile_banner.png" alt="BNP Platform Banner" fetchpriority="high" loading="eager"
                 (load)="onImgLoad($event)"
                 class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005] image-fade"
-                onerror="this.src='https://placehold.co/1920x400?text=BNP+Platform+Banner'">
+                onerror="this.src='/Desktop_banner.png'">
         </picture>
         <div
             class="absolute inset-0 bg-gradient-to-b from-black/[0.02] via-transparent to-black/[0.05] pointer-events-none">
@@ -67,6 +69,72 @@
                     <!-- Interactive Map Component -->
                     <app-map [selectedDivision]="selectedDivision" (divisionSelected)="handleDivisionSelect($event)"
                         class="w-full h-full flex items-center justify-center"></app-map>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plan for Nation Building Section (Carousel) -->
+        <div class="w-full max-w-[1400px] px-4 md:px-6 mx-auto mt-16 md:mt-24 mb-0">
+            <h2 class="text-3xl md:text-5xl font-black text-center text-gray-900 mb-10 md:mb-16">
+                দেশ গড়ার <span class="text-bnp-green">পরিকল্পনা</span>
+            </h2>
+
+            <div class="relative group/carousel" (mouseenter)="stopAutoplay()" (mouseleave)="startAutoplay()">
+                <!-- Carousel Container -->
+                <div class="relative overflow-hidden w-full px-4 md:px-10">
+                    <div class="flex h-full" (transitionend)="handleTransitionEnd()"
+                        [style.transition]="transitionEnabled ? 'transform 700ms ease-out' : 'none'"
+                        [style.transform]="'translateX(-' + (currentSlide * (100 / itemsPerView)) + '%)'">
+
+                        <div *ngFor="let image of displayImages; let i = index"
+                            class="flex-shrink-0 px-4 md:px-8 cursor-zoom-in" [style.width.%]="100 / itemsPerView"
+                            (click)="openLightbox((i - 3 + carouselImages.length) % carouselImages.length)">
+                            <div
+                                class="relative aspect-[16/11] overflow-hidden rounded-2xl bg-gray-50/50 border border-gray-100 group/item transition-all duration-500 hover:border-bnp-green/20 hover:shadow-2xl hover:shadow-gray-200/40">
+                                <img [src]="image"
+                                    class="w-full h-full object-contain p-2 transition-all duration-700 group-hover/item:scale-105"
+                                    [alt]="'Plan ' + (i+1)">
+
+                                <!-- Premium Interaction Overlay -->
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 rounded-full bg-white/95 shadow-2xl flex items-center justify-center transform translate-y-4 group-hover/item:translate-y-0 transition-all duration-500 text-bnp-green">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows (Moved outside overflow-hidden for better visibility) -->
+                <button (click)="prevSlide()"
+                    class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-100 text-gray-800 flex items-center justify-center hover:bg-bnp-green hover:text-white transition-all shadow-xl z-20 opacity-0 group-hover/carousel:opacity-100 transform hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <button (click)="nextSlide()"
+                    class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-100 text-gray-800 flex items-center justify-center hover:bg-bnp-green hover:text-white transition-all shadow-xl z-20 opacity-0 group-hover/carousel:opacity-100 transform hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <div class="flex justify-center items-center gap-2 mt-6 md:mt-8">
+                    <button *ngFor="let img of carouselImages; let i = index" (click)="goToSlide(i)"
+                        class="h-2 rounded-full transition-all duration-300"
+                        [class.w-8]="(currentSlide - 3 + carouselImages.length) % carouselImages.length === i"
+                        [class.bg-bnp-green]="(currentSlide - 3 + carouselImages.length) % carouselImages.length === i"
+                        [class.w-2]="(currentSlide - 3 + carouselImages.length) % carouselImages.length !== i"
+                        [class.bg-gray-200]="(currentSlide - 3 + carouselImages.length) % carouselImages.length !== i">
+                    </button>
                 </div>
             </div>
         </div>
@@ -446,4 +514,43 @@
             </div>
         </div>
     </section>
+
+    <!-- Professional Lightbox Modal -->
+    <div *ngIf="showLightbox"
+        class="fixed inset-0 z-[1000] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300"
+        (click)="closeLightbox()">
+
+        <!-- Navigation Buttons -->
+        <button (click)="prevLightboxImage($event)"
+            class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all z-[1010]">
+            <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+
+        <button (click)="nextLightboxImage($event)"
+            class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all z-[1010]">
+            <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <!-- Close Button -->
+        <button (click)="closeLightbox()"
+            class="absolute top-4 md:top-10 right-4 md:right-10 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all z-[1020] text-3xl font-light">
+            &times;
+        </button>
+
+        <!-- Image Wrapper -->
+        <div class="max-w-7xl max-h-[90vh] relative group" (click)="$event.stopPropagation()">
+            <img [src]="carouselImages[selectedImageIndex]"
+                class="max-w-full max-h-[90vh] object-contain shadow-2xl rounded-lg animate-in zoom-in duration-300">
+
+            <!-- Count Indicator -->
+            <div
+                class="absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-black/50 backdrop-blur-md text-white/80 text-sm font-medium border border-white/10">
+                {{selectedImageIndex + 1}} / {{carouselImages.length}}
+            </div>
+        </div>
+    </div>
 </div>
