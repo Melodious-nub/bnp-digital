@@ -128,7 +128,7 @@
 
                             <!-- Captcha Field -->
                             <div class="form-group mb-8 captcha-wrapper">
-                                <label>নিরাপত্তা যাচাই (ক্যাপচা)</label>
+                                <label>Security Verification (Captcha)</label>
                                 <div
                                     class="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm transition-all hover:border-[#1a5e4d]/30">
                                     <div class="captcha-question flex items-center gap-3">
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow">
-                                        <input type="text" formControlName="captcha" placeholder="উত্তর লিখুন"
+                                        <input type="text" formControlName="captcha" placeholder="Enter answer"
                                             class="w-full text-lg h-12"
                                             [class.error]="contactForm.get('captcha')?.invalid && contactForm.get('captcha')?.touched">
                                     </div>

@@ -52,17 +52,17 @@ export class ContactUsComponent {
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         this.captchaResult = num1 + num2;
-        this.captchaQuestion = `${this.api.toBengaliNumber(num1)} + ${this.api.toBengaliNumber(num2)} = ?`;
+        this.captchaQuestion = `${num1} + ${num2} = ?`;
     }
 
     onSubmit() {
         if (this.contactForm.valid) {
             if (parseInt(this.contactForm.value.captcha) !== this.captchaResult) {
                 Swal.fire({
-                    title: 'ক্যাপচা ভুল হয়েছে!',
-                    text: 'সঠিক উত্তরটি লিখুন।',
+                    title: 'Incorrect Captcha!',
+                    text: 'Please provide the correct answer in English numbers.',
                     icon: 'warning',
-                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonText: 'OK',
                     confirmButtonColor: '#f42a41'
                 });
                 this.generateCaptcha();
