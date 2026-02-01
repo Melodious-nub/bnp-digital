@@ -1,0 +1,243 @@
+<div class="min-h-screen bg-[#f8fbfa] flex flex-col page-entry">
+    <app-header type="landing" (back)="router.navigate(['/'])"></app-header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 md:py-12">
+        <div class="max-w-4xl mx-auto text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">আপনার একটি ক্লিকে শুরু হোক
+                আগামীর বাংলাদেশ।</h1>
+            <p class="text-gray-500 text-xl">ধানের শীষ চিহ্নে আপনার সমর্থনকে ডিজিটাল শক্তিতে রূপান্তর করুন।</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto">
+            <!-- Frame Type Selection -->
+            <div class="grid grid-cols-2 gap-4 md:gap-8 mb-12 max-w-2xl mx-auto">
+                <div (click)="selectType('profile')" [class.active]="selectedType === 'profile'"
+                    class="type-card group flex flex-col items-center p-6 bg-white rounded-[2.5rem] border-2 transition-all cursor-pointer hover:shadow-2xl shadow-lg shadow-gray-100">
+                    <div
+                        class="w-12 h-12 rounded-full bg-bnp-green/10 flex items-center justify-center text-bnp-green mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-black text-gray-900 text-xl">প্রোফাইল ফ্রেম</h3>
+                    <p class="text-sm text-gray-600 font-bold mt-1">ফেসবুক প্রোফাইল পিকচারের জন্য</p>
+                    <p class="text-xs text-bnp-green font-black mt-1 uppercase tracking-tight">1080 × 1080 PX</p>
+                </div>
+                <div (click)="selectType('post')" [class.active]="selectedType === 'post'"
+                    class="type-card group flex flex-col items-center p-6 bg-white rounded-[2.5rem] border-2 transition-all cursor-not-allowed opacity-50 shadow-lg shadow-gray-100">
+                    <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-black text-gray-900 text-xl">পোস্ট ফ্রেম</h3>
+                    <p class="text-sm text-gray-500 font-bold mt-1">ফেসবুক পোস্টের জন্য</p>
+                    <p class="text-xs text-gray-400 font-bold mt-1 uppercase tracking-tight">1580 × 1175 PX</p>
+                </div>
+            </div>
+
+            <!-- Editor Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                <!-- Preview Area -->
+                <div class="lg:col-span-12 flex flex-col items-center">
+                    <div class="editor-container relative">
+                        <!-- Viewport -->
+                        <div class="canvas-wrapper relative aspect-square w-[90vw] max-w-[500px] bg-white rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] ring-8 ring-white"
+                            (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp()"
+                            (mouseleave)="onMouseUp()" (touchstart)="onMouseDown($event)"
+                            (touchmove)="onMouseMove($event)" (touchend)="onMouseUp()" (dragover)="onDragOver($event)"
+                            (drop)="onDrop($event)">
+
+                            <!-- User Image Layer -->
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <img *ngIf="userImageSrc" [src]="userImageSrc"
+                                    class="user-photo max-w-none transition-none" [style.transform]="transformStyle"
+                                    style="image-rendering: -webkit-optimize-contrast; image-rendering: high-quality;">
+                            </div>
+
+                            <!-- Frame Overlay -->
+                            <img [src]="selectedFrame.url"
+                                class="absolute inset-0 w-full h-full pointer-events-none z-10">
+
+                            <!-- Upload Prompt -->
+                            <div *ngIf="!userImageSrc" (click)="triggerFileInput(fileInput)"
+                                class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer group/upload z-20">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-white shadow-xl flex items-center justify-center text-bnp-green mb-4 group-hover/upload:scale-110 transition-transform border-2 border-transparent group-hover/upload:border-bnp-green/20">
+                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                    </svg>
+                                </div>
+                                <div class="px-6 text-center">
+                                    <p class="text-gray-900 font-black text-lg">ছবি এখানে ড্র্যাগ করুন</p>
+                                    <p class="text-gray-500 font-bold text-sm mt-1 uppercase tracking-tight">অথবা ক্লিক
+                                        করে আপলোড করুন</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frame Navigation Arrows -->
+                        <button (click)="prevFrame()"
+                            class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-xl border border-gray-100 items-center justify-center text-gray-400 hover:text-bnp-green hover:scale-110 transition-all z-20 hidden md:flex">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button (click)="nextFrame()"
+                            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-xl border border-gray-100 items-center justify-center text-gray-400 hover:text-bnp-green hover:scale-110 transition-all z-20 hidden md:flex">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+
+
+                        <!-- Hidden Export Canvas -->
+                        <canvas #editorCanvas class="hidden"></canvas>
+
+                        <!-- Frame Thumbnails -->
+                        <div class="mt-8 flex justify-center gap-4">
+                            <div *ngFor="let frame of frames" (click)="selectFrame(frame)"
+                                [class.active]="selectedFrame.id === frame.id"
+                                class="frame-thumb relative w-20 h-20 rounded-2xl overflow-hidden cursor-pointer border-2 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                <img [src]="frame.url" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-bnp-green/10 opacity-0 transition-opacity"
+                                    [class.opacity-100]="selectedFrame.id === frame.id"></div>
+                                <div *ngIf="frame.isFeatured"
+                                    class="absolute top-1 right-1 bg-bnp-red text-white text-[8px] font-black px-1.5 py-0.5 rounded-full shadow-sm z-20">
+                                    FEATURED</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls Toolcard -->
+                    <div
+                        class="mt-12 w-full max-w-2xl bg-white rounded-[2.5rem] p-10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] border border-gray-100 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-bnp-green/[0.05] rounded-bl-[5rem]"></div>
+                        <div class="relative z-10 space-y-10">
+                            <!-- Header Info in Card -->
+                            <div class="flex items-center justify-between mb-4 border-b border-gray-50 pb-6">
+                                <div>
+                                    <h2 class="text-2xl font-black text-gray-900 leading-tight">এডিটর কন্ট্রোল</h2>
+                                    <p class="text-sm text-gray-600 font-bold mt-1">নিখুঁত ছবির জন্য নিচের টুলগুলো
+                                        ব্যবহার করুন</p>
+                                </div>
+                                <div
+                                    class="bg-white px-5 py-2.5 rounded-2xl border-2 border-gray-100 flex items-center justify-center shadow-sm">
+                                    <span class="text-xs font-black text-bnp-green uppercase tracking-widest">Frame
+                                        {{selectedFrame.id}} / {{frames.length}}</span>
+                                </div>
+                            </div>
+
+                            <!-- File Input -->
+                            <div class="flex justify-center">
+                                <label
+                                    class="h-14 px-10 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-2xl flex items-center gap-3 cursor-pointer transition-all border border-gray-200">
+                                    <svg class="w-5 h-5 text-bnp-green" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span class="font-bold">ছবি আপলোড করুন</span>
+                                    <input type="file" #fileInput (change)="onFileSelected($event)" class="hidden"
+                                        accept="image/*">
+                                </label>
+                            </div>
+
+                            <!-- Scale Slider -->
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center text-sm font-bold text-gray-500">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        </svg>
+                                        জুম
+                                    </div>
+                                    <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">{{scale}}%</span>
+                                </div>
+                                <input type="range" [(ngModel)]="scale" min="1" max="300"
+                                    class="w-full appearance-none cursor-pointer"
+                                    [style.background]="'linear-gradient(to right, #006a4e ' + ((scale - 1) / 2.99) + '%, #f1f5f9 ' + ((scale - 1) / 2.99) + '%)'">
+                            </div>
+
+                            <!-- Actions Row -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <button (click)="rotate(90)"
+                                    class="h-14 rounded-2xl bg-white hover:bg-gray-50 text-gray-700 font-bold flex items-center justify-center gap-2 transition-all group border-2 border-gray-100 shadow-sm">
+                                    <svg class="w-5 h-5 text-bnp-green group-hover:rotate-90 transition-transform"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                    ঘোরান
+                                </button>
+                                <button (click)="reset()"
+                                    class="h-14 rounded-2xl bg-white hover:bg-gray-50 text-gray-700 font-bold flex items-center justify-center gap-2 transition-all border-2 border-gray-100 shadow-sm">
+                                    <svg class="w-5 h-5 text-bnp-red" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    রিসেট
+                                </button>
+                            </div>
+
+                            <!-- Download Button -->
+                            <button (click)="download()" [disabled]="!userImageSrc"
+                                class="w-full h-16 bg-bnp-green text-white rounded-[1.5rem] font-bold text-xl flex items-center justify-center gap-3 shadow-lg shadow-bnp-green/20 hover:bg-emerald-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed submit-btn">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                ডাউনলোড করুন
+                            </button>
+
+
+                            <!-- Social Links -->
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button
+                                    class="flex-grow h-14 rounded-2xl bg-white border-2 border-gray-100 flex items-center justify-center gap-2 text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+                                    <svg class="w-5 h-5 text-bnp-green" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        <path d="M10.172 13.828a4 4 0 005.656 0l4-4a4 4 0 10-5.656-5.656l-1.102 1.101"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    </svg>
+                                    লিংক কপি
+                                </button>
+                                <button
+                                    class="flex-grow h-14 rounded-2xl bg-white border-2 border-gray-100 flex items-center justify-center gap-2 text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+                                    <svg class="w-5 h-5 text-bnp-green" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    </svg>
+                                    শেয়ার করুন
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Info -->
+                    <div
+                        class="mt-8 text-center text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] flex items-center gap-4">
+                        <span class="w-8 h-px bg-gray-200"></span>
+                        Photo Frame {{selectedFrame.id}} / {{frames.length}}
+                        <span class="w-8 h-px bg-gray-200"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+</div>

@@ -5,6 +5,7 @@ import { LandingComponent } from './pages/landing/landing';
 import { MapComponent } from './components/map/map';
 import { CandidateListComponent } from './pages/candidate-list/candidate-list';
 import { LoginComponent } from './pages/login/login';
+import { PhotoFrameComponent } from './pages/photo-frame/photo-frame';
 
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../../core/core-module';
@@ -14,7 +15,8 @@ import { CoreModule } from '../../core/core-module';
     LandingComponent,
     MapComponent,
     CandidateListComponent,
-    LoginComponent
+    LoginComponent,
+    PhotoFrameComponent
   ],
   imports: [
     CommonModule,
