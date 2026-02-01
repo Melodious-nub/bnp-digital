@@ -6,13 +6,13 @@
     <!-- Hero Banner Section -->
     <div class="w-full relative overflow-hidden bg-white border-b border-gray-100 animate-in pt-0">
         <picture>
-            <source media="(min-width: 1440px)" srcset="/Desktop_banner.png">
-            <source media="(min-width: 1024px)" srcset="/laptop_banner.png">
-            <source media="(min-width: 768px)" srcset="/Tablet_banner.png">
-            <img src="/Mobile_banner.png" alt="BNP Platform Banner" fetchpriority="high" loading="eager"
+            <source media="(min-width: 1440px)" srcset="/Desktop_banner.webp">
+            <source media="(min-width: 1024px)" srcset="/laptop_banner.webp">
+            <source media="(min-width: 768px)" srcset="/Tablet_banner.webp">
+            <img src="/Mobile_banner.webp" alt="BNP Platform Banner" fetchpriority="high" loading="eager"
                 (load)="onImgLoad($event)"
                 class="w-full h-auto block transition-transform duration-1000 hover:scale-[1.005] image-fade"
-                onerror="this.src='/Desktop_banner.png'">
+                onerror="this.src='/Desktop_banner.webp'">
         </picture>
         <div
             class="absolute inset-0 bg-gradient-to-b from-black/[0.02] via-transparent to-black/[0.05] pointer-events-none">
