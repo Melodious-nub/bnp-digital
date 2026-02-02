@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateService, Candidate } from '../../../../core/services/candidate.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Api } from '../../../../core/services/api';
@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit {
   isLoading = true;
   selectedImageUrl: string | null = null;
   contactForm: FormGroup;
-  captchaQuestion: string = '';
-  private captchaResult: number = 0;
+  captchaSvg: SafeHtml = '';
+  captchaToken: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -40,16 +40,23 @@ export class ProfileComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       message: ['', Validators.required],
-      captcha: ['', Validators.required]
+      captcha: ['', Validators.required],
+      honeypot: ['']
     });
-    this.generateCaptcha();
+    this.fetchCaptcha();
   }
 
-  generateCaptcha() {
-    const num1 = Math.floor(Math.random() * 10) + 1;
-    const num2 = Math.floor(Math.random() * 10) + 1;
-    this.captchaResult = num1 + num2;
-    this.captchaQuestion = `${num1} + ${num2} = ?`;
+  fetchCaptcha() {
+    this.api.getCaptcha().subscribe({
+      next: (res) => {
+        console.log('Captcha response received:', res);
+        this.captchaSvg = this.sanitizer.bypassSecurityTrustHtml(res.data);
+        this.captchaToken = res.token;
+      },
+      error: (err) => {
+        console.error('Failed to fetch captcha', err);
+      }
+    });
   }
 
   getSafeUrl(url: string): SafeResourceUrl {
@@ -79,25 +86,17 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      if (parseInt(this.contactForm.value.captcha) !== this.captchaResult) {
-        Swal.fire({
-          title: 'Incorrect Captcha!',
-          text: 'Please provide the correct answer in English numbers.',
-          icon: 'warning',
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#f42a41'
-        });
-        this.generateCaptcha();
-        this.contactForm.patchValue({ captcha: '' });
-        return;
-      }
-
       this.loaderService.setLoading(true);
 
-      const { captcha, ...submitData } = this.contactForm.value;
       const formData = {
-        ...submitData,
-        slugName: this.slug // Use slugName as requested
+        name: this.contactForm.value.name,
+        email: this.contactForm.value.email,
+        subject: this.contactForm.value.subject,
+        message: this.contactForm.value.message,
+        slugName: this.slug,
+        captchaToken: this.captchaToken,
+        captchaText: this.contactForm.value.captcha,
+        honeypot: this.contactForm.value.honeypot
       };
 
       this.api.submitContactForm(formData)
@@ -112,17 +111,18 @@ export class ProfileComponent implements OnInit {
               confirmButtonColor: '#1a5e4d'
             });
             this.contactForm.reset();
-            this.generateCaptcha();
+            this.fetchCaptcha();
           },
           error: (err: any) => {
+            const errorMsg = err.error?.message || 'বার্তাটি পাঠানো সম্ভব হয়নি। অনুগ্রহ করে পরে আবার চেষ্টা করুন।';
             Swal.fire({
               title: 'দুঃখিত!',
-              text: 'বার্তাটি পাঠানো সম্ভব হয়নি। অনুগ্রহ করে পরে আবার চেষ্টা করুন।',
+              text: errorMsg,
               icon: 'error',
               confirmButtonText: 'ঠিক আছে',
               confirmButtonColor: '#f42a41'
             });
-            this.generateCaptcha();
+            this.fetchCaptcha();
           }
         });
     } else {

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Api {
   baseUrl = 'https://api.vote-bnp.com/api';
+  // baseUrl = 'http://localhost:3000/api';
 
   constructor(private https: HttpClient) { }
 
@@ -35,6 +36,10 @@ export class Api {
 
   submitContactForm(data: any) {
     return this.https.post(`${this.baseUrl}/contact/submit`, data);
+  }
+
+  getCaptcha() {
+    return this.get<any>('/contact/captcha');
   }
 
   ensureHttps(url: string | undefined): string | undefined {
