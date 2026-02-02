@@ -42,6 +42,18 @@ export class Api {
     return this.get<any>('/contact/captcha');
   }
 
+  submitPromise(data: any) {
+    return this.https.post(`${this.baseUrl}/promises/submit`, data);
+  }
+
+  getPromiseCount() {
+    return this.get<{ total: number }>('/promises/count');
+  }
+
+  getPromises(page: number = 1, limit: number = 30) {
+    return this.get<any>('/promises', { page, limit });
+  }
+
   ensureHttps(url: string | undefined): string | undefined {
     if (!url) return url;
     if (url.startsWith('http://')) {

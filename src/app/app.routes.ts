@@ -5,7 +5,7 @@ export const routes: Routes = [
     // We use a matcher to avoid capturing main portal routes like 'candidates', 'login', etc.
     {
         matcher: (url: UrlSegment[]): UrlMatchResult | null => {
-            const PORTAL_PATHS = ['candidates', 'login', 'about-us', 'contact-us', 'frame-editor'];
+            const PORTAL_PATHS = ['candidates', 'login', 'about-us', 'contact-us', 'frame-editor', 'promise-wall'];
             if (url.length === 1 && !PORTAL_PATHS.includes(url[0].path)) {
                 return {
                     consumed: url,

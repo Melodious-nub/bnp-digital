@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top';
 import { AboutUsComponent } from './pages/about-us/about-us';
 import { ContactUsComponent } from './pages/contact-us/contact-us';
+import { PromiseWallComponent } from './pages/promise-wall/promise-wall';
 import { RouterModule } from '@angular/router';
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     ScrollToTopComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PromiseWallComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     ScrollToTopComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PromiseWallComponent
   ]
 })
 export class CoreModule { }

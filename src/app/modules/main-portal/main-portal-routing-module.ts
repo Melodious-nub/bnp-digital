@@ -6,6 +6,7 @@ import { AboutUsComponent } from '../../core/pages/about-us/about-us';
 import { ContactUsComponent } from '../../core/pages/contact-us/contact-us';
 import { LoginComponent } from './pages/login/login';
 import { PhotoFrameComponent } from './pages/photo-frame/photo-frame';
+import { PromiseWallComponent } from '../../core/pages/promise-wall/promise-wall';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, title: 'Vote BNP - Home' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Vote BNP - Login' },
   { path: 'about-us', component: AboutUsComponent, title: 'Vote BNP - About Us' },
   { path: 'contact-us', component: ContactUsComponent, title: 'Vote BNP - Contact Us' },
-  { path: 'frame-editor', component: PhotoFrameComponent, title: 'Vote BNP - Photo Frame Editor' }
+  { path: 'frame-editor', component: PhotoFrameComponent, title: 'Vote BNP - Photo Frame Editor' },
+  { path: 'promise-wall', component: PromiseWallComponent, title: 'Vote BNP - অঙ্গিকারনামা' }
 ];
 
 @NgModule({
