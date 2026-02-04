@@ -168,7 +168,7 @@
                         <div class="space-y-3">
                             <label class="text-sm font-black text-gray-500 uppercase tracking-widest ml-1">আপনার পূর্ণ
                                 নাম</label>
-                            <input type="text" formControlName="name" placeholder="আপনার নাম লিখুন"
+                            <input type="text" formControlName="name" placeholder="আপনার নাম লিখুন" maxlength="30"
                                 class="w-full px-8 py-5 bg-white border-2 border-transparent focus:border-[#21C55D] rounded-[1.5rem] outline-none shadow-sm transition-all text-lg font-medium">
                         </div>
 
@@ -240,10 +240,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div *ngIf="isCustomPromise" class="animate-expand-in">
+                                <div *ngIf="isCustomPromise" class="animate-expand-in relative">
                                     <textarea formControlName="promise_text" rows="4"
-                                        placeholder="আপনার নিজস্ব অঙ্গীকারটি এখানে লিখুন..."
+                                        placeholder="আপনার নিজস্ব অঙ্গীকারটি এখানে লিখুন..." maxlength="135"
                                         class="w-full px-6 py-4 bg-gray-50 border-2 border-green-100 focus:border-[#21C55D] rounded-2xl outline-none transition-all resize-none font-medium"></textarea>
+                                    <div class="absolute bottom-4 right-4 text-[0.7rem] font-black uppercase tracking-widest"
+                                        [class.text-red-500]="promiseForm.get('promise_text')?.value?.length >= 135"
+                                        [class.text-gray-400]="promiseForm.get('promise_text')?.value?.length < 135">
+                                        {{promiseForm.get('promise_text')?.value?.length || 0}} / ১৩৫
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -285,23 +290,29 @@
 
             <!-- Card To Download -->
             <div id="certificate-card"
-                class="certificate-wrapper relative mx-auto shadow-2xl bg-[#001a14] flex flex-col shrink-0"
-                style="width: 400px; height: 533px; border-radius: 0;">
-                <!-- Background Image: Full & Uncropped -->
-                <div class="absolute inset-0 z-0">
-                    <img src="/promise-wall/frame-01.png" class="w-full h-full object-fill">
-                </div>
+                class="certificate-wrapper relative mx-auto shadow-2xl bg-[#001a14] overflow-hidden"
+                style="width: 400px; border-radius: 0;">
+                <!-- Background Image: Actual size/ratio -->
+                <img src="/promise-wall/frame-f.png" class="w-full h-auto block">
 
-                <!-- Card Content: ONLY Serial No -->
-                <div class="relative z-10 flex-grow flex flex-col items-center p-12 text-white text-center">
+                <!-- Card Content -->
+                <div class="absolute inset-0 z-10 flex flex-col items-center text-center">
 
-                    <!-- Serial Number: Pure White Text -->
-                    <div class="absolute top-[35px] -translate-x-1/2 w-full flex justify-center" style="left: 52%;">
-                        <span class="text-[0.9rem] font-black text-white drop-shadow-lg inline-block whitespace-nowrap">
+                    <!-- Serial Number -->
+                    <div class="absolute top-[32px] left-1/2 -translate-x-1/2">
+                        <span class="text-[0.85rem] font-black text-white/90 drop-shadow-md">
                             {{getBengaliNumber(submittedData?.promiseNo)}} তম
                         </span>
                     </div>
 
+                    <!-- Name & Promise Text Container - Optimized for 150 chars -->
+                    <div id="promise-text-container"
+                        class="absolute bottom-[50px] left-0 right-0 px-8 flex items-center justify-center min-h-[60px]">
+                        <p
+                            class="text-[0.85rem] font-bold text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] max-w-[340px]">
+                            {{submittedData?.name || 'অজ্ঞাতনামা'}} - "{{submittedData?.promise_text}}"
+                        </p>
+                    </div>
                 </div>
             </div>
 

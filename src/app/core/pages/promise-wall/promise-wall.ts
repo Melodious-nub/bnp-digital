@@ -47,11 +47,14 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
 
     samplePromises = [
-        { text: 'আমি দুর্নীতি থেকে দূরে থাকব এবং দুর্নীতির বিরুদ্ধে সোচ্চার থাকব', icon: '🚫' },
-        { text: 'আমি জাতি-ধর্ম-বর্ণ নির্বিশেষে সকলের সাথে ঐক্যবদ্ধ থাকব', icon: '🤝' },
-        { text: 'আমি ন্যায়বিচার প্রতিষ্ঠায় সর্বদা সচেষ্ট থাকব', icon: '⚖️' },
-        { text: 'আমি পরিবেশ সংরক্ষণে সচেষ্ট থাকব এবং অন্যদেরও উদ্বুদ্ধ করব', icon: '🌱' },
-        { text: 'আমি শিক্ষার আলো ছড়িয়ে দিতে সাহায্য করব', icon: '📚' }
+        { text: 'আমি পরিচ্ছন্ন একটি বাংলাদেশ গড়ব এবং কখনো যত্রতত্র ময়লা ফেলব না।', icon: '🧹' },
+        { text: 'আমি দেশের আইনের প্রতি শ্রদ্ধাশীল থাকব এবং ট্রাফিক আইন মেনে চলব।', icon: '🚦' },
+        { text: 'আমি দুর্নীতি রোধ করব; কাউকে ঘুষ দেব না এবং ঘুষ নেব না।', icon: '🚫' },
+        { text: 'আমি পরিবেশের প্রতি যত্নশীল হব এবং এই বছর ১০০টি গাছ রোপণ করব।', icon: '🌳' },
+        { text: 'আমি জাতি-ধর্ম নির্বিশেষে সকলের প্রতি শ্রদ্ধাশীল থাকব এবং ঐক্যবদ্ধ বাংলাদেশ গড়তে ভূমিকা রাখব।', icon: '🤝' },
+        { text: 'আমি বিদেশে উচ্চশিক্ষা শেষ করে দেশে ফিরে দেশ গড়ার কাজে আত্মনিয়োগ করব।', icon: '🎓' },
+        { text: 'আমি গুজব ছড়ানো থেকে বিরত থাকব এবং ইন্টারনেটে দায়িত্বশীল নাগরিকের পরিচয় দেব।', icon: '📱' },
+        { text: 'আমি সমাজের সুবিধাবঞ্চিত মানুষের পাশে দাঁড়াব এবং সাধ্যমতো তাদের সহায়তা করব।', icon: '🤲' }
     ];
 
     constructor(
@@ -62,9 +65,9 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
         public router: Router
     ) {
         this.promiseForm = this.fb.group({
-            name: [''],
+            name: ['', [Validators.maxLength(30)]],
             division: [''],
-            promise_text: ['', [Validators.required, Validators.maxLength(500)]]
+            promise_text: ['', [Validators.required, Validators.maxLength(135)]]
         });
 
         this.filteredDistricts = [];
@@ -162,10 +165,7 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
 
     closeModal(): void {
         this.showModal = false;
-        this.isCustomPromise = false;
-        this.selectedSampleIndex = null;
-        this.promiseForm.reset();
-        this.districtSearch = '';
+        // Removed reset() and state clearing to fix the bug where clicking outside clears data
         document.body.style.overflow = 'auto'; // Restore scroll
     }
 
@@ -294,11 +294,15 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
                 windowHeight: document.documentElement.offsetHeight,
                 onclone: (clonedDoc) => {
                     const card = clonedDoc.getElementById('certificate-card');
+                    const textContainer = clonedDoc.getElementById('promise-text-container');
                     if (card) {
                         card.style.transform = 'none';
                         card.style.display = 'flex';
                         card.style.visibility = 'visible';
                         card.style.opacity = '1';
+                    }
+                    if (textContainer) {
+                        textContainer.style.bottom = '56px'; // Original 14rem/56px position for download
                     }
                 }
             });

@@ -23,7 +23,7 @@ export class PhotoFrameComponent implements OnInit {
         { id: 1, name: 'ধানের শীষ - ১', url: '/photoframe/bnp-profile-dhaner-shish-1080_1080.png', type: 'profile', isFeatured: true },
         { id: 2, name: 'সবাই মিলে - ১', url: '/photoframe/bnp-profile-sobar-age-1080_1080.png', type: 'profile' },
         { id: 3, name: 'টেক ব্যাক - ১', url: '/photoframe/bnp-profile-TK-1080_1080.png', type: 'profile' },
-        { id: 4, name: 'ধানের শীষ পোস্ট', url: '/photoframe/bnp-profile-dhaner-shish-1580_1875.png', type: 'post' },
+        { id: 4, name: 'ধানের শীষ পোস্ট', url: '/photoframe/bnp-profile-dhaner-shish-1580_1875.png', type: 'post', isFeatured: true },
         { id: 5, name: 'সবাই মিলে পোস্ট', url: '/photoframe/bnp-profile-sobar-age-1580_1875.png', type: 'post' },
         { id: 6, name: 'টেক ব্যাক পোস্ট', url: '/photoframe/bnp-profile-TK-1580_1875.png', type: 'post' }
     ];

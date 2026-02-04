@@ -48,7 +48,9 @@
                 <div class="lg:col-span-12 flex flex-col items-center">
                     <div class="editor-container relative">
                         <!-- Viewport -->
-                        <div class="canvas-wrapper relative w-[90vw] max-w-[500px] bg-white rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] ring-8 ring-white"
+                        <div class="canvas-wrapper relative w-[90vw] max-w-[500px] bg-white overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] ring-8 ring-white"
+                            [class.rounded-[2.5rem]]="selectedType === 'profile'"
+                            [class.rounded-none]="selectedType === 'post'"
                             [style.aspect-ratio]="selectedType === 'profile' ? '1/1' : '1580/1875'"
                             (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp()"
                             (mouseleave)="onMouseUp()" (touchstart)="onMouseDown($event)"
@@ -108,7 +110,9 @@
                         <div class="mt-8 flex justify-center gap-4">
                             <div *ngFor="let frame of filteredFrames" (click)="selectFrame(frame)"
                                 [class.active]="selectedFrame.id === frame.id"
-                                class="frame-thumb relative w-20 h-20 rounded-2xl overflow-hidden cursor-pointer border-2 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                [style.aspect-ratio]="frame.type === 'profile' ? '1/1' : '1580/1875'"
+                                [style.height]="frame.type === 'profile' ? '5rem' : '6rem'"
+                                class="frame-thumb relative w-20 rounded-xl overflow-hidden cursor-pointer border-2 transition-all hover:scale-105 active:scale-95 shadow-sm">
                                 <img [src]="frame.url" class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-bnp-green/10 opacity-0 transition-opacity"
                                     [class.opacity-100]="selectedFrame.id === frame.id"></div>
