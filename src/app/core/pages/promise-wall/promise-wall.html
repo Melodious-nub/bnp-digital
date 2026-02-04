@@ -32,7 +32,7 @@
         <!-- Stats Section -->
         <section class="relative -mt-16 container mx-auto px-6 mb-20">
             <div
-                class="max-w-2xl mx-auto bg-white rounded-[3rem] p-10 shadow-2xl shadow-gray-200 border border-gray-100 text-center">
+                class="max-w-3xl mx-auto bg-white rounded-[3rem] p-10 shadow-2xl shadow-gray-200 border border-gray-100 text-center">
                 <div class="flex items-center justify-center gap-2 mb-4">
                     <span class="relative flex h-3 w-3">
                         <span
@@ -41,8 +41,7 @@
                     </span>
                     <h3 class="text-gray-400 font-black uppercase tracking-[0.2em] text-xs">এ পর্যন্ত শপথ নিয়েছেন</h3>
                 </div>
-                <div class="text-6xl md:text-8xl font-black text-[#1a5e4d] tabular-nums mb-3 tracking-tighter"
-                    style="letter-spacing: 3px;">
+                <div class="promise-counter-text text-[#22C55E] tabular-nums mb-3 tracking-tighter drop-shadow-sm">
                     {{getBengaliNumber(displayTotalPromises)}}
                 </div>
                 <p class="text-gray-400 font-bold text-lg">দেশপ্রেমিক বাংলাদেশি</p>
@@ -286,63 +285,21 @@
 
             <!-- Card To Download -->
             <div id="certificate-card"
-                class="certificate-wrapper relative mx-auto overflow-hidden shadow-2xl bg-[#004d3d] flex flex-col shrink-0"
-                style="width: 400px; height: 533px; border-radius: 2.5rem;">
-                <!-- Background Image Wrapper -->
+                class="certificate-wrapper relative mx-auto shadow-2xl bg-[#001a14] flex flex-col shrink-0"
+                style="width: 400px; height: 533px; border-radius: 0;">
+                <!-- Background Image: Full & Uncropped -->
                 <div class="absolute inset-0 z-0">
-                    <img src="/Mobile_banner.webp" class="w-full h-full object-cover opacity-70 mix-blend-luminosity">
-                    <div class="absolute inset-0 bg-gradient-to-b from-[#004d3d]/80 via-transparent to-[#004d3d]/90">
-                    </div>
+                    <img src="/promise-wall/frame-01.png" class="w-full h-full object-fill">
                 </div>
 
-                <!-- Card Content -->
-                <div class="relative z-10 flex-grow flex flex-col items-center p-8 text-white text-center">
-                    <!-- Top Section: Date & Serial -->
-                    <div class="w-full flex justify-between items-center mb-6">
-                        <span
-                            class="text-[0.7rem] font-black opacity-80 bg-white/10 px-3 py-1 rounded-full backdrop-blur-md border border-white/10">{{submittedData?.date
-                            | date:'d MMMM, y'}}</span>
-                        <!-- Number Count Chip -->
-                        <div
-                            class="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full flex items-center gap-1">
-                            <span
-                                class="text-[0.7rem] font-black text-yellow-400">{{getBengaliNumber(submittedData?.promiseNo)}}</span>
-                            <span class="text-[0.7rem] font-black text-white/80">তম অঙ্গীকার</span>
-                        </div>
-                    </div>
+                <!-- Card Content: ONLY Serial No -->
+                <div class="relative z-10 flex-grow flex flex-col items-center p-12 text-white text-center">
 
-                    <!-- Logo -->
-                    <div class="mb-4">
-                        <div
-                            class="w-16 h-16 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center mx-auto mb-3 border border-white/20 shadow-2xl">
-                            <svg class="w-10 h-10 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
-                            </svg>
-                        </div>
-                        <h2 class="text-3xl font-black mb-0.5 tracking-tight text-white drop-shadow-lg">অঙ্গীকার কার্ড
-                        </h2>
-                        <p class="text-[0.75rem] font-black opacity-90 uppercase tracking-[0.15em] text-white/90">নতুন
-                            বাংলাদেশের জন্য প্রতিশ্রুতি</p>
-                    </div>
-
-                    <!-- Middle Section: Hero Text -->
-                    <div class="my-6">
-                        <p class="text-[0.8rem] font-black opacity-80 uppercase tracking-widest mb-1 text-white/80">
-                            অঙ্গীকার নিয়েছেন</p>
-                        <h3 class="text-3xl font-black text-yellow-400 leading-tight mb-1 drop-shadow-md">
-                            {{submittedData?.name || 'একজন দেশপ্রেমিক'}}</h3>
-                        <p class="text-[0.8rem] font-bold opacity-90">{{submittedData?.division || 'বাংলাদেশ'}} থেকে</p>
-                    </div>
-
-                    <!-- Promise Box -->
-                    <div class="w-full mt-2">
-                        <div
-                            class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-[2rem] relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-1.5 h-full bg-yellow-400"></div>
-                            <p class="text-[1.1rem] font-bold leading-relaxed italic text-white/95">
-                                "{{submittedData?.promise_text}}"
-                            </p>
-                        </div>
+                    <!-- Serial Number: Pure White Text -->
+                    <div class="absolute top-[35px] -translate-x-1/2 w-full flex justify-center" style="left: 52%;">
+                        <span class="text-[0.9rem] font-black text-white drop-shadow-lg inline-block whitespace-nowrap">
+                            {{getBengaliNumber(submittedData?.promiseNo)}} তম
+                        </span>
                     </div>
 
                 </div>

@@ -18,7 +18,7 @@
 <header [class]="headerClass">
     <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
         <!-- Logo Section -->
-        <div class="flex items-center space-x-2 sm:space-x-3 cursor-pointer" (click)="onLogoClick()">
+        <div class="flex items-center space-x-2 sm:space-x-3 cursor-pointer shrink-0" (click)="onLogoClick()">
             <img src="/bnp-flag.svg" alt="Logo" class="h-10 sm:h-12 w-auto">
             <div class="flex flex-col justify-center leading-tight">
                 <span class="text-bnp-green font-bold text-[11px] sm:text-base md:text-lg whitespace-nowrap">বাংলাদেশ
@@ -28,31 +28,70 @@
             </div>
         </div>
 
-        <!-- Right Action Section -->
-        <div class="flex items-center space-x-4">
-            <ng-container [ngSwitch]="type">
-                <!-- Landing -->
-                <ng-container *ngSwitchCase="'landing'">
-                    <img src="/bangladesh_first.svg" alt="Bangladesh First"
-                        class="h-16 sm:h-28 w-auto -my-4 sm:-my-8 translate-y-1 sm:translate-y-2">
-                </ng-container>
+        <!-- Navigation Menus (Desktop) -->
+        <nav class="hidden lg:flex items-center gap-2">
+            <a routerLink="/promise-wall" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+                class="nav-link group px-5 py-2.5 rounded-2xl text-sm font-black text-gray-600 hover:text-bnp-green hover:bg-bnp-green/5 transition-all flex items-center gap-2.5">
+                <div
+                    class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center group-hover:bg-bnp-green/10 transition-colors text-base">
+                    ✊
+                </div>
+                <span>অঙ্গীকারনামা</span>
+            </a>
+            <a routerLink="/frame-editor" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+                class="nav-link group px-5 py-2.5 rounded-2xl text-sm font-black text-gray-600 hover:text-bnp-green hover:bg-bnp-green/5 transition-all flex items-center gap-2.5">
+                <div
+                    class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center group-hover:bg-bnp-green/10 transition-colors text-base">
+                    🖼️
+                </div>
+                <span>ফটো ফ্রেম</span>
+            </a>
+        </nav>
 
-                <!-- Candidate List -->
-                <ng-container *ngSwitchCase="'candidate-list'">
-                    <button (click)="onBackClick()"
-                        class="text-xs font-bold text-gray-400 hover:text-gray-900 transition-colors">
-                        &larr; ম্যাপে ফিরে যান
-                    </button>
-                </ng-container>
+        <!-- Right Action Section (Mobile Toggle) -->
+        <div class="flex items-center lg:hidden">
+            <button (click)="toggleMenu()" class="p-2 text-gray-600 hover:text-bnp-green transition-colors">
+                <svg *ngIf="!isMobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                        d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+                <svg *ngIf="isMobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
 
-                <!-- Profile -->
-                <ng-container *ngSwitchCase="'profile'">
-                    <button (click)="onBackClick()"
-                        class="px-6 py-2 border border-gray-900 text-gray-900 text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 active:scale-95">
-                        আরও দেখুন
-                    </button>
-                </ng-container>
-            </ng-container>
+    <!-- Mobile Drawer -->
+    <div *ngIf="isMobileMenuOpen"
+        class="lg:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-2xl overflow-hidden animate-slideDown">
+        <div class="flex flex-col p-6 gap-3">
+            <a routerLink="/promise-wall" routerLinkActive="bg-bnp-green/5 text-bnp-green" (click)="toggleMenu()"
+                class="px-5 py-4 rounded-2xl text-base font-black text-gray-700 hover:bg-gray-50 flex items-center gap-4 transition-all active:scale-[0.98]">
+                <div class="w-10 h-10 rounded-xl bg-bnp-green/10 flex items-center justify-center text-lg">
+                    ✊
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-gray-900">অঙ্গীকারনামা</span>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Promise Wall</span>
+                </div>
+                <svg class="w-5 h-5 ml-auto opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </a>
+            <a routerLink="/frame-editor" routerLinkActive="bg-bnp-green/5 text-bnp-green" (click)="toggleMenu()"
+                class="px-5 py-4 rounded-2xl text-base font-black text-gray-700 hover:bg-gray-50 flex items-center gap-4 transition-all active:scale-[0.98]">
+                <div class="w-10 h-10 rounded-xl bg-bnp-green/10 flex items-center justify-center text-lg">
+                    🖼️
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-gray-900">ফটো ফ্রেম</span>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Photo Frame</span>
+                </div>
+                <svg class="w-5 h-5 ml-auto opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </a>
         </div>
     </div>
 </header>

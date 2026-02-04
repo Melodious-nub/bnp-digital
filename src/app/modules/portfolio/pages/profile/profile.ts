@@ -49,12 +49,12 @@ export class ProfileComponent implements OnInit {
   fetchCaptcha() {
     this.api.getCaptcha().subscribe({
       next: (res) => {
-        console.log('Captcha response received:', res);
+        // console.log('Captcha response received:', res);
         this.captchaSvg = this.sanitizer.bypassSecurityTrustHtml(res.data);
         this.captchaToken = res.token;
       },
       error: (err) => {
-        console.error('Failed to fetch captcha', err);
+        // console.error('Failed to fetch captcha', err);
       }
     });
   }

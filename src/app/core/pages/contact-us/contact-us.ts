@@ -56,7 +56,7 @@ export class ContactUsComponent {
                 this.captchaToken = res.token;
             },
             error: (err) => {
-                console.error('Failed to fetch captcha', err);
+                // console.error('Failed to fetch captcha', err);
             }
         });
     }

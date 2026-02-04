@@ -11,18 +11,22 @@ export class HeaderComponent {
     @Input() type: 'landing' | 'candidate-list' | 'profile' = 'landing';
     @Output() back = new EventEmitter<void>();
 
-    constructor(private router: Router) { }
+    isMobileMenuOpen = false;
+
+    constructor(public router: Router) { }
 
     get headerClass() {
-        let base = 'sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4';
-        if (this.type === 'profile') {
-            base += ' shadow-sm transition-all duration-300';
-        }
+        let base = 'sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-gray-100 py-3 md:py-4 transition-all duration-300 shadow-sm';
         return base;
+    }
+
+    toggleMenu() {
+        this.isMobileMenuOpen = !this.isMobileMenuOpen;
     }
 
     onLogoClick() {
         this.router.navigate(['/']);
+        this.isMobileMenuOpen = false;
     }
 
     onBackClick() {

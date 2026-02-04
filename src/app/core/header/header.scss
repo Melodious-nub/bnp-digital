@@ -1,5 +1,33 @@
 // Header styles are mostly handled by Tailwind classes in the HTML.
 // Any specific tweaks can go here.
+.active-link {
+    @apply bg-bnp-green text-white !important;
+
+    div {
+        @apply bg-white/20 !important;
+
+        svg {
+            @apply text-white !important;
+        }
+    }
+}
+
+.animate-slideDown {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 :host {
     display: block;
     width: 100%;

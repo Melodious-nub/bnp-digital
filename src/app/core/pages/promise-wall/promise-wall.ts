@@ -72,7 +72,7 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.seo.updatePageSeo(
-            'অঙ্গীকারনামা | Vote BNP',
+            'Vote BNP | অঙ্গীকারনামা',
             'আমাদের দেশ, আমাদের অঙ্গীকার—পরিবর্তনের কারিগর হতে আপনার প্রতিশ্রুতি দিন।',
             'https://vote-bnp.com/assets/images/promise-banner.jpg',
             'অঙ্গীকারনামা, Promise Wall, BNP Promise, বাংলাদেশ জাতীয়তাবাদী দল',
@@ -117,7 +117,7 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
                     this.totalPromises = res.pagination.total;
                     this.totalPages = res.pagination.totalPages;
                 },
-                error: (err) => console.error('Error fetching promises', err)
+                error: (err) => { } // console.error('Error fetching promises', err)
             });
     }
 
@@ -139,7 +139,7 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
                         }
                     }
                 },
-                error: (err) => console.error('Error fetching promise count', err)
+                error: (err) => { } // console.error('Error fetching promise count', err)
             });
     }
 
@@ -282,15 +282,23 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
 
             const canvas = await html2canvas(element, {
                 useCORS: true,
+                allowTaint: true,
                 scale: 2,
-                backgroundColor: '#004d3d',
+                backgroundColor: null,
                 logging: false,
+                width: element.offsetWidth,
+                height: element.offsetHeight,
+                scrollX: 0,
+                scrollY: -window.scrollY,
+                windowWidth: document.documentElement.offsetWidth,
+                windowHeight: document.documentElement.offsetHeight,
                 onclone: (clonedDoc) => {
-                    // Ensure the card is visible in the clone
                     const card = clonedDoc.getElementById('certificate-card');
                     if (card) {
                         card.style.transform = 'none';
-                        card.style.position = 'relative';
+                        card.style.display = 'flex';
+                        card.style.visibility = 'visible';
+                        card.style.opacity = '1';
                     }
                 }
             });
@@ -300,7 +308,7 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
             link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
         } catch (error) {
-            console.error('Download error:', error);
+            // console.error('Download error:', error);
             Swal.fire('Error', 'ডাউনলোড সম্পন্ন করা সম্ভব হয়নি। স্ক্রিনশট নিন।', 'error');
         } finally {
             this.isDownloading = false;

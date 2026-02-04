@@ -30,9 +30,9 @@ export class MapComponent implements OnInit {
     this.candidateService.getAllCandidates().subscribe({
       next: (data) => {
         this.candidates = data;
-        console.log('Candidates loaded:', this.candidates);
+        // console.log('Candidates loaded:', this.candidates);
       },
-      error: (err) => console.error('Error loading candidates:', err)
+      error: (err) => { } // console.error('Error loading candidates:', err)
     });
   }
 

@@ -140,7 +140,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   handleDivisionSelect(divisionName: string) {
-    console.log('Map Event Received: ', divisionName);
+    // console.log('Map Event Received: ', divisionName);
     this.selectedDivision = divisionName;
     this.isLoading = true;
     this.showModal = true;
@@ -153,7 +153,7 @@ export class LandingComponent implements OnInit, OnDestroy {
           const division = divisions.find(d => d.name.toLowerCase() === divisionName.toLowerCase());
 
           if (division) {
-            console.log('Matched Division:', division);
+            // console.log('Matched Division:', division);
             this.selectedDivisionId = division.id;
             this.selectedDivisionBn = division.bn_name || division.name;
 
@@ -161,23 +161,23 @@ export class LandingComponent implements OnInit, OnDestroy {
               .pipe(takeUntil(this.destroy$))
               .subscribe({
                 next: (districts: District[]) => {
-                  console.log('Districts Filtered:', districts.length);
+                  // console.log('Districts Filtered:', districts.length);
                   this.districts = districts;
                   this.isLoading = false;
                 },
                 error: (err: any) => {
-                  console.error('API Error:', err);
+                  // console.error('API Error:', err);
                   this.isLoading = false;
                 }
               });
           } else {
-            console.warn('No division match found for:', divisionName);
+            // console.warn('No division match found for:', divisionName);
             this.selectedDivisionBn = divisionName;
             this.isLoading = false; // Stop loading if no division found
           }
         },
         error: (err) => {
-          console.error('Data loading error:', err);
+          // console.error('Data loading error:', err);
           this.isLoading = false;
         }
       });
@@ -192,7 +192,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   onDistrictSelect(district: District) {
-    console.log('District Selected:', district.name);
+    // console.log('District Selected:', district.name);
     this.router.navigate(['/candidates'], {
       queryParams: {
         districtId: district.id,
