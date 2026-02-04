@@ -166,9 +166,16 @@
                     <!-- User Info Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="space-y-3">
-                            <label class="text-sm font-black text-gray-500 uppercase tracking-widest ml-1">আপনার পূর্ণ
-                                নাম</label>
-                            <input type="text" formControlName="name" placeholder="আপনার নাম লিখুন" maxlength="30"
+                            <div class="flex justify-between items-center ml-1">
+                                <label class="text-sm font-black text-gray-500 uppercase tracking-widest">আপনার পূর্ণ
+                                    নাম (ঐচ্ছিক)</label>
+                                <span class="text-[0.7rem] font-black uppercase tracking-widest"
+                                    [class.text-red-500]="promiseForm.get('name')?.value?.length >= 25"
+                                    [class.text-gray-400]="promiseForm.get('name')?.value?.length < 25">
+                                    {{promiseForm.get('name')?.value?.length || 0}} / ২৫
+                                </span>
+                            </div>
+                            <input type="text" formControlName="name" placeholder="আপনার নাম লিখুন" maxlength="25"
                                 class="w-full px-8 py-5 bg-white border-2 border-transparent focus:border-[#21C55D] rounded-[1.5rem] outline-none shadow-sm transition-all text-lg font-medium">
                         </div>
 

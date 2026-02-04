@@ -65,7 +65,7 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
         public router: Router
     ) {
         this.promiseForm = this.fb.group({
-            name: ['', [Validators.maxLength(30)]],
+            name: ['', [Validators.maxLength(25)]],
             division: [''],
             promise_text: ['', [Validators.required, Validators.maxLength(135)]]
         });
@@ -155,7 +155,14 @@ export class PromiseWallComponent implements OnInit, OnDestroy {
     toggleCustomPromise(): void {
         this.isCustomPromise = true;
         this.selectedSampleIndex = null;
-        this.promiseForm.patchValue({ promise_text: '' });
+
+        // Only clear if the current text is one of the sample promises
+        const currentText = this.promiseForm.get('promise_text')?.value;
+        const isSampleShowing = this.samplePromises.some(s => s.text === currentText);
+
+        if (isSampleShowing || !currentText) {
+            this.promiseForm.patchValue({ promise_text: '' });
+        }
     }
 
     openModal(): void {
