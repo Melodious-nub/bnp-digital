@@ -6,6 +6,7 @@ import { MapComponent } from './components/map/map';
 import { CandidateListComponent } from './pages/candidate-list/candidate-list';
 import { LoginComponent } from './pages/login/login';
 import { PhotoFrameComponent } from './pages/photo-frame/photo-frame';
+import { ReformPlanComponent } from './pages/reform-plan/reform-plan';
 
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../../core/core-module';
@@ -16,7 +17,8 @@ import { CoreModule } from '../../core/core-module';
     MapComponent,
     CandidateListComponent,
     LoginComponent,
-    PhotoFrameComponent
+    PhotoFrameComponent,
+    ReformPlanComponent
   ],
   imports: [
     CommonModule,
